@@ -4,7 +4,7 @@
 
 Inside the `<project-root>/database/` directory, you'll find an executable Bash script (`.sh` file) and several SQL scripts (`.sql` files). These can be used to build and rebuild a PostgreSQL database for the capstone project.
 
-From a terminal session, execute the following commands:
+From a `Windows Terminal` session, execute the following commands:
 
 ```
 cd <project-root>/database/
