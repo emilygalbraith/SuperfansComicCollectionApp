@@ -16,6 +16,9 @@ public class SuperfanController {
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
 
+    @RequestMapping(path = "collections/public", method = RequestMethod.GET)
+    public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }
+
     @RequestMapping(path = "collections", method = RequestMethod.GET)
     public List<Collection> listAllCollections() {
         return comicCuratorService.listAllCollections();
