@@ -25,7 +25,6 @@ public class Collection {
     public int getCollectionId() {
         return collectionId;
     }
-
     public void setCollectionId(int collectionId) {
         this.collectionId = collectionId;
     }
@@ -33,7 +32,6 @@ public class Collection {
     public String getCollectionName() {
         return collectionName;
     }
-
     public void setCollectionName(String collectionName) {
         this.collectionName = collectionName;
     }
@@ -41,16 +39,10 @@ public class Collection {
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public boolean isPrivate() {
-        return isPrivate;
-    }
-
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
+    public boolean isPrivate() { return isPrivate; }
+    public void setPrivate(boolean aPrivate) { isPrivate = aPrivate; }
 }
