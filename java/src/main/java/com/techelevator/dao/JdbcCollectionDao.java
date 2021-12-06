@@ -63,6 +63,7 @@ public class JdbcCollectionDao implements CollectionDao{
         jdbcTemplate.update(sql, collectionId);
     }
 
+
     private Collection mapRowToCollection(SqlRowSet rs) {
         Collection collection = new Collection();
         collection.setCollectionId(rs.getInt("collection_id"));

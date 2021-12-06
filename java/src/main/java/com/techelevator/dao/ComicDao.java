@@ -13,6 +13,7 @@ public interface ComicDao {
     Comic getComicById(int comicId);
     Comic getComicByName(String comicName);
     void addComic(Comic comic);
+    List<Comic> listComicsInCollection(int collectionId);
 
 
 }

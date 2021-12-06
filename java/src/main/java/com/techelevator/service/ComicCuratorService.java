@@ -40,7 +40,7 @@ public class ComicCuratorService {
     //Collection & comic related methods
     public List<Comic> listComicsByCollectionId(int collectionId) {
         List<Comic> comicList = new ArrayList<>();
-        
+
         return comicList;
     }
 
