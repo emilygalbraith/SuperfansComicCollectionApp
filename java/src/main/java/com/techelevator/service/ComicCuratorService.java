@@ -37,13 +37,6 @@ public class ComicCuratorService {
     //TODO Maybe add logic that creates a HashMap with key as the collection, and value as a list of comics in that collection to display
 
 
-    //Collection & comic related methods
-    public List<Comic> listComicsByCollectionId(int collectionId) {
-        List<Comic> comicList = new ArrayList<>();
-
-        return comicList;
-    }
-
     //Collection related methods
     public List<Collection> listAllCollections() {
         return collectionDao.listAllCollections();
@@ -89,6 +82,10 @@ public class ComicCuratorService {
 
     public void addComic(Comic comic) {
         comicDao.addComic(comic);
+    }
+
+    public List<Comic> listComicsInCollection(int collectionId) {
+        return comicDao.listComicsInCollection(collectionId);
     }
 
     /*
