@@ -90,8 +90,8 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public void addComic(Comic comic) {
-        comicDao.addComic(comic);
+    public void addComic(Comic comic, int collectionId) {
+        comicDao.addComic(comic, collectionId);
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {

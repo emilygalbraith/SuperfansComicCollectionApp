@@ -82,9 +82,9 @@ public class SuperfanController {
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @RequestMapping(path = "comics", method = RequestMethod.POST)
-    public void addComic(@RequestBody Comic comic) {
-        comicCuratorService.addComic(comic);
+    @RequestMapping(path = "collections/{collectionId}", method = RequestMethod.POST)
+    public void addComic(@RequestBody Comic comic,@PathVariable int collectionId) {
+        comicCuratorService.addComic(comic, collectionId);
     }
 
 
