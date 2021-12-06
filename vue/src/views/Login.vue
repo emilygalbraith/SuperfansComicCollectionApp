@@ -74,3 +74,17 @@ export default {
   }
 };
 </script>
+
+
+
+<style>
+body {
+  margin: 30px;
+  padding: 30px;
+  background-color: rgb(26, 12, 58);
+  font-family: Arial, Helvetica, sans-serif;
+  color: aliceblue;
+  display: flex;
+}
+
+</style>
