@@ -38,6 +38,16 @@ public class ComicCuratorService {
 
 
     //Collection related methods
+    public List<Collection> listALlPublicCollections() {
+        List<Collection> publicCollections = listAllCollections();
+        for(Collection collection : publicCollections) {
+            if(collection.isPrivate()) {
+                publicCollections.remove(collection);
+            }
+        }
+        return publicCollections;
+    }
+
     public List<Collection> listAllCollections() {
         return collectionDao.listAllCollections();
     }
