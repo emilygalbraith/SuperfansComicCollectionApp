@@ -11,6 +11,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,6 +36,13 @@ public class ComicCuratorService {
     //TODO Depending on what is better for the front-end I think we will need to add logic in here returning public collections only
     //TODO Maybe add logic that creates a HashMap with key as the collection, and value as a list of comics in that collection to display
 
+
+    //Collection & comic related methods
+    public List<Comic> listComicsByCollectionId(int collectionId) {
+        List<Comic> comicList = new ArrayList<>();
+        
+        return comicList;
+    }
 
     //Collection related methods
     public List<Collection> listAllCollections() {
