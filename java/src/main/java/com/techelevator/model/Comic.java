@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Comic {
 
-    @NotNull(message = "A comic id is required")
+    @NotNull(message = "A comic id is required.")
     private int comicId;
     @NotBlank(message = "You must enter a comic name.")
     private String comicName;
@@ -14,9 +14,9 @@ public class Comic {
     private String author;
     @NotBlank(message = "You must enter a release date.")
     private String releaseDate;
-    @NotNull(message = "A publisher id is required")
+    @NotNull(message = "A publisher id is required.")
     private int publisherId;
-    @NotNull(message = "A series id is required")
+    @NotNull(message = "A series id is required.")
     private int seriesId;
 
     public int getComicId() {

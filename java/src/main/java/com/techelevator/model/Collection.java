@@ -1,9 +1,15 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Collection {
 
+    @NotNull(message = "A collection id is required.")
     private int collectionId;
+    @NotBlank(message = "A collection name must be entered.")
     private String collectionName;
+    @NotNull(message = "A user id is required.")
     private int userId;
 
     public Collection() { }
