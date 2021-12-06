@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -45,7 +46,7 @@ public class SuperfanController {
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @RequestMapping(path = "collections", method = RequestMethod.DELETE)
-    public void deleteCollection(int collectionId) {
+    public void deleteCollection(int collectionId, Principal principal) {
         comicCuratorService.deleteCollection(collectionId);
     }
 
