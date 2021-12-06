@@ -52,9 +52,10 @@ public class ComicCuratorService {
     }
 
     /*
-    will keep working on pull information from Marvel api and turn into something we can work for in our api
+    will keep working on pull information from Marvel api and turn into something we can work with in our api
      */
-    public SeriesInfo[] listAllMarvelSeries() {
+    // can be used for method below
+    public SeriesInfo[] getAllMarvelSeries() {
         try {
             MarvelApiSeries allSeries = restTemplate.getForObject(BASE_API_URL + "series?ts=" + TS + "&apikey="
             + API_KEY + "&hash=" + HASH, MarvelApiSeries.class);
@@ -70,4 +71,11 @@ public class ComicCuratorService {
 
         return new SeriesInfo[] {};
     }
+
+    /*
+    for future when we work on series, we can display marvel series on a certain page
+    public List<Series> displayMarvelSeries() {
+
+    }
+     */
 }
