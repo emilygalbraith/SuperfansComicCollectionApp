@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
 import com.techelevator.service.ComicCuratorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -44,4 +45,43 @@ public class SuperfanController {
     public void deleteCollection(int collectionId) {
         comicCuratorService.deleteCollection(collectionId);
     }
+
+    @RequestMapping(path = "collections/{collectionId}/comics", method = RequestMethod.GET)
+    public List<Comic> listComicsInCollection(@PathVariable int collectionId) {
+        return comicCuratorService.listComicsInCollection(collectionId);
+    }
+
+    @RequestMapping(path = "comics/{publisherId}", method = RequestMethod.GET)
+    public List<Comic> listComicsByPublisherId(@PathVariable int publisherId) {
+        return comicCuratorService.listComicsByPublisherId(publisherId);
+    }
+
+    @RequestMapping(path = "comics/{seriesId}", method = RequestMethod.GET)
+    public List<Comic> listComicsBySeriesId(@PathVariable int seriesId) {
+        return comicCuratorService.listComicsBySeriesId(seriesId);
+    }
+
+    @RequestMapping(path = "comics/{author}", method = RequestMethod.GET)
+    public List<Comic> listComicsByAuthor(@PathVariable String author) {
+        return comicCuratorService.listComicsByAuthor(author);
+    }
+
+    @RequestMapping(path = "comics/{comicId}", method = RequestMethod.GET)
+    public Comic getComicById(@PathVariable int comicId) {
+        return comicCuratorService.getComicById(comicId);
+    }
+
+    @RequestMapping(path = "comics/{comicName}", method = RequestMethod.GET)
+    public Comic getComicByName(@PathVariable String comicName) {
+        return comicCuratorService.getComicByName(comicName);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    @RequestMapping(path = "comics", method = RequestMethod.POST)
+    public void addComic(@RequestBody Comic comic) {
+        comicCuratorService.addComic(comic);
+    }
+
+
 }
