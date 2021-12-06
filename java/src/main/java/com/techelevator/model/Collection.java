@@ -9,6 +9,8 @@ public class Collection {
     private int collectionId;
     @NotBlank(message = "A collection name must be entered.")
     private String collectionName;
+    @NotNull(message = "A collection must be set to public or private.")
+    private boolean isPrivate;
     @NotNull(message = "A user id is required.")
     private int userId;
 
