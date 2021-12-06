@@ -12,6 +12,7 @@ public class Comic {
     private String comicName;
     @NotBlank(message = "You must enter an author name.")
     private String author;
+    private String imgUrl;
     @NotBlank(message = "You must enter a release date.")
     private String releaseDate;
     @NotNull(message = "A publisher id is required.")
@@ -42,6 +43,9 @@ public class Comic {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public String getImgUrl() { return imgUrl; }
+    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
 
     public String getReleaseDate() {
         return releaseDate;
