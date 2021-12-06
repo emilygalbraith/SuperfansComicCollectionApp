@@ -37,6 +37,16 @@ public class ComicCuratorService {
 
 
     //Collection related methods
+    public List<Collection> listALlPublicCollections() {
+        List<Collection> publicCollections = listAllCollections();
+        for(Collection collection : publicCollections) {
+            if(collection.isPrivate()) {
+                publicCollections.remove(collection);
+            }
+        }
+        return publicCollections;
+    }
+
     public List<Collection> listAllCollections() {
         return collectionDao.listAllCollections();
     }
@@ -79,8 +89,8 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public void addComic(Comic comic) {
-        comicDao.addComic(comic);
+    public void addComic(Comic comic, int collectionId) {
+        comicDao.addComic(comic, collectionId);
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {
