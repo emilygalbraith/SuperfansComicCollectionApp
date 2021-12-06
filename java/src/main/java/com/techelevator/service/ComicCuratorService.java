@@ -22,14 +22,13 @@ public class ComicCuratorService {
     private static final String API_KEY = "c3cee22de726a7daa438ad22d9fc55ed";
     private static final String HASH = "799f31a76098f4fff42e1fd282bf7cf8";
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate =  new RestTemplate();
 
     private CollectionDao collectionDao;
     private ComicDao comicDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, RestTemplate restTemplate, ComicDao comicDao) {
+    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao) {
         this.collectionDao = collectionDao;
-        this.restTemplate = restTemplate;
         this.comicDao = comicDao;
     }
 
