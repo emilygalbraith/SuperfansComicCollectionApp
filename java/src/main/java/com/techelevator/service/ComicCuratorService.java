@@ -1,14 +1,17 @@
 package com.techelevator.service;
 
 import com.techelevator.dao.CollectionDao;
+import com.techelevator.dao.ComicDao;
 import com.techelevator.marvelapi.MarvelApiSeries;
 import com.techelevator.marvelapi.SeriesInfo;
 import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,15 +25,19 @@ public class ComicCuratorService {
     private final RestTemplate restTemplate;
 
     private CollectionDao collectionDao;
+    private ComicDao comicDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, RestTemplate restTemplate) {
+    public ComicCuratorService(CollectionDao collectionDao, RestTemplate restTemplate, ComicDao comicDao) {
         this.collectionDao = collectionDao;
         this.restTemplate = restTemplate;
+        this.comicDao = comicDao;
     }
 
     //TODO Depending on what is better for the front-end I think we will need to add logic in here returning public collections only
     //TODO Maybe add logic that creates a HashMap with key as the collection, and value as a list of comics in that collection to display
 
+
+    //Collection related methods
     public List<Collection> listAllCollections() {
         return collectionDao.listAllCollections();
     }
@@ -49,6 +56,36 @@ public class ComicCuratorService {
 
     public void deleteCollection(int collectionId) {
         collectionDao.deleteCollection(collectionId);
+    }
+
+
+    //Comic related methods
+    public List<Comic> listComicsByPublisherId(int publisherId) {
+        return comicDao.listComicsByPublisherId(publisherId);
+    }
+
+    public List<Comic> listComicsBySeriesId(int seriesId) {
+        return comicDao.listComicsBySeriesId(seriesId);
+    }
+
+    public List<Comic> listComicsByAuthor(String author) {
+        return comicDao.listComicsByAuthor(author);
+    }
+
+    public Comic getComicById(int comicId) {
+        return comicDao.getComicById(comicId);
+    }
+
+    public Comic getComicByName(String comicName) {
+        return comicDao.getComicByName(comicName);
+    }
+
+    public void addComic(Comic comic) {
+        comicDao.addComic(comic);
+    }
+
+    public List<Comic> listComicsInCollection(int collectionId) {
+        return comicDao.listComicsInCollection(collectionId);
     }
 
     /*

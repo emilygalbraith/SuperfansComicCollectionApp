@@ -4,12 +4,12 @@ import com.techelevator.model.Collection;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class JdbcCollectionDao implements CollectionDao{
 
     private JdbcTemplate jdbcTemplate;
@@ -51,6 +51,7 @@ public class JdbcCollectionDao implements CollectionDao{
 
     @Override
     public void createCollection(Collection collection) {
+        int collectionId = collection.getCollectionId();
         String collectionName = collection.getCollectionName();
         int userId = collection.getUserId();
         String sql = "INSERT INTO collections (collection_name, user_id) VALUES (?, ?)";
@@ -62,7 +63,6 @@ public class JdbcCollectionDao implements CollectionDao{
         String sql = "DELETE FROM collections WHERE collection_id = ?";
         jdbcTemplate.update(sql, collectionId);
     }
-
 
     private Collection mapRowToCollection(SqlRowSet rs) {
         Collection collection = new Collection();

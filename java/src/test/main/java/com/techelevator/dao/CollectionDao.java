@@ -12,5 +12,4 @@ public interface CollectionDao {
     void createCollection(Collection collection);
     void deleteCollection(int collectionId);
 
-
 }
