@@ -45,4 +45,12 @@ public class Collection {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
 }
