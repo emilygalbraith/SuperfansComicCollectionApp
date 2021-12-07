@@ -77,14 +77,41 @@ export default {
 
 
 
-<style>
-body {
-  margin: 30px;
-  padding: 30px;
-  background-color: rgb(26, 12, 58);
+<style scoped>
+h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 200%;
+  color: white;
+}
+.form-signin {
+background: black;
+}
+/* form {
+  background: blue;
+  width: 50%;
+  height: 43em;
+  margin-left: 5%;
+  margin-right: 5%;
+} */
+
+
+.form-signin {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: brown;
+  text-align: center;
+  font-size: 20px;
+}
+/* #login {
+  margin: 30px 30px 30px 30px;
+  padding: 30px 30px 30px 30px;
+  width: 80%;
+  height: 50em;
+  justify-content: left;
+  background-origin: padding-box;
+  background-color: rgb(10, 0, 32);
   font-family: Arial, Helvetica, sans-serif;
   color: aliceblue;
   display: flex;
-}
+} */
 
 </style>
