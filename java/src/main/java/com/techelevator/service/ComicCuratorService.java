@@ -59,8 +59,8 @@ public class ComicCuratorService {
         return collectionDao.getCollectionById(collectionId);
     }
 
-    public void createCollection(Collection collection) {
-        collectionDao.createCollection(collection);
+    public Collection createCollection(Collection collection) {
+        return collectionDao.createCollection(collection);
     }
 
     public void deleteCollection(int collectionId) {

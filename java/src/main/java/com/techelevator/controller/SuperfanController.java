@@ -38,8 +38,8 @@ public class SuperfanController {
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.CREATED)
     @RequestMapping(path = "collections", method = RequestMethod.POST)
-    public void createCollection(@RequestBody Collection collection) {
-        comicCuratorService.createCollection(collection);
+    public Collection createCollection(@RequestBody Collection collection) {
+        return comicCuratorService.createCollection(collection);
     }
 
     //TODO should we check to see if authenticated user sending this request matches the user_id belonging to the collection?
