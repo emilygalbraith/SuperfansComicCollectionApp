@@ -37,13 +37,16 @@
         Create Account
       </button>
     </form>
+    <collection-list />
   </div>
 </template>
 
 <script>
+import CollectionList from '../components/CollectionList.vue';
 import authService from '../services/AuthService';
 
 export default {
+  components: { CollectionList },
   name: 'register',
   data() {
     return {

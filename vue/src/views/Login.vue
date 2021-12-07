@@ -38,15 +38,17 @@ alt="imgheader" class="imgheader"> </div>
       <button type="submit">Sign in</button>
     </form>
   </div>
+  <collection-list />
   </div>
 </template>
 
 <script>
+import CollectionList from '../components/CollectionList.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {},
+  components: {CollectionList},
   data() {
     return {
       user: {

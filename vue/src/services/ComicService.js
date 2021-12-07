@@ -9,6 +9,10 @@ export default {
         return http.get('/collections');
     },
 
+    getPublicCollections() {
+        return http.get('/collections/public');
+    },
+
     getCollectionByUserId(userId) {
         return http.get(`/collections/user/${userId}`);
     },
