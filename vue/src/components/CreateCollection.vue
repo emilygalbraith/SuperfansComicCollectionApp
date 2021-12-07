@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         createCollection() {
-            const currentUser = this.$store.state.user.currentUser;
+            const currentUser = this.$store.state.user;
             this.collection.userId = currentUser.id;
             comicService.addCollection(this.collection).then( response => {
                 if(response.status === 201) {

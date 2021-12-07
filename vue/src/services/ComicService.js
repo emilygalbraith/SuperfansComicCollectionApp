@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: 'http://localhost:8081'
+    baseURL: 'http://localhost:8080'
 });
 
 export default {
@@ -18,6 +18,6 @@ export default {
     },
 
     addCollection(collection) {
-        return http.post('/collections', collection);
+        return http.post('collections/create', collection);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class SuperfanController {
 
@@ -37,7 +38,7 @@ public class SuperfanController {
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @RequestMapping(path = "collections", method = RequestMethod.POST)
+    @RequestMapping(path = "collections/create", method = RequestMethod.POST)
     public Collection createCollection(@RequestBody Collection collection) {
         return comicCuratorService.createCollection(collection);
     }
