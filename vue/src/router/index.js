@@ -8,6 +8,7 @@ import store from '../store/index'
 import AllCollections from '@/views/AllCollections'
 import MyCollection from '@/views/MyCollection'
 import CreateCollection from '@/views/CreateCollection'
+import AddComic from '@/views/AddComic'
 
 Vue.use(Router)
 
@@ -70,6 +71,11 @@ const router = new Router({
       path: "/createCollection",
       name: "create-collection",
       component: CreateCollection
+    },
+    {
+      path: "/collection/:collectionId",
+      name: "add-comic",
+      component: AddComic
     }
   ]
 })
