@@ -1,5 +1,8 @@
 <template>
+<div class="wrapper">
   <div id="login" class="text-center">
+    <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjXiM4ceD4fpsfj1DJVVz4xYMFF9VRNe4fSg1uIS0iRXOx_QvRnNThv56ipJUcedsbh0c7WpUSSbrjtnoXgW6LNJ_uDB7FGLkdZS8NU7LVTQDaR75fsTiXnTYPCFNhKCq34uP-K0bk_pHMd4nywFsJ0VW_xWackRwz2pJA4v75ZxpilX5Jlsqy6uCXM-w=s2870"
+alt="imgheader" class="imgheader"> </div>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -34,6 +37,7 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
+  </div>
   </div>
 </template>
 
@@ -78,40 +82,43 @@ export default {
 
 
 <style scoped>
+.wrapper {
+  display: grid;
+  grid-template-columns: 80%;
+  justify-content: center;
+}
+img {
+  width: 100%;
+  padding: 0em;
+  /* margin-bottom: ; */
+}
+.header {
+width: 100%;
+margin: none;
+padding: none;
+justify-self: start;
+}
 h1 {
   font-family: 'Times New Roman', Times, serif;
   font-size: 200%;
   color: white;
 }
 .form-signin {
-background: black;
+background: #162e40;
+height: 100%;
+width: 100%;
 }
-/* form {
+form {
   background: blue;
-  width: 50%;
-  height: 43em;
-  margin-left: 5%;
-  margin-right: 5%;
-} */
-
-
+}
 .form-signin {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: brown;
+  color: whitesmoke;
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
 }
-/* #login {
-  margin: 30px 30px 30px 30px;
-  padding: 30px 30px 30px 30px;
-  width: 80%;
-  height: 50em;
-  justify-content: left;
-  background-origin: padding-box;
-  background-color: rgb(10, 0, 32);
-  font-family: Arial, Helvetica, sans-serif;
-  color: aliceblue;
-  display: flex;
-} */
+#username {
+  font-family: 'Courier New', Courier, monospace
+}
 
 </style>
