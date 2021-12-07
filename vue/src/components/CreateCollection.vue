@@ -21,21 +21,13 @@
       />
     </div>
     <div>
-      <p>Would you like to add comics to this collection now?</p>
+      <label for="add-comic"
+        >Would you like to add comics to this collection now?</label
+      >
       <label for="yes">Yes</label>
-      <input
-        type="radio"
-        id="yes"
-        v-bind:value="true"
-        v-model="collection.addComic"
-      />
+      <input type="radio" id="yes" v-bind:value="true" v-model="addComic" />
       <label for="no">No</label>
-      <input
-        type="radio"
-        id="no"
-        v-bind:value="false"
-        v-model="collection.addComic"
-      />
+      <input type="radio" id="no" v-bind:value="false" v-model="addComic" />
     </div>
     <div>
       <button type="submit" v-on:click="createCollection()">
@@ -53,6 +45,7 @@ export default {
   data() {
     return {
       collection: {},
+      addComic: "",
     };
   },
   methods: {
@@ -61,7 +54,12 @@ export default {
       this.collection.userId = currentUser.id;
       comicService.addCollection(this.collection).then((response) => {
         if (response.status === 201) {
-          this.$router.push({ name: "my-collections" });
+          this.collection = response.data;
+          if (this.addComic == "true") {
+            this.$router.push({ name: "add-comic", params: {collectionId: this.collection.collectionId} });
+          } else {
+            this.$router.push({ name: "my-collections" });
+          }
         }
       });
     },
