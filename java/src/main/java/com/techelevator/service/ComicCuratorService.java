@@ -63,8 +63,15 @@ public class ComicCuratorService {
         return collectionDao.createCollection(collection);
     }
 
-    public void deleteCollection(int collectionId) {
-        collectionDao.deleteCollection(collectionId);
+    public void deleteCollection(int userId, int collectionId) {
+        List<Collection> collections = collectionDao.getCollectionsByUserId(userId);
+        boolean isUsersCollection = false;
+        for(Collection collection : collections) {
+            if(collection.getUserId() == userId) isUsersCollection = true;
+        }
+        if(isUsersCollection) {
+            collectionDao.deleteCollection(collectionId);
+        }
     }
 
 

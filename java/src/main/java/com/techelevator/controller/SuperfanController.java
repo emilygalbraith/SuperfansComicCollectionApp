@@ -42,12 +42,12 @@ public class SuperfanController {
         return comicCuratorService.createCollection(collection);
     }
 
-    //TODO should we check to see if authenticated user sending this request matches the user_id belonging to the collection?
+    //Added logic in service layer to confirm the collection belongs to the user
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "collections", method = RequestMethod.DELETE)
-    public void deleteCollection(int collectionId, Principal principal) {
-        comicCuratorService.deleteCollection(collectionId);
+    @RequestMapping(path = "collections/user/{userId}/{collectionId}", method = RequestMethod.DELETE)
+    public void deleteCollection(@PathVariable int userId, @PathVariable int collectionId) {
+        comicCuratorService.deleteCollection(userId, collectionId);
     }
 
     @RequestMapping(path = "collections/{collectionId}/comics", method = RequestMethod.GET)
@@ -55,17 +55,17 @@ public class SuperfanController {
         return comicCuratorService.listComicsInCollection(collectionId);
     }
 
-    @RequestMapping(path = "comics/{publisherId}", method = RequestMethod.GET)
+    @RequestMapping(path = "comics/publisher/{publisherId}", method = RequestMethod.GET)
     public List<Comic> listComicsByPublisherId(@PathVariable int publisherId) {
         return comicCuratorService.listComicsByPublisherId(publisherId);
     }
 
-    @RequestMapping(path = "comics/{seriesId}", method = RequestMethod.GET)
+    @RequestMapping(path = "comics/series/{seriesId}", method = RequestMethod.GET)
     public List<Comic> listComicsBySeriesId(@PathVariable int seriesId) {
         return comicCuratorService.listComicsBySeriesId(seriesId);
     }
 
-    @RequestMapping(path = "comics/{author}", method = RequestMethod.GET)
+    @RequestMapping(path = "comics/author/{author}", method = RequestMethod.GET)
     public List<Comic> listComicsByAuthor(@PathVariable String author) {
         return comicCuratorService.listComicsByAuthor(author);
     }
@@ -75,7 +75,7 @@ public class SuperfanController {
         return comicCuratorService.getComicById(comicId);
     }
 
-    @RequestMapping(path = "comics/{comicName}", method = RequestMethod.GET)
+    @RequestMapping(path = "comics/title/{comicName}", method = RequestMethod.GET)
     public Comic getComicByName(@PathVariable String comicName) {
         return comicCuratorService.getComicByName(comicName);
     }
