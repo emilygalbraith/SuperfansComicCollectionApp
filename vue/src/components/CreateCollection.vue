@@ -36,7 +36,7 @@ export default {
             this.collection.userId = this.currentUser.userId;
             comicService.addCollection(this.collection).then( response => {
                 if(response.status === 201) {
-                    this.$router.push( {name: 'home'} );
+                    this.$router.push( {name: 'my-collections'} );
                 }
             })
         }
