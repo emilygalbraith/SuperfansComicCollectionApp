@@ -50,11 +50,14 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
     @Override
-    public void createCollection(Collection collection) {
+    public Collection createCollection(Collection collection) {
         String collectionName = collection.getCollectionName();
         int userId = collection.getUserId();
-        String sql = "INSERT INTO collections (collection_name, user_id) VALUES (?, ?)";
-        jdbcTemplate.update(sql, collectionName, userId);
+        boolean isPrivate = collection.isPrivate();
+        String sql = "INSERT INTO collections (collection_name, user_id, private) VALUES (?, ?, ?) RETURNING collection_id";
+        int collectionId = jdbcTemplate.queryForObject(sql, Integer.class, collectionName, userId, isPrivate);
+        collection.setCollectionId(collectionId);
+        return collection;
     }
 
     @Override

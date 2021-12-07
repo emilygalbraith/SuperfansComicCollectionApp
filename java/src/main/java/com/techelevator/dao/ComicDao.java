@@ -12,7 +12,7 @@ public interface ComicDao {
     List<Comic> listComicsByAuthor(String author);
     Comic getComicById(int comicId);
     Comic getComicByName(String comicName);
-    void addComic(Comic comic, int collectionId);
+    Comic addComic(Comic comic, int collectionId);
     List<Comic> listComicsInCollection(int collectionId);
 
 

@@ -59,12 +59,19 @@ public class ComicCuratorService {
         return collectionDao.getCollectionById(collectionId);
     }
 
-    public void createCollection(Collection collection) {
-        collectionDao.createCollection(collection);
+    public Collection createCollection(Collection collection) {
+        return collectionDao.createCollection(collection);
     }
 
-    public void deleteCollection(int collectionId) {
-        collectionDao.deleteCollection(collectionId);
+    public void deleteCollection(int userId, int collectionId) {
+        List<Collection> collections = collectionDao.getCollectionsByUserId(userId);
+        boolean isUsersCollection = false;
+        for(Collection collection : collections) {
+            if(collection.getUserId() == userId) isUsersCollection = true;
+        }
+        if(isUsersCollection) {
+            collectionDao.deleteCollection(collectionId);
+        }
     }
 
 
@@ -89,8 +96,8 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public void addComic(Comic comic, int collectionId) {
-        comicDao.addComic(comic, collectionId);
+    public Comic addComic(Comic comic, int collectionId) {
+        return comicDao.addComic(comic, collectionId);
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {

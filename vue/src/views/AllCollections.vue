@@ -4,6 +4,7 @@
 
 <script>
 import CollectionList from '../components/CollectionList.vue'
+
 export default {
   components: { CollectionList },
 
