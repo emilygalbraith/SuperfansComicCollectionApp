@@ -24,13 +24,13 @@ export default {
     data() {
         return {
             collection: {
-            },
-            currentUser: this.$store.state.currentUser
+            }
         };
     },
     methods: {
         createCollection() {
-            this.collection.userId = this.currentUser.userId;
+            const currentUser = this.$store.state.user.currentUser;
+            this.collection.userId = currentUser.id;
             comicService.addCollection(this.collection).then( response => {
                 if(response.status === 201) {
                     this.$router.push( {name: 'my-collections'} );
