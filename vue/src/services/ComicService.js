@@ -21,7 +21,7 @@ export default {
         return http.post('collections/create', collection);
     },
 
-    addComic(comic, series, publisher, collectionId) {
-        return http.post(`collections/${collectionId}`, comic, series, publisher)
+    addComic(newComic, collectionId) {
+        return http.post(`collections/${collectionId}`, newComic)
     }
 }

@@ -56,7 +56,7 @@ export default {
         if (response.status === 201) {
           this.collection = response.data;
           if (this.addComic == "true") {
-            this.$router.push({ name: "add-comic", params: {collectionId: collection.collectionId} });
+            this.$router.push({ name: "add-comic", params: {collectionId: this.collection.collectionId} });
           } else {
             this.$router.push({ name: "my-collections" });
           }

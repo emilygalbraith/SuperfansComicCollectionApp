@@ -2,11 +2,11 @@
   <form v-on:submit.prevent>
     <div>
       <label for="comic-name">Comic Name</label>
-      <input type="text" v-model="comic.comicName" />
+      <input type="text" v-model="newComic.comic.comicName" />
     </div>
     <div>
       <label for="author">Author</label>
-      <input type="text" v-model="comic.author" />
+      <input type="text" v-model="newComic.comic.author" />
     </div>
     <div>
       <label for="image">Upload Image</label>
@@ -14,15 +14,15 @@
     </div>
     <div>
       <label for="releaseDate">Release Date</label>
-      <input type="date" v-model="comic.releaseDate" />
+      <input type="date" v-model="newComic.comic.releaseDate" />
     </div>
     <div>
       <label for="publisher">Publisher</label>
-      <input type="text" v-model="publisher" />
+      <input type="text" v-model="newComic.publisher" />
     </div>
     <div>
       <label for="series">Series</label>
-      <input type="text" v-model="series" />
+      <input type="text" v-model="newComic.series" />
     </div>
     <div>
       <label for="add-comic"
@@ -34,7 +34,7 @@
       <input type="radio" id="no" v-bind:value="false" v-model="addComic" />
     </div>
     <div>
-      <button type="submit" v-on:click="addComic()">Add Comic</button>
+      <button type="submit" v-on:click="saveComic()">Add Comic</button>
     </div>
   </form>
 </template>
@@ -43,11 +43,15 @@
 import comicService from "../services/ComicService";
 
 export default {
-  name: "add-comic",
   data() {
     return {
       newComic: {
-        comic: {},
+        comic: {
+            comicName: "",
+            author: "",
+            image: "",
+            releaseDate: ""
+        },
         publisher: "",
         series: "",
       },
@@ -55,13 +59,14 @@ export default {
     };
   },
   methods: {
-    addComic() {
+    saveComic() {
+      this.newComic.comic.image = this.$refs.fileInput.files[0];
       const collectionId = this.$route.params.collectionId;
       comicService.addComic(this.newComic, collectionId).then((response) => {
         if (response.status === 201) {
           if (this.addComic == "true") {
             this.$router.push({
-              name: "add-comic",
+              name: "add-comic-form",
               params: { collectionId: collectionId },
             });
           } else {

@@ -8,7 +8,7 @@ import store from '../store/index'
 import AllCollections from '@/views/AllCollections'
 import MyCollection from '@/views/MyCollection'
 import CreateCollection from '@/views/CreateCollection'
-import AddComic from '@/views/AddComic'
+import AddComicForm from '@/views/AddComicForm'
 
 Vue.use(Router)
 
@@ -74,8 +74,8 @@ const router = new Router({
     },
     {
       path: "/collection/:collectionId",
-      name: "add-comic",
-      component: AddComic
+      name: "add-comic-form",
+      component: AddComicForm
     }
   ]
 })
