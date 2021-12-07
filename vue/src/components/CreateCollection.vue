@@ -24,11 +24,8 @@ export default {
     data() {
         return {
             collection: {
-                collectionName: "", 
-                private: "",
-                userId: 0,
             },
-            currentUser = this.$store.state.currentUser
+            currentUser: this.$store.state.currentUser
         };
     },
     methods: {
