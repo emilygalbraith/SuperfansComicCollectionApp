@@ -11,7 +11,7 @@ VALUES ('Empyre #1', 'Al Ewing', 'http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e
        ('Storm', 'Eric Jerome Dickey', 'http://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc5fe7a308d7/portrait_xlarge.jpg', '2008-01-16', (SELECT publisher_id FROM publishers WHERE publisher_name='Marvel'), (SELECT series_id FROM series WHERE series_name='Astonishing X-Men'));
 
 INSERT INTO collections (collection_name, private, user_id)
-VALUES ('User Collection', FALSE, (SELECT user_id FROM users WHERE username='user'));
+VALUES ('User Collection', FALSE, (SELECT user_id FROM users WHERE username='testuser'));
 
 INSERT INTO collection_comic (comic_id, collection_id)
 VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection')),

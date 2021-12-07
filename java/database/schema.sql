@@ -60,6 +60,7 @@ CREATE TABLE users (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role) VALUES ('testuser', '$2a$10$cuH2NhJ2x13whb5Y8r906..VXdoTPx3DD7289ebHmdCWV.GoCXx/m', 'ROLE_USER');
 
 CREATE TABLE publishers (
         publisher_id int DEFAULT nextval('seq_publisher_id'::regclass) NOT NULL,
