@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import AllCollections from '@/views/AllCollections'
 import MyCollection from '@/views/MyCollection'
+import CreateCollection from '@/views/CreateCollection'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ const router = new Router({
       path: "/myCollections",
       name: "my-collections",
       component: MyCollection
+    },
+    {
+      path: "/createCollection",
+      name: "create-collection",
+      component: CreateCollection
     }
   ]
 })

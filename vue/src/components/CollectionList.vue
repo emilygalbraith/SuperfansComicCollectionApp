@@ -2,6 +2,7 @@
     <div>
         <collection-display v-for="collection in filteredCollections" v-bind:key="collection.collectionId" 
                             v-bind:collection="collection" />
+        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>  
     </div>
 </template>
 
