@@ -22,14 +22,13 @@ public class ComicCuratorService {
     private static final String API_KEY = "c3cee22de726a7daa438ad22d9fc55ed";
     private static final String HASH = "799f31a76098f4fff42e1fd282bf7cf8";
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate =  new RestTemplate();
 
     private CollectionDao collectionDao;
     private ComicDao comicDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, RestTemplate restTemplate, ComicDao comicDao) {
+    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao) {
         this.collectionDao = collectionDao;
-        this.restTemplate = restTemplate;
         this.comicDao = comicDao;
     }
 
@@ -38,6 +37,16 @@ public class ComicCuratorService {
 
 
     //Collection related methods
+    public List<Collection> listALlPublicCollections() {
+        List<Collection> publicCollections = listAllCollections();
+        for(Collection collection : publicCollections) {
+            if(collection.isPrivate()) {
+                publicCollections.remove(collection);
+            }
+        }
+        return publicCollections;
+    }
+
     public List<Collection> listAllCollections() {
         return collectionDao.listAllCollections();
     }
@@ -80,8 +89,8 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public void addComic(Comic comic) {
-        comicDao.addComic(comic);
+    public void addComic(Comic comic, int collectionId) {
+        comicDao.addComic(comic, collectionId);
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {
@@ -89,9 +98,10 @@ public class ComicCuratorService {
     }
 
     /*
-    will keep working on pull information from Marvel api and turn into something we can work for in our api
+    will keep working on pull information from Marvel api and turn into something we can work with in our api
      */
-    public SeriesInfo[] listAllMarvelSeries() {
+    // can be used for method below
+    public SeriesInfo[] getAllMarvelSeries() {
         try {
             MarvelApiSeries allSeries = restTemplate.getForObject(BASE_API_URL + "series?ts=" + TS + "&apikey="
             + API_KEY + "&hash=" + HASH, MarvelApiSeries.class);
@@ -107,4 +117,11 @@ public class ComicCuratorService {
 
         return new SeriesInfo[] {};
     }
+
+    /*
+    for future when we work on series, we can display marvel series on a certain page
+    public List<Series> displayMarvelSeries() {
+
+    }
+     */
 }

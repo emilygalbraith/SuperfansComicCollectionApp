@@ -12,6 +12,7 @@ public class Comic {
     private String comicName;
     @NotBlank(message = "You must enter an author name.")
     private String author;
+    private String imgUrl;
     @NotBlank(message = "You must enter a release date.")
     private String releaseDate;
     @NotNull(message = "A publisher id is required.")
@@ -19,51 +20,24 @@ public class Comic {
     @NotNull(message = "A series id is required.")
     private int seriesId;
 
-    public int getComicId() {
-        return comicId;
-    }
+    public int getComicId() { return comicId; }
+    public void setComicId(int comicId) { this.comicId = comicId; }
 
-    public void setComicId(int comicId) {
-        this.comicId = comicId;
-    }
+    public String getComicName() { return comicName; }
+    public void setComicName(String comicName) { this.comicName = comicName; }
 
-    public String getComicName() {
-        return comicName;
-    }
+    public String getAuthor() { return author; }
+    public void setAuthor(String author) { this.author = author; }
 
-    public void setComicName(String comicName) {
-        this.comicName = comicName;
-    }
+    public String getImgUrl() { return imgUrl; }
+    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
 
-    public String getAuthor() {
-        return author;
-    }
+    public String getReleaseDate() { return releaseDate; }
+    public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate; }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    public int getPublisherId() { return publisherId; }
+    public void setPublisherId(int publisherId) { this.publisherId = publisherId; }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public int getPublisherId() {
-        return publisherId;
-    }
-
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
-    }
-
-    public int getSeriesId() {
-        return seriesId;
-    }
-
-    public void setSeriesId(int seriesId) {
-        this.seriesId = seriesId;
-    }
+    public int getSeriesId() { return seriesId; }
+    public void setSeriesId(int seriesId) { this.seriesId = seriesId; }
 }

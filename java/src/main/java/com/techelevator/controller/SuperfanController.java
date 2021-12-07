@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -15,6 +16,9 @@ public class SuperfanController {
     private ComicCuratorService comicCuratorService;
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
+
+    @RequestMapping(path = "collections/public", method = RequestMethod.GET)
+    public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }
 
     @RequestMapping(path = "collections", method = RequestMethod.GET)
     public List<Collection> listAllCollections() {
@@ -42,7 +46,7 @@ public class SuperfanController {
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @RequestMapping(path = "collections", method = RequestMethod.DELETE)
-    public void deleteCollection(int collectionId) {
+    public void deleteCollection(int collectionId, Principal principal) {
         comicCuratorService.deleteCollection(collectionId);
     }
 
@@ -78,9 +82,9 @@ public class SuperfanController {
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @RequestMapping(path = "comics", method = RequestMethod.POST)
-    public void addComic(@RequestBody Comic comic) {
-        comicCuratorService.addComic(comic);
+    @RequestMapping(path = "collections/{collectionId}", method = RequestMethod.POST)
+    public void addComic(@RequestBody Comic comic,@PathVariable int collectionId) {
+        comicCuratorService.addComic(comic, collectionId);
     }
 
 
