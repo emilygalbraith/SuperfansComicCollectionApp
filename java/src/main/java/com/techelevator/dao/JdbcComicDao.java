@@ -72,7 +72,7 @@ public class JdbcComicDao implements ComicDao{
     }
 
     @Override
-    public void addComic(Comic comic, int collectionId) {
+    public Comic addComic(Comic comic, int collectionId) {
         String comicName = comic.getComicName();
         String author = comic.getAuthor();
         String releaseDate = comic.getReleaseDate();
@@ -83,6 +83,8 @@ public class JdbcComicDao implements ComicDao{
         int comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, releaseDate, publishedId, seriesId);
         String sql2 = "INSERT INTO collection_comic (comic_id, collection_id) VALUES (?, ?)";
         jdbcTemplate.update(sql2, comicId, collectionId);
+        comic.setComicId(comicId);
+        return comic;
     }
 
     @Override

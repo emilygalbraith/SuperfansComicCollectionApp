@@ -89,8 +89,8 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public void addComic(Comic comic, int collectionId) {
-        comicDao.addComic(comic, collectionId);
+    public Comic addComic(Comic comic, int collectionId) {
+        return comicDao.addComic(comic, collectionId);
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {
