@@ -28,6 +28,17 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
     @Override
+    public List<Collection> listAllPublicCollections() {
+        List<Collection> allPublicCollections = new ArrayList<>();
+        String sql = "SELECT * FROM collections WHERE private = false";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        while(result.next()) {
+            allPublicCollections.add(mapRowToCollection(result));
+        }
+        return allPublicCollections;
+    }
+
+    @Override
     public List<Collection> getCollectionsByUserId(int userId) {
         List<Collection> userCollectionList = new ArrayList<>();
         String sql = "SELECT * FROM collections WHERE user_id = ?";

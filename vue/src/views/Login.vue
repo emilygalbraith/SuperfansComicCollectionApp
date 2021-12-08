@@ -39,8 +39,10 @@ alt="imgheader" class="imgheader"> </div>
       
     </form>
   </div>
-  <collection-list />
+  <div>
+    <collection-list />
   </div>
+</div>
 </template>
 
 <script>

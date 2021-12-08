@@ -44,13 +44,11 @@ export default {
             });
         },
         showCollections() {
-            if (this.$route.name === 'login' || this.$route.name === 'register') {
+            if (this.$route.name == 'login' || this.$route.name == 'register') {
                 this.getAllPublicCollections();
-            }
-            if (this.$route.name === '') {
-                this.getAllCollections();
-            }
-            if (this.$store.state.user != null) {
+            } else if (this.$route.name == 'home') {
+                this.retrieveAllCollections();
+            } else {
                 this.getCurrentUserCollections();
             }
         }
