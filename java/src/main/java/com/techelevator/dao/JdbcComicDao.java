@@ -67,7 +67,8 @@ public class JdbcComicDao implements ComicDao{
         if(result.next()) {
             return mapRowToComic(result);
         } else {
-            throw new RuntimeException("Comic named, " + comicName + ", was not found.");
+            Comic comic = new Comic();
+            return comic;
         }
     }
 
@@ -78,9 +79,16 @@ public class JdbcComicDao implements ComicDao{
         String releaseDate = comic.getReleaseDate();
         int publishedId = comic.getPublisherId();
         int seriesId = comic.getSeriesId();
-        String sql = "INSERT INTO collections (comic_name, author, release_date, publisher_id, series_id) " +
-                "VALUES (?, ?, ?, ?, ?) RETURNING comic_id";
-        int comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, releaseDate, publishedId, seriesId);
+        int comicId = 0;
+        Comic checkComic = new Comic();
+        checkComic = getComicByName(comic.getComicName());
+        if(checkComic.getComicName() != comic.getComicName()) {
+            String sql = "INSERT INTO collections (comic_name, author, release_date, publisher_id, series_id) " +
+                    "VALUES (?, ?, ?, ?, ?) RETURNING comic_id";
+            comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, releaseDate, publishedId, seriesId);
+        } else {
+            comicId = checkComic.getComicId();
+        }
         String sql2 = "INSERT INTO collection_comic (comic_id, collection_id) VALUES (?, ?)";
         jdbcTemplate.update(sql2, comicId, collectionId);
         comic.setComicId(comicId);
