@@ -105,7 +105,6 @@ public class JdbcComicDao implements ComicDao{
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, collectionId);
         while (result.next()) {
             Comic comic = mapRowToComic(result);
-            comic.setCollectionId(result.getInt("collection_id"));
             comicList.add(comic);
         }
         return comicList;
