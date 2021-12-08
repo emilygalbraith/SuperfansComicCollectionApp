@@ -50,9 +50,10 @@ export default {
   },
   methods: {
     createCollection() {
+      const token = this.$store.state.token;
       const currentUser = this.$store.state.user;
       this.collection.userId = currentUser.id;
-      comicService.addCollection(this.collection).then((response) => {
+      comicService.addCollection(this.collection, token).then((response) => {
         if (response.status === 201) {
           this.collection = response.data;
           if (this.addComic == "true") {

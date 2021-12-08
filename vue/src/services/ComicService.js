@@ -21,8 +21,12 @@ export default {
         return http.get(`/collections/${collectionId}`);
     },
 
-    addCollection(collection) {
-        return http.post('collections/create', collection);
+    addCollection(collection, token) {
+        // const headers = {
+        //     'Content-Type': 'application/json',
+        //     'Authorization': `Bearer ${token}`
+        // }
+        return http.post('collections/create', collection, token);
     },
 
     addComic(newComic, collectionId) {
