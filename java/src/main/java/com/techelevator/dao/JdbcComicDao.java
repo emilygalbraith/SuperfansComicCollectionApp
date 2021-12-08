@@ -76,6 +76,7 @@ public class JdbcComicDao implements ComicDao{
     public Comic addComic(Comic comic, int collectionId) {
         String comicName = comic.getComicName();
         String author = comic.getAuthor();
+        String image = comic.getImage();
         String releaseDate = comic.getReleaseDate();
         int publishedId = comic.getPublisherId();
         int seriesId = comic.getSeriesId();
@@ -83,9 +84,9 @@ public class JdbcComicDao implements ComicDao{
         Comic checkComic = new Comic();
         checkComic = getComicByName(comic.getComicName());
         if(checkComic.getComicName() != comic.getComicName()) {
-            String sql = "INSERT INTO collections (comic_name, author, release_date, publisher_id, series_id) " +
-                    "VALUES (?, ?, ?, ?, ?) RETURNING comic_id";
-            comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, releaseDate, publishedId, seriesId);
+            String sql = "INSERT INTO comics (comic_name, author, image, release_date, publisher_id, series_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?) RETURNING comic_id";
+            comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, image, releaseDate, publishedId, seriesId);
         } else {
             comicId = checkComic.getComicId();
         }
@@ -116,7 +117,7 @@ public class JdbcComicDao implements ComicDao{
         comic.setReleaseDate(rs.getString("release_date"));
         comic.setPublisherId(rs.getInt("publisher_id"));
         comic.setSeriesId(rs.getInt("series_id"));
-        comic.setImgUrl(rs.getString("image"));
+        comic.setImage(rs.getString("image"));
         comic.setCollectionId(rs.getInt("collection_id"));
         return comic;
     }
