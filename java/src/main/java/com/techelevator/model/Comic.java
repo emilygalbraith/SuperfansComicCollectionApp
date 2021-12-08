@@ -11,7 +11,7 @@ public class Comic {
     private String comicName;
     @NotBlank(message = "You must enter an author name.")
     private String author;
-    private String imgUrl;
+    private String image;
     private String releaseDate;
     private int publisherId;
     private int seriesId;

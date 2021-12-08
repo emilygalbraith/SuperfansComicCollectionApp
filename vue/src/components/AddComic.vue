@@ -8,9 +8,13 @@
       <label for="author">Author</label>
       <input type="text" v-model="newComic.comic.author" />
     </div>
-    <div>
+    <!-- <div>
       <label for="image">Upload Image</label>
       <input type="file" id="file" ref="fileInput" />
+    </div> -->
+    <div>
+      <label for="image">Image URL</label>
+      <input type="text" id="image" v-model="newComic.comic.image"/>
     </div>
     <div>
       <label for="releaseDate">Release Date</label>
@@ -47,10 +51,10 @@ export default {
     return {
       newComic: {
         comic: {
-            comicName: "",
-            author: "",
-            image: "",
-            releaseDate: ""
+          comicName: "",
+          author: "",
+          image: "",
+          releaseDate: "",
         },
         publisher: "",
         series: "",
@@ -60,28 +64,32 @@ export default {
   },
   methods: {
     saveComic() {
-      this.newComic.comic.image = this.$refs.fileInput.files[0];
+      const token = this.$store.state.token;
+    //   this.newComic.comic.image = this.$refs.fileInput.files[0];
       const collectionId = this.$route.params.collectionId;
-      comicService.addComic(this.newComic, collectionId).then((response) => {
-        if (response.status === 201) {
-          if (this.addComic == "true") {
-            this.$router.push({
-              name: "add-comic-form",
-              params: { collectionId: collectionId },
-            });
-          } else {
-            this.$router.push({ name: "my-collections" });
+      comicService
+        .addComic(this.newComic, collectionId, token)
+        .then((response) => {
+          if (response.status === 201) {
+            if (this.addComic == "true") {
+              this.$router.push({
+                name: "add-comic-form",
+                params: { collectionId: collectionId },
+              });
+            } else {
+              this.$router.push({ name: "my-collections" });
+            }
           }
-        }
-      }).catch(error => {
-          if(error.response) {
-              console.log(error.response.statusText);
-          } else if(error.request) {
-              console.log('error in request');
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.statusText);
+          } else if (error.request) {
+            console.log("error in request");
           } else {
-              console.log('error occured');
+            console.log("error occured");
           }
-      });
+        });
     },
   },
 };
