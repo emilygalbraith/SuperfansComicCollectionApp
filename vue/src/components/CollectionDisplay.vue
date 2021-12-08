@@ -20,7 +20,12 @@ export default {
     methods: {
         updateFilter() {
             this.$store.commit("UPDATE_FILTER", parseInt(this.collection.collectionId));
-            this.show = true;
+            if (this.show === false) {
+                this.show = true;
+            } else {
+                this.show = false;
+            }
+            
         }
     }
 }
