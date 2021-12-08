@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="background">
   <div id="login" class="text-center">
     <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
 alt="imgheader" class="imgheader"> </div>
@@ -35,7 +35,7 @@ alt="imgheader" class="imgheader"> </div>
         required
       /><br>
       <button type="submit">Sign in</button><br><br>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link><br>
+      <router-link :to="{ name: 'register' }">Create an account</router-link><br>
       
     </form>
   </div>
@@ -88,11 +88,7 @@ export default {
 
 <style scoped>
 @import url('<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Sacramento&display=swap" rel="stylesheet">');
-.wrapper {
-  display: grid;
-  grid-template-columns: 80%;
-  justify-content: center;
-}
+
 img {
   width: 100%;
 }
@@ -103,7 +99,7 @@ padding: none;
 margin-block-start: -2%;
 }
 h1 {
-  font-family: 'Comic Neue', cursive;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 150%;
   color: white;
   margin-top: 0px;
@@ -112,7 +108,7 @@ h1 {
   padding-top: 4%;
 }
 .form-signin {
-background: #071926;
+/* background: #071926; */
 height: 75%;
 width: 100%;
 }
@@ -138,7 +134,7 @@ input[type=password] {
   box-sizing: border-box;
 }
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
   border: none;
   color: white;
   padding: 10px 30px;
@@ -147,8 +143,9 @@ button {
   display: inline-block;
   font-size: 16px;
 }
-body {
-  position: fixed;
+.background {
+  background-color: #071926;
 }
+
 
 </style>

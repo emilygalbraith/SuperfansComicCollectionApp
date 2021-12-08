@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper">
+<div class="background">
   <div id="register" class="text-center">
     <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
 alt="imgheader" class="imgheader"> </div>
@@ -99,11 +99,6 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  display: grid;
-  grid-template-columns: 80%;
-  justify-content: center;
-}
 img {
   width: 100%;
 }
@@ -114,7 +109,7 @@ padding: none;
 margin-block-start: -2%;
 }
 h1 {
-  font-family: 'Comic Neue', cursive;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 150%;
   color: white;
   margin-top: 0px;
@@ -123,7 +118,6 @@ h1 {
   padding-top: 4%;
 }
 .form-register {
-background: #071926;
 height: 74%;
 width: 100%;
 }
@@ -157,5 +151,8 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.background {
+  background-color: #071926;
 }
 </style>
