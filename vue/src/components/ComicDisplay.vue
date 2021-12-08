@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{comic.comicName}}</h2>
-        <img v-bind:src="comic.imgUrl" />
+        <img v-bind:src="comic.image" />
     </div>
 </template>
 
