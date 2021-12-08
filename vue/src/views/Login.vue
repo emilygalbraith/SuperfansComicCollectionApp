@@ -39,15 +39,17 @@ alt="imgheader" class="imgheader"> </div>
       
     </form>
   </div>
+  <collection-list />
   </div>
 </template>
 
 <script>
+import CollectionList from '../components/CollectionList.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {},
+  components: {CollectionList},
   data() {
     return {
       user: {

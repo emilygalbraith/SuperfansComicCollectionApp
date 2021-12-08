@@ -1,6 +1,6 @@
 <template>
     <div>
-        <collection-display v-for="collection in filteredCollections" v-bind:key="collection.collectionId" 
+        <collection-display v-for="collection in collections" v-bind:key="collection.collectionId" 
                             v-bind:collection="collection" />
         <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>  
     </div>
@@ -15,28 +15,41 @@ export default {
     components: { CollectionDisplay },
     data() {
         return {
-            filter: 0
+            collections: []
         }
     },
+    created() {
+        this.showCollections();
+    },
     methods: {
-        allCollections() {
+        retrieveAllCollections() {
             comicService.getAllCollections().then(response => {
-                this.$store.state.collections = response.data;
+                if (response.status === 200) {
+                    this.collections = response.data;
+                }
             });
-            this.filter = 0;
         },
-        myCollection() {
-            const currentUser = this.$store.state.user.currentUser;
+        getAllPublicCollections() {
+            comicService.getPublicCollections().then(response => {
+                if (response.status === 200) {
+                    this.collections = response.data;
+                }
+            });
+        },
+        getCurrentUserCollections() {
+            const currentUser = this.$store.state.user;
             comicService.getCollectionByUserId(currentUser.id).then(response => {
-                this.$store.state.collections = response.data;
+                if (response.status === 200) {
+                    this.collections = response.data;
+                }
             });
-            this.filter = 1;
         },
-        filteredCollections() {
-            if (this.filter === 0) {
-                return this.allCollections();
-            } else {
-                return this.myCollection();
+        showCollections() {
+            if (this.$route.name === 'login' || this.$route.name === 'register') {
+                this.getAllPublicCollections();
+            }
+            if (this.$store.state.user != null) {
+                this.getCurrentUserCollections();
             }
         }
     }

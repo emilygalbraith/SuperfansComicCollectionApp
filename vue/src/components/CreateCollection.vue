@@ -1,18 +1,39 @@
 <template>
   <form v-on:submit.prevent>
-      <div>
-          <label for="collection-name">Collection Name</label>
-          <input type="text" v-model="collection.collectionName" />
-      </div>
-      <div>
-          <label for="private">Private</label>
-          <input type="radio" id="private" v-bind:value="true" v-model="collection.private">
-          <label for="public">Public</label>
-          <input type="radio" id="public" v-bind:value="false" v-model="collection.private">
-      </div>
-      <div>
-          <button type="submit" v-on:click="createCollection()">Create Collection</button>
-      </div>
+    <div>
+      <label for="collection-name">Collection Name</label>
+      <input type="text" v-model="collection.collectionName" />
+    </div>
+    <div>
+      <label for="private">Private</label>
+      <input
+        type="radio"
+        id="private"
+        v-bind:value="true"
+        v-model="collection.private"
+      />
+      <label for="public">Public</label>
+      <input
+        type="radio"
+        id="public"
+        v-bind:value="false"
+        v-model="collection.private"
+      />
+    </div>
+    <div>
+      <label for="add-comic"
+        >Would you like to add comics to this collection now?</label
+      >
+      <label for="yes">Yes</label>
+      <input type="radio" id="yes" v-bind:value="true" v-model="addComic" />
+      <label for="no">No</label>
+      <input type="radio" id="no" v-bind:value="false" v-model="addComic" />
+    </div>
+    <div>
+      <button type="submit" v-on:click="createCollection()">
+        Create Collection
+      </button>
+    </div>
   </form>
 </template>
 
@@ -20,28 +41,31 @@
 import comicService from "../services/ComicService";
 
 export default {
-    name: "create-collection",
-    data() {
-        return {
-            collection: {
-            }
-        };
-    },
-    methods: {
-        createCollection() {
-            const currentUser = this.$store.state.user.currentUser;
-            this.collection.userId = currentUser.id;
-            comicService.addCollection(this.collection).then( response => {
-                if(response.status === 201) {
-                    this.$router.push( {name: 'my-collections'} );
-                }
-            })
+  name: "create-collection",
+  data() {
+    return {
+      collection: {},
+      addComic: "",
+    };
+  },
+  methods: {
+    createCollection() {
+      const currentUser = this.$store.state.user;
+      this.collection.userId = currentUser.id;
+      comicService.addCollection(this.collection).then((response) => {
+        if (response.status === 201) {
+          this.collection = response.data;
+          if (this.addComic == "true") {
+            this.$router.push({ name: "add-comic", params: {collectionId: this.collection.collectionId} });
+          } else {
+            this.$router.push({ name: "my-collections" });
+          }
         }
-    }
-
+      });
+    },
+  },
 };
 </script>
 
 <style>
-
 </style>
