@@ -13,8 +13,14 @@ alt="imgheader" class="imgheader"> </div>
 =======
     <!-- <router-link v-bind:to="{name: 'all-collections'}">View All Collections</router-link> |  -->
     <router-link v-bind:to="{name: 'profile'}">View Profile</router-link>
+<<<<<<< HEAD
     <collection-list />
 >>>>>>> c7fe2f9969b9eab2dd6d50ffd452d9e59ec98af2
+=======
+    <div>
+      <collection-list />
+    </div>
+>>>>>>> 43b082e9760237cdf346e0839cf9d99b31c10918
   </div>
 </template>
 

@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.NewComic;
 import com.techelevator.service.ComicCuratorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -84,8 +85,8 @@ public class SuperfanController {
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(code = HttpStatus.CREATED)
     @RequestMapping(path = "collections/{collectionId}", method = RequestMethod.POST)
-    public Comic addComic(@RequestBody Comic comic,@PathVariable int collectionId) {
-        return comicCuratorService.addComic(comic, collectionId);
+    public Comic addComic(@RequestBody NewComic newComic, @PathVariable int collectionId) {
+        return comicCuratorService.addComic(newComic, collectionId);
     }
 
 

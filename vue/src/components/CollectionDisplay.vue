@@ -1,7 +1,7 @@
 <template>
     <div>
         <button v-on:click="updateFilter">{{collection.collectionName}}</button>
-        <comic-list />
+        <comic-list v-if="show" />
         <!-- waiting to know the name of the variable for image column <img v-bind:src="collection.image"> -->
     </div>
 </template>
@@ -11,15 +11,28 @@ import ComicList from './ComicList.vue';
 export default {
   components: { ComicList },
     name: 'collection-display',
+    data() {
+        return {
+            show: false
+        }
+    },
     props: ['collection'],
     methods: {
         updateFilter() {
             this.$store.commit("UPDATE_FILTER", parseInt(this.collection.collectionId));
+            if (this.show === false) {
+                this.show = true;
+            } else {
+                this.show = false;
+            }
+            
         }
     }
 }
 </script>
 
 <style>
+/* button {
 
+} */
 </style>
