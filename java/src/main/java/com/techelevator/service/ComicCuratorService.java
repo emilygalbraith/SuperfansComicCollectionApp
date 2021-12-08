@@ -6,6 +6,7 @@ import com.techelevator.marvelapi.MarvelApiSeries;
 import com.techelevator.marvelapi.SeriesInfo;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.NewComic;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
@@ -96,7 +97,7 @@ public class ComicCuratorService {
         return comicDao.getComicByName(comicName);
     }
 
-    public Comic addComic(Comic comic, int collectionId) {
+    public Comic addComic(NewComic newComic, int collectionId) {
         return comicDao.addComic(comic, collectionId);
     }
 
