@@ -21,7 +21,7 @@
       />
     </div>
     <div>
-      <label for="add-comic"
+      <!-- <label for="add-comic"
         >Would you like to add comics to this collection now?</label
       >
       <label for="yes">Yes</label>
@@ -29,7 +29,7 @@
       <label for="no">No</label>
       <input type="radio" id="no" v-bind:value="false" v-model="addComic" />
     </div>
-    <div>
+    <div> -->
       <button type="submit" v-on:click="createCollection()">
         Create Collection
       </button>
@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       collection: {},
-      addComic: "",
     };
   },
   methods: {
@@ -53,24 +52,23 @@ export default {
       const token = this.$store.state.token;
       const currentUser = this.$store.state.user;
       this.collection.userId = currentUser.id;
-      comicService.addCollection(this.collection, token).then((response) => {
-        if (response.status === 201) {
-          this.collection = response.data;
-          if (this.addComic == "true") {
-            this.$router.push({ name: "add-comic", params: {collectionId: this.collection.collectionId} });
-          } else {
+      comicService
+        .addCollection(this.collection, token)
+        .then((response) => {
+          if (response.status === 201) {
+            this.collection = response.data;
             this.$router.push({ name: "my-collections" });
           }
-        }
-      }).catch(error => {
-          if(error.response) {
-              console.log(error.response.statusText);
-          } else if(error.request) {
-              console.log('error in request');
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.statusText);
+          } else if (error.request) {
+            console.log("error in request");
           } else {
-              console.log('error occured');
+            console.log("error occured");
           }
-      });
+        });
     },
   },
 };
