@@ -78,7 +78,7 @@ CREATE TABLE comics (
         comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
         comic_name varchar(50) NOT NULL,
         author varchar(100) NOT NULL,
-        image varchar(100) NOT NULL,
+        image varchar(400) NOT NULL,
         release_date date DEFAULT CURRENT_DATE,
         publisher_id int REFERENCES publishers (publisher_id),
         series_id int REFERENCES series (series_id),
