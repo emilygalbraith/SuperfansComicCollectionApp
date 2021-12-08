@@ -119,12 +119,8 @@ public class JdbcComicDao implements ComicDao{
         comic.setReleaseDate(rs.getString("release_date"));
         comic.setPublisherId(rs.getInt("publisher_id"));
         comic.setSeriesId(rs.getInt("series_id"));
-<<<<<<< HEAD
-        comic.setImgUrl(rs.getString("image"));
-=======
         comic.setImage(rs.getString("image"));
         comic.setCollectionId(rs.getInt("collection_id"));
->>>>>>> 4b1ac2b0abf9132bc83810125cabb3b1d350e8b0
         return comic;
     }
 }
