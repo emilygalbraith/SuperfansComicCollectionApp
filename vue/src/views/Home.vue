@@ -41,7 +41,18 @@ img {
   color: aliceblue;
   background-color: #071926;
   width: 100%;
-  height: 148%;
-  margin-block-start: -1%;
+  height: 151%;
+  margin-block-start: -2%;
+}
+.header {
+width: 100%;
+/* height: 105%; */
+margin: none;
+padding: none;
+margin-block-start: -2%;
+}
+h1 {
+  text-align: center;
+  
 }
 </style>
