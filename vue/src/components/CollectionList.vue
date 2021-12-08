@@ -45,9 +45,9 @@ export default {
         },
         showCollections() {
             if (this.$route.name == 'login' || this.$route.name == 'register') {
-                this.retrieveAllCollections();
+                this.getAllPublicCollections();
             } else if (this.$route.name == 'home') {
-                this.getAllCollections();
+                this.retrieveAllCollections();
             } else {
                 this.getCurrentUserCollections();
             }
