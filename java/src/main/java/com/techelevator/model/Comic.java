@@ -1,23 +1,19 @@
 package com.techelevator.model;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 public class Comic {
 
-    @NotNull(message = "A comic id is required.")
     private int comicId;
     @NotBlank(message = "You must enter a comic name.")
     private String comicName;
     @NotBlank(message = "You must enter an author name.")
     private String author;
     private String imgUrl;
-    @NotBlank(message = "You must enter a release date.")
     private String releaseDate;
-    @NotNull(message = "A publisher id is required.")
     private int publisherId;
-    @NotNull(message = "A series id is required.")
     private int seriesId;
     private int collectionId;
 
