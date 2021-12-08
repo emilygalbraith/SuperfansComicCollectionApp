@@ -34,7 +34,8 @@ public class JdbcSeriesDao implements SeriesDao{
         if(result.next()) {
             return mapRowToSeries(result);
         } else {
-            throw new RuntimeException("Series with the name, " + seriesName + ", was not found.");
+            Series series = new Series();
+            return series;
         }
     }
 

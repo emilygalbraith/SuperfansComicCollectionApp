@@ -34,7 +34,8 @@ public class JdbcPublisherDao implements PublisherDao{
         if(result.next()) {
             return mapRowToPublisher(result);
         } else {
-            throw new RuntimeException("Publisher with the name, " + publisherName + ", was not found.");
+            Publisher publisher = new Publisher();
+            return  publisher;
         }
     }
 

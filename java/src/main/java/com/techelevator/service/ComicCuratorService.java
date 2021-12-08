@@ -2,11 +2,11 @@ package com.techelevator.service;
 
 import com.techelevator.dao.CollectionDao;
 import com.techelevator.dao.ComicDao;
+import com.techelevator.dao.PublisherDao;
+import com.techelevator.dao.SeriesDao;
 import com.techelevator.marvelapi.MarvelApiSeries;
 import com.techelevator.marvelapi.SeriesInfo;
-import com.techelevator.model.Collection;
-import com.techelevator.model.Comic;
-import com.techelevator.model.NewComic;
+import com.techelevator.model.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
@@ -27,10 +27,14 @@ public class ComicCuratorService {
 
     private CollectionDao collectionDao;
     private ComicDao comicDao;
+    private PublisherDao publisherDao;
+    private SeriesDao seriesDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao) {
+    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao, SeriesDao seriesDao) {
         this.collectionDao = collectionDao;
         this.comicDao = comicDao;
+        this.publisherDao = publisherDao;
+        this.seriesDao = seriesDao;
     }
 
     //TODO Depending on what is better for the front-end I think we will need to add logic in here returning public collections only
@@ -98,6 +102,19 @@ public class ComicCuratorService {
     }
 
     public Comic addComic(NewComic newComic, int collectionId) {
+        Comic comic = newComic.getComic();
+        Publisher publisher = publisherDao.getPublisherByName(newComic.getPublisher());
+        if(publisher.getPublisherName() == null) {
+            publisher.setPublisherName(newComic.getPublisher());
+            publisher = publisherDao.createPublisher(publisher);
+        }
+        comic.setPublisherId(publisher.getPublisherId());
+        Series series = seriesDao.getSeriesByName(newComic.getSeries());
+        if(series.getSeriesName() == null) {
+            series.setSeriesName(newComic.getSeries());
+            series = seriesDao.createSeries(series);
+        }
+        comic.setSeriesId(series.getSeriesId());
         return comicDao.addComic(comic, collectionId);
     }
 
