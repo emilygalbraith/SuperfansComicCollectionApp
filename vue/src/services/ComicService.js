@@ -22,11 +22,13 @@ export default {
     },
 
     addCollection(collection, token) {
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         }
-        return http.post('collections/create', collection, headers);
+        return http.post('collections/create', collection, config);
     },
 
     addComic(newComic, collectionId) {
