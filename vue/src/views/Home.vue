@@ -1,26 +1,20 @@
 <template>
-<div class="wrapper">
-  <div class="home">
-    <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
-alt="imgheader" class="imgheader"> </div>
-<div id="bodypage-corpo">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
-<<<<<<< HEAD
-    <router-link v-bind:to="{name: 'all-collections'}">View All Collections</router-link>
-  </div>
-  </div>
-=======
+  <div class="wrapper">
+    <div class="home">
+      <div class="header"> 
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
+                          alt="imgheader" class="imgheader"> 
+      </div>
+      <div id="bodypage-corpo">
+        <h1>Home</h1>
+        <p>You must be authenticated to see this</p>
+      </div>
+    </div>
     <!-- <router-link v-bind:to="{name: 'all-collections'}">View All Collections</router-link> |  -->
     <router-link v-bind:to="{name: 'profile'}">View Profile</router-link>
-<<<<<<< HEAD
-    <collection-list />
->>>>>>> c7fe2f9969b9eab2dd6d50ffd452d9e59ec98af2
-=======
     <div>
       <collection-list />
     </div>
->>>>>>> 43b082e9760237cdf346e0839cf9d99b31c10918
   </div>
 </template>
 
