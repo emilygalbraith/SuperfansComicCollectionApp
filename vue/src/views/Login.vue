@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <div id="login" class="text-center">
-    <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjXiM4ceD4fpsfj1DJVVz4xYMFF9VRNe4fSg1uIS0iRXOx_QvRnNThv56ipJUcedsbh0c7WpUSSbrjtnoXgW6LNJ_uDB7FGLkdZS8NU7LVTQDaR75fsTiXnTYPCFNhKCq34uP-K0bk_pHMd4nywFsJ0VW_xWackRwz2pJA4v75ZxpilX5Jlsqy6uCXM-w=s2870"
+    <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
 alt="imgheader" class="imgheader"> </div>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
@@ -15,7 +15,7 @@ alt="imgheader" class="imgheader"> </div>
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only">Username</label><br>
       <input
         type="text"
         id="username"
@@ -24,8 +24,8 @@ alt="imgheader" class="imgheader"> </div>
         v-model="user.username"
         required
         autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
+      /><br>
+      <label for="password" class="sr-only">Password</label><br>
       <input
         type="password"
         id="password"
@@ -33,9 +33,10 @@ alt="imgheader" class="imgheader"> </div>
         placeholder="Password"
         v-model="user.password"
         required
-      />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      /><br>
+      <button type="submit">Sign in</button><br><br>
+      <router-link :to="{ name: 'register' }">Need an account?</router-link><br>
+      
     </form>
   </div>
   <collection-list />
@@ -84,6 +85,7 @@ export default {
 
 
 <style scoped>
+@import url('<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Sacramento&display=swap" rel="stylesheet">');
 .wrapper {
   display: grid;
   grid-template-columns: 80%;
@@ -91,37 +93,60 @@ export default {
 }
 img {
   width: 100%;
-  padding: 0em;
-  /* margin-bottom: ; */
 }
 .header {
 width: 100%;
 margin: none;
 padding: none;
-justify-self: start;
+margin-block-start: -2%;
 }
 h1 {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 200%;
+  font-family: 'Comic Neue', cursive;
+  font-size: 150%;
   color: white;
   margin-top: 0px;
 }
+h1 {
+  padding-top: 4%;
+}
 .form-signin {
-background: #162e40;
-height: 100%;
+background: #071926;
+height: 75%;
 width: 100%;
 }
-form {
-  background: blue;
+.form-signin {
+  margin-block-start: -1%;
 }
 .form-signin {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Comic Neue', cursive;
   color: whitesmoke;
   text-align: center;
   font-size: 40px;
 }
-#username {
-  font-family: 'Courier New', Courier, monospace
+input[type=text] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+input[type=password] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+body {
+  position: fixed;
 }
 
 </style>
