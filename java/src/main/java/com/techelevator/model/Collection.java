@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 
 public class Collection {
 
-    @NotNull(message = "A collection id is required.")
     private int collectionId;
     @NotBlank(message = "A collection name must be entered.")
     private String collectionName;
