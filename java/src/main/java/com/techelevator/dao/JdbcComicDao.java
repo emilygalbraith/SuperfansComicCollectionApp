@@ -103,7 +103,9 @@ public class JdbcComicDao implements ComicDao{
                 " WHERE cc.collection_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, collectionId);
         while (result.next()) {
-            comicList.add(mapRowToComic(result));
+            Comic comic = mapRowToComic(result);
+            comic.setCollectionId(result.getInt("collection_id"));
+            comicList.add(comic);
         }
         return comicList;
     }
@@ -117,7 +119,6 @@ public class JdbcComicDao implements ComicDao{
         comic.setPublisherId(rs.getInt("publisher_id"));
         comic.setSeriesId(rs.getInt("series_id"));
         comic.setImgUrl(rs.getString("image"));
-        comic.setCollectionId(rs.getInt("collection_id"));
         return comic;
     }
 }
