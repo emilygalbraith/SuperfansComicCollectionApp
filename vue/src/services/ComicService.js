@@ -27,5 +27,9 @@ export default {
 
     addComic(newComic, collectionId) {
         return http.post(`collections/${collectionId}`, newComic)
+    },
+
+    getComicsByCollectionId(collectionId) {
+        return http.get(`/collections/${collectionId}/comics`);
     }
 }

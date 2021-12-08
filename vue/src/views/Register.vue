@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .wrapper {
   display: grid;
   grid-template-columns: 80%;

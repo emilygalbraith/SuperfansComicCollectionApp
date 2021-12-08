@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h2>{{}}</h2>
+        <h2>{{comic.comicName}}</h2>
+        <img v-bind:src="comic.imgUrl" />
     </div>
 </template>
 

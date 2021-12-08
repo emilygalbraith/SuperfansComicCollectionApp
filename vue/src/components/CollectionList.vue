@@ -47,6 +47,9 @@ export default {
             if (this.$route.name === 'login' || this.$route.name === 'register') {
                 this.getAllPublicCollections();
             }
+            if (this.$route.name === '') {
+                this.getAllCollections();
+            }
             if (this.$store.state.user != null) {
                 this.getCurrentUserCollections();
             }
