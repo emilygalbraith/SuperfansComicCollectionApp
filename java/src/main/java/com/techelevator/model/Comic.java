@@ -19,6 +19,15 @@ public class Comic {
     private int publisherId;
     @NotNull(message = "A series id is required.")
     private int seriesId;
+    private int collectionId;
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public void setCollectionId(int collectionId) {
+        this.collectionId = collectionId;
+    }
 
     public int getComicId() { return comicId; }
     public void setComicId(int comicId) { this.comicId = comicId; }

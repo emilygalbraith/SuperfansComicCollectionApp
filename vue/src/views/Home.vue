@@ -6,14 +6,22 @@ alt="imgheader" class="imgheader"> </div>
 <div id="bodypage-corpo">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
+<<<<<<< HEAD
     <router-link v-bind:to="{name: 'all-collections'}">View All Collections</router-link>
   </div>
   </div>
+=======
+    <!-- <router-link v-bind:to="{name: 'all-collections'}">View All Collections</router-link> |  -->
+    <router-link v-bind:to="{name: 'profile'}">View Profile</router-link>
+    <collection-list />
+>>>>>>> c7fe2f9969b9eab2dd6d50ffd452d9e59ec98af2
   </div>
 </template>
 
 <script>
+import CollectionList from '../components/CollectionList.vue';
 export default {
+  components: { CollectionList },
   name: "home"
 };
 </script>

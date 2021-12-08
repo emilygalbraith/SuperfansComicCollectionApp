@@ -1,8 +1,7 @@
 <template>
     <div>
         <collection-display v-for="collection in collections" v-bind:key="collection.collectionId" 
-                            v-bind:collection="collection" />
-        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>  
+                            v-bind:collection="collection" />  
     </div>
 </template>
 
@@ -47,6 +46,9 @@ export default {
         showCollections() {
             if (this.$route.name === 'login' || this.$route.name === 'register') {
                 this.getAllPublicCollections();
+            }
+            if (this.$route.name === '') {
+                this.getAllCollections();
             }
             if (this.$store.state.user != null) {
                 this.getCurrentUserCollections();
