@@ -15,15 +15,6 @@ public class Comic {
     private String releaseDate;
     private int publisherId;
     private int seriesId;
-    private int collectionId;
-
-    public int getCollectionId() {
-        return collectionId;
-    }
-
-    public void setCollectionId(int collectionId) {
-        this.collectionId = collectionId;
-    }
 
     public int getComicId() { return comicId; }
     public void setComicId(int comicId) { this.comicId = comicId; }
