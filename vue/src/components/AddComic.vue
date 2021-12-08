@@ -14,7 +14,7 @@
     </div> -->
     <div>
       <label for="image">Image URL</label>
-      <input type="text" id="image" v-model="newComic.comic.image"/>
+      <input type="text" v-model="newComic.comic.image"/>
     </div>
     <div>
       <label for="releaseDate">Release Date</label>

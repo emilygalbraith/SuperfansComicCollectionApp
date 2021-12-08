@@ -42,7 +42,7 @@ public class JdbcPublisherDao implements PublisherDao{
     @Override
     public Publisher createPublisher(Publisher publisher) {
         String publisherName = publisher.getPublisherName();
-        String sql = "INSERT INTO publisher (publisher_name) VALUES (?) RETURNING publisher_id";
+        String sql = "INSERT INTO publishers (publisher_name) VALUES (?) RETURNING publisher_id";
         int publisherId = jdbcTemplate.queryForObject(sql, Integer.class, publisherName);
         publisher.setPublisherId(publisherId);
         return publisher;
