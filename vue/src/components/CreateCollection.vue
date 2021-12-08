@@ -61,6 +61,14 @@ export default {
             this.$router.push({ name: "my-collections" });
           }
         }
+      }).catch(error => {
+          if(error.response) {
+              console.log(error.response.statusText);
+          } else if(error.request) {
+              console.log('error in request');
+          } else {
+              console.log('error occured');
+          }
       });
     },
   },
