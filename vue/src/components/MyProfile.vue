@@ -12,7 +12,7 @@ export default {
     name: 'my-profile',
     data() {
         return {
-            image: this.$refs.fileInput.files[0]
+            // image: this.$refs.fileInput.files[0]
         }
     }
 }
