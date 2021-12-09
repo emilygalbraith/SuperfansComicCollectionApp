@@ -1,4 +1,5 @@
 <template>
+<header>
   <div id="app">
     <div class="header"> 
       <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870" alt="imgheader" class="imgheader"> 
@@ -8,7 +9,10 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
+     <div>
   </div>
+  </div>
+  </header>
 </template>
 
 <style scoped>
@@ -16,7 +20,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    font-size: 30px;
+    font-size: 30px;n
   }
   img {
     width: 100%;
@@ -29,7 +33,6 @@
   }
   #app {
   background-color: #071926;
-  width: 100%;
-  height: 300%;
+  height: 81em;
 }
 </style>

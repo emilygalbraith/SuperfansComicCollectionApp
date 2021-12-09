@@ -88,22 +88,19 @@ h1 {
   font-size: 150%;
   color: white;
   margin-top: 0px;
+  padding-top: 4%;
 }
 h1 {
-  padding-top: 4%;
+  
 }
 .form-signin {
 height: 75%;
 width: 100%;
-}
-.form-signin {
-  margin-block-start: -1%;
-}
-.form-signin {
-  font-family: 'Comic Neue', cursive;
-  color: whitesmoke;
-  text-align: center;
-  font-size: 40px;
+margin-block-start: -1%;
+font-family: 'Comic Neue', cursive;
+color: whitesmoke;
+text-align: center;
+font-size: 40px;
 }
 input[type=text] {
   width: 10%;
@@ -127,7 +124,6 @@ button {
   display: inline-block;
   font-size: 16px;
 }
-
 #CreateAccount {
   font-size: 50%;
 }
