@@ -16,8 +16,9 @@ export default {
             comics: []
         }
     },
+    props: ['collectionId'],
     created() {
-        comicService.getComicsByCollectionId(this.$store.state.filter).then(response => {
+        comicService.getComicsByCollectionId(this.collectionId).then(response => {
             if (response.status === 200) {
                 this.comics = response.data;
             }
