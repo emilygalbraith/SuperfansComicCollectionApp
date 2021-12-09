@@ -2,7 +2,7 @@
     <div>
         <button v-on:click="updateFilter">{{collection.collectionName}}</button>
         <comic-list v-if="show" id="collection"/>
-        <!-- waiting to know the name of the variable for image column <img v-bind:src="collection.image"> -->
+        <!-- waiting to know the name of the variable for image column < v-bind:src="collection.image"> -->
     </div>
 </template>
 
