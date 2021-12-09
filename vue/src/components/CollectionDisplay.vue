@@ -1,7 +1,7 @@
 <template>
     <div>
         <button v-on:click="updateFilter">{{collection.collectionName}}</button>
-        <comic-list v-if="show" />
+        <comic-list v-if="show" id="collection"/>
         <!-- waiting to know the name of the variable for image column <img v-bind:src="collection.image"> -->
     </div>
 </template>
@@ -35,4 +35,7 @@ export default {
 /* button {
 
 } */
+#collection {
+    display: flex;
+}
 </style>
