@@ -84,8 +84,9 @@ public class JdbcComicDao implements ComicDao{
         Comic checkComic = new Comic();
         checkComic = getComicByName(comic.getComicName());
         if(checkComic.getComicName() == null) {
-            String sql = "INSERT INTO comics (comic_name, author, image, release_date, publisher_id, series_id) " +
-                    "VALUES (?, ?, ?, ?, ?, ?) RETURNING comic_id";
+//            String sql = "INSERT INTO comics (comic_name, author, image, release_date, publisher_id, series_id) " +
+//                    "VALUES (?, ?, ?, ?, ?, ?) RETURNING comic_id";
+            String sql = "INSERT INTO comics VALUES (DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING comic_id";
             comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, image, releaseDate, publishedId, seriesId);
         } else {
             comicId = checkComic.getComicId();
