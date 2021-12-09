@@ -35,7 +35,7 @@ alt="imgheader" class="imgheader"> </div>
         required
       /><br>
       <button type="submit">Sign in</button><br><br>
-      <router-link :to="{ name: 'register' }">Create an account</router-link><br>
+      <div id="CreateAccount"><router-link :to="{ name: 'register' }">Create an account</router-link></div><br>
       
     </form>
   </div>
@@ -145,6 +145,9 @@ button {
 }
 .background {
   background-color: #071926;
+}
+#CreateAccount {
+  font-size: 60%;
 }
 
 

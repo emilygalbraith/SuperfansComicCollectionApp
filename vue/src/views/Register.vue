@@ -38,7 +38,7 @@ alt="imgheader" class="imgheader"> </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button><br>
-      <router-link :to="{ name: 'login' }">Have an account?</router-link><br>
+      <div id="HaveAccount"><router-link :to="{ name: 'login' }">Have an account?</router-link></div><br>
       
     </form>
     <collection-list />
@@ -154,5 +154,8 @@ button {
 }
 .background {
   background-color: #071926;
+}
+#HaveAccount {
+  font-size: 60%;
 }
 </style>
