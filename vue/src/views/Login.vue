@@ -147,7 +147,7 @@ button {
   background-color: #071926;
 }
 #CreateAccount {
-  font-size: 60%;
+  font-size: 50%;
 }
 
 
