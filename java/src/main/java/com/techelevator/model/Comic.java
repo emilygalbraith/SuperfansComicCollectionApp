@@ -12,7 +12,7 @@ public class Comic {
     @NotBlank(message = "You must enter an author name.")
     private String author;
     private String image;
-    private String releaseDate;
+    private Date releaseDate;
     private int publisherId;
     private int seriesId;
 
@@ -28,8 +28,8 @@ public class Comic {
     public String getImage() { return image; }
     public void setImage(String imgUrl) { this.image = imgUrl; }
 
-    public String getReleaseDate() { return releaseDate; }
-    public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate; }
+    public Date getReleaseDate() { return releaseDate; }
+    public void setReleaseDate(Date releaseDate) { this.releaseDate = releaseDate; }
 
     public int getPublisherId() { return publisherId; }
     public void setPublisherId(int publisherId) { this.publisherId = publisherId; }
