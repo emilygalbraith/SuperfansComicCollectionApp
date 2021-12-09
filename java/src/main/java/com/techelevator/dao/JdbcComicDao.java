@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -77,7 +78,7 @@ public class JdbcComicDao implements ComicDao{
         String comicName = comic.getComicName();
         String author = comic.getAuthor();
         String image = comic.getImage();
-        String releaseDate = comic.getReleaseDate();
+        Date releaseDate = comic.getReleaseDate();
         int publishedId = comic.getPublisherId();
         int seriesId = comic.getSeriesId();
         int comicId = 0;
@@ -116,7 +117,7 @@ public class JdbcComicDao implements ComicDao{
         comic.setComicId(rs.getInt("comic_id"));
         comic.setComicName(rs.getString("comic_name"));
         comic.setAuthor(rs.getString("author"));
-        comic.setReleaseDate(rs.getString("release_date"));
+        comic.setReleaseDate(rs.getDate("release_date"));
         comic.setPublisherId(rs.getInt("publisher_id"));
         comic.setSeriesId(rs.getInt("series_id"));
         comic.setImage(rs.getString("image"));

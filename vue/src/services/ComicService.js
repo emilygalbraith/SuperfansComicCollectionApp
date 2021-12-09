@@ -32,6 +32,9 @@ export default {
     },
 
     addComic(newComic, collectionId, token) {
+        // const file = newComic.comic.image;
+        // const formData = new FormData();
+        // formData.append('file', file);
         const config = {
             headers: {
                 'Content-Type': 'application/json',
