@@ -1,8 +1,6 @@
 <template>
 <div class="background">
   <div id="register" class="text-center">
-    <!-- <div class="header"> <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870"
-alt="imgheader" class="imgheader"> </div> -->
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
@@ -41,14 +39,17 @@ alt="imgheader" class="imgheader"> </div> -->
       <div id="HaveAccount"><router-link :to="{ name: 'login' }">Have an account?</router-link></div><br>
       
     </form>
+    <collection-list />
   </div>
   </div>
 </template>
 
 <script>
+import CollectionList from '../components/CollectionList.vue';
 import authService from '../services/AuthService';
 
 export default {
+  components: { CollectionList },
   name: 'register',
   data() {
     return {
