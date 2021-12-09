@@ -17,16 +17,21 @@
     width: 100%;
     justify-content: center;
     font-size: 30px;
+    /* margin-block-start: -1%; */
   }
-
   img {
     width: 100%;
   }
-
   .header {
     width: 100%;
     margin: none;
     padding: none;
     margin-block-start: -2%;
   }
+  .background {
+  background-color: #071926;
+  margin-block-start: -2%;
+  width: 100%;
+  height: 300%;
+}
 </style>

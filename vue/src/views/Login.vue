@@ -93,7 +93,6 @@ h1 {
   padding-top: 4%;
 }
 .form-signin {
-/* background: #071926; */
 height: 75%;
 width: 100%;
 }
@@ -128,9 +127,7 @@ button {
   display: inline-block;
   font-size: 16px;
 }
-.background {
-  background-color: #071926;
-}
+
 #CreateAccount {
   font-size: 50%;
 }
