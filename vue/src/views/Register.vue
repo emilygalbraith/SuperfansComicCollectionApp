@@ -41,17 +41,14 @@ alt="imgheader" class="imgheader"> </div> -->
       <div id="HaveAccount"><router-link :to="{ name: 'login' }">Have an account?</router-link></div><br>
       
     </form>
-    <collection-list />
   </div>
   </div>
 </template>
 
 <script>
-import CollectionList from '../components/CollectionList.vue';
 import authService from '../services/AuthService';
 
 export default {
-  components: { CollectionList },
   name: 'register',
   data() {
     return {

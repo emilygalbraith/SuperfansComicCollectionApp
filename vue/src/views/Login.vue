@@ -39,19 +39,14 @@ alt="imgheader" class="imgheader"> </div> -->
       
     </form>
   </div>
-  <div>
-    <collection-list />
-  </div>
 </div>
 </template>
 
 <script>
-import CollectionList from '../components/CollectionList.vue';
 import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: {CollectionList},
   data() {
     return {
       user: {
@@ -69,7 +64,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push("/welcome");
           }
         })
         .catch(error => {

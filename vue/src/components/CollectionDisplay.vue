@@ -37,5 +37,6 @@ export default {
 } */
 #collection {
     display: flex;
+    gap: 20px;
 }
 </style>

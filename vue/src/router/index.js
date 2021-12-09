@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Welcome from '../views/Welcome.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
@@ -27,9 +28,17 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: Welcome,
       meta: {
         requiresAuth: true
       }
