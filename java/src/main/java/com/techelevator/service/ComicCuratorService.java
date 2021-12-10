@@ -37,9 +37,8 @@ public class ComicCuratorService {
         this.seriesDao = seriesDao;
     }
 
-    //TODO Depending on what is better for the front-end I think we will need to add logic in here returning public collections only
-    //TODO Maybe add logic that creates a HashMap with key as the collection, and value as a list of comics in that collection to display
-
+    //Statistics related methods
+    
 
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
