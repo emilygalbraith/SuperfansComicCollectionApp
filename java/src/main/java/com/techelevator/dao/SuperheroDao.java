@@ -7,5 +7,6 @@ import java.util.List;
 public interface SuperheroDao {
 
     List<Superhero> listAllSuperheroes();
+    List<Superhero> listAllSuperheroesInComic(int comicId);
 
 }

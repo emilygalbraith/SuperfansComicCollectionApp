@@ -27,6 +27,19 @@ public class JdbcSuperheroDao implements SuperheroDao {
         return superheroList;
     }
 
+    @Override
+    public List<Superhero> listAllSuperheroesInComic(int comicId) {
+        List<Superhero> superheroList = new ArrayList<>();
+        String sql = "SELECT * FROM superheroes s " +
+                "JOIN comic_superheroes cs ON s.superhero_id = cs.superhero_id " +
+                "WHERE cs.comic_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, comicId);
+        while(result.next()) {
+            superheroList.add(mapRowToSuperhero(result));
+        }
+        return superheroList;
+    }
+
 
     private Superhero mapRowToSuperhero(SqlRowSet rs) {
         Superhero superhero = new Superhero();
