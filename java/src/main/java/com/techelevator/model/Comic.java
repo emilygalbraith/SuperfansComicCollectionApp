@@ -12,7 +12,6 @@ public class Comic {
     @NotBlank(message = "You must enter an author name.")
     private String author;
     private String image;
-    private String superhero;
     private Date releaseDate;
     private int publisherId;
     private int seriesId;
@@ -28,9 +27,6 @@ public class Comic {
 
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
-
-    public String getSuperhero() { return superhero; }
-    public void setSuperhero(String superhero) { this.superhero = superhero; }
 
     public Date getReleaseDate() { return releaseDate; }
     public void setReleaseDate(Date releaseDate) { this.releaseDate = releaseDate; }

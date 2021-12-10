@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>{{collection.collectionName}}</h3>
+        <router-link>{{collection.collectionName}}</router-link>
         <comic-list id="collection" :collectionId="collection.collectionId" />
     </div>
 </template>
@@ -9,7 +9,7 @@
 import ComicList from './ComicList.vue';
 
 export default {
-  components: { ComicList },
+    components: { ComicList },
     name: 'collection-display',
     props: ['collection']
 }

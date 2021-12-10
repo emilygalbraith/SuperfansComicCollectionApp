@@ -78,7 +78,6 @@ public class JdbcComicDao implements ComicDao{
         String comicName = comic.getComicName();
         String author = comic.getAuthor();
         String image = comic.getImage();
-        String superhero = comic.getSuperhero();
         Date releaseDate = comic.getReleaseDate();
         int publishedId = comic.getPublisherId();
         int seriesId = comic.getSeriesId();
@@ -86,8 +85,8 @@ public class JdbcComicDao implements ComicDao{
         Comic checkComic = new Comic();
         checkComic = getComicByName(comic.getComicName());
         if(checkComic.getComicName() == null) {
-            String sql = "INSERT INTO comics VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?) RETURNING comic_id";
-            comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, image, superhero, releaseDate,
+            String sql = "INSERT INTO comics VALUES (DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING comic_id";
+            comicId = jdbcTemplate.queryForObject(sql, Integer.class, comicName, author, image, releaseDate,
                     publishedId, seriesId);
         } else {
             comicId = checkComic.getComicId();
@@ -121,7 +120,6 @@ public class JdbcComicDao implements ComicDao{
         comic.setPublisherId(rs.getInt("publisher_id"));
         comic.setSeriesId(rs.getInt("series_id"));
         comic.setImage(rs.getString("image"));
-        comic.setSuperhero(rs.getString("superhero"));
         return comic;
     }
 }
