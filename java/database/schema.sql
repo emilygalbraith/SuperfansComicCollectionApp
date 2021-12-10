@@ -2,6 +2,8 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS collection_comic;
 DROP TABLE IF EXISTS collections;
+DROP TABLE IF EXISTS comic_superheroes;
+DROP TABLE IF EXISTS superheroes;
 DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS series;
 DROP TABLE IF EXISTS publishers;
@@ -9,6 +11,8 @@ DROP TABLE IF EXISTS users;
 
 DROP SEQUENCE IF EXISTS seq_collection_comic_id;
 DROP SEQUENCE IF EXISTS seq_collection_id;
+DROP SEQUENCE IF EXISTS seq_comic_superhero_id;
+DROP SEQUENCE IF EXISTS seq_superhero_id;
 DROP SEQUENCE IF EXISTS seq_comic_id;
 DROP SEQUENCE IF EXISTS seq_series_id;
 DROP SEQUENCE IF EXISTS seq_publisher_id;
@@ -37,6 +41,18 @@ CREATE SEQUENCE seq_comic_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+  
+CREATE SEQUENCE seq_superhero_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1; 
+  
+CREATE SEQUENCE seq_comic_superhero_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1; 
   
 CREATE SEQUENCE seq_collection_id
   INCREMENT BY 1
@@ -79,11 +95,23 @@ CREATE TABLE comics (
         comic_name varchar(50) NOT NULL,
         author varchar(100) NOT NULL,
         image varchar(400) NOT NULL,
-        superhero varchar(100) NOT NULL,
         release_date date DEFAULT CURRENT_DATE,
         publisher_id int REFERENCES publishers (publisher_id),
         series_id int REFERENCES series (series_id),
         CONSTRAINT PK_comic PRIMARY KEY (comic_id)
+);
+
+CREATE TABLE superheroes (
+        superhero_id int DEFAULT nextval('seq_superhero_id'::regclass) NOT NULL,
+        superhero varchar(100) NOT NULL,
+        CONSTRAINT PK_superhero PRIMARY KEY (superhero_id)
+);
+
+CREATE TABLE comic_superheroes ( 
+        comic_superhero_id int DEFAULT nextval('seq_comic_superhero_id'::regclass) NOT NULL,
+        comic_id int REFERENCES comics (comic_id),
+        superhero_id int REFERENCES superheroes (superhero_id),
+        CONSTRAINT PK_comic_superhero PRIMARY KEY (comic_superhero_id)
 );
 
 CREATE TABLE collections (
