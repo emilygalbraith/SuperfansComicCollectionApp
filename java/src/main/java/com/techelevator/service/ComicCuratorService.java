@@ -63,6 +63,32 @@ public class ComicCuratorService {
         return superheroStatList;
     }
 
+    public List<PublisherStat> getUserCollectionPublisherStats(int userId, int collectionId) {
+        List<PublisherStat> publisherStatList = new ArrayList<>();
+        List<Comic> comicList = listComicsInCollection(collectionId);
+        Publisher currentPublisher = new Publisher();
+        currentPublisher = publisherDao.getPublisherById(comicList.get(0).getPublisherId());
+        PublisherStat publisherStat = new PublisherStat(currentPublisher.getPublisherName(), 1);
+        publisherStatList.add(publisherStat);
+        for(Comic comic : comicList) {
+            currentPublisher = publisherDao.getPublisherById(comic.getPublisherId());
+            boolean found = false;
+            for(PublisherStat publisherStat1 : publisherStatList) {
+                if(currentPublisher.getPublisherName().equals(publisherStat1.getPublisherName())) {
+                    publisherStat.setOccurrences(publisherStat.getOccurrences() + 1);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                PublisherStat publisherStat1 = new PublisherStat(currentPublisher.getPublisherName(), 1);
+                publisherStatList.add(publisherStat);
+            }
+
+        }
+        return publisherStatList;
+    }
+
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
         return collectionDao.listAllPublicCollections();

@@ -9,5 +9,6 @@ public interface PublisherDao {
     List<Publisher> listAllPublishers();
     Publisher getPublisherByName(String publisherName);
     Publisher createPublisher(Publisher publisher);
+    Publisher getPublisherById(int publisherId);
 
 }

@@ -4,6 +4,7 @@ import com.techelevator.model.Collection;
 import com.techelevator.model.Publisher;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -46,6 +47,17 @@ public class JdbcPublisherDao implements PublisherDao{
         int publisherId = jdbcTemplate.queryForObject(sql, Integer.class, publisherName);
         publisher.setPublisherId(publisherId);
         return publisher;
+    }
+
+    @Override
+    public Publisher getPublisherById(int publisherId) {
+        String sql = "SELECT * FROM publishers WHERE publisher_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, publisherId);
+        if(result.next()) {
+            return mapRowToPublisher(result);
+        } else {
+            throw new RuntimeException("publisherId "+publisherId+" was not found.");
+        }
     }
 
     private Publisher mapRowToPublisher(SqlRowSet rs) {
