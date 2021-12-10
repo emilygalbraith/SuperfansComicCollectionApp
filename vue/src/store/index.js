@@ -20,7 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    filter: 0
+    show: false
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -39,8 +39,8 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    UPDATE_FILTER(state, filter) {
-      state.filter = filter;
+    FLIP_SHOW(state, show) {
+      state.show = show;
     }
   }
 })
