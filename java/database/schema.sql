@@ -79,6 +79,7 @@ CREATE TABLE comics (
         comic_name varchar(50) NOT NULL,
         author varchar(100) NOT NULL,
         image varchar(400) NOT NULL,
+        superhero varchar(100) NOT NULL,
         release_date date DEFAULT CURRENT_DATE,
         publisher_id int REFERENCES publishers (publisher_id),
         series_id int REFERENCES series (series_id),
