@@ -1,9 +1,6 @@
 package com.techelevator.service;
 
-import com.techelevator.dao.CollectionDao;
-import com.techelevator.dao.ComicDao;
-import com.techelevator.dao.PublisherDao;
-import com.techelevator.dao.SeriesDao;
+import com.techelevator.dao.*;
 import com.techelevator.marvelapi.MarvelApiSeries;
 import com.techelevator.marvelapi.SeriesInfo;
 import com.techelevator.model.*;
@@ -29,16 +26,42 @@ public class ComicCuratorService {
     private ComicDao comicDao;
     private PublisherDao publisherDao;
     private SeriesDao seriesDao;
+    private SuperheroDao superheroDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao, SeriesDao seriesDao) {
+    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao,
+                               SeriesDao seriesDao, SuperheroDao superheroDao) {
         this.collectionDao = collectionDao;
         this.comicDao = comicDao;
         this.publisherDao = publisherDao;
         this.seriesDao = seriesDao;
+        this.superheroDao = superheroDao;
     }
 
     //Statistics related methods
-    
+    public List<SuperheroStat> getUsersSuperheroStats(int userId) {
+        List<SuperheroStat> superheroStatList = new ArrayList<>();
+        List<Collection> usersCollections = collectionDao.getCollectionsByUserId(userId);
+        for(Collection collection : usersCollections) {
+            List<Comic> comicList = listComicsInCollection(collection.getCollectionId());
+            for(Comic comic : comicList) {
+                List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comic.getComicId());
+                for(Superhero superhero : superheroList) {
+                    boolean found = false;
+                    for(SuperheroStat superheroStat : superheroStatList) {
+                        if(superhero.equals(superheroStat.getHeroName())) {
+                            superheroStat.setOccurrences(superheroStat.getOccurrences() +  1);
+                            found = true;
+                            break;
+                        }
+                        if(!found) {
+                            SuperheroStat superheroStat1 = new SuperheroStat(superhero.getSuperheroName(), 1);
+                        }
+                    }
+                }
+            }
+        }
+        return superheroStatList;
+    }
 
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
