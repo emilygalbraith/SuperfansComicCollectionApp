@@ -90,9 +90,6 @@ h1 {
   margin-top: 0px;
   padding-top: 4%;
 }
-h1 {
-  
-}
 .form-signin {
 height: 75%;
 width: 100%;

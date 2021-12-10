@@ -97,15 +97,6 @@ export default {
 </script>
 
 <style scoped>
-img {
-  width: 100%;
-}
-.header {
-width: 100%;
-margin: none;
-padding: none;
-margin-block-start: -2%;
-}
 h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 150%;
