@@ -55,9 +55,10 @@ public class ComicCuratorService {
                             found = true;
                             break;
                         }
-                        if(!found) {
-                            SuperheroStat superheroStat1 = new SuperheroStat(superhero.getSuperheroName(), 1);
-                        }
+                    }
+                    if(!found) {
+                        SuperheroStat superheroStat1 = new SuperheroStat(superhero.getSuperheroName(), 1);
+                        superheroStatList.add(superheroStat1);
                     }
                 }
             }
