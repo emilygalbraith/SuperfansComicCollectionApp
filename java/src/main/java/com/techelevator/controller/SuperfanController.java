@@ -20,8 +20,10 @@ public class SuperfanController {
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
     
-    @RequestMapping(path = "user/{userId}/superhero", method = RequestMethod.GET)
-    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId) { return comicCuratorService.getUsersSuperheroStats(userId); }
+    @RequestMapping(path = "user/{userId}/collection/{collectionId}/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId, @PathVariable int collectionId) {
+        return comicCuratorService.getUsersSuperheroStats(userId, collectionId);
+    }
 
     @RequestMapping(path = "collections/public", method = RequestMethod.GET)
     public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }

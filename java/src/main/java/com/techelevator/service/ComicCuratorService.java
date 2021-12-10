@@ -38,11 +38,9 @@ public class ComicCuratorService {
     }
 
     //Statistics related methods
-    public List<SuperheroStat> getUsersSuperheroStats(int userId) {
+    public List<SuperheroStat> getUsersSuperheroStats(int userId, int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
-        List<Collection> usersCollections = collectionDao.getCollectionsByUserId(userId);
-        for(Collection collection : usersCollections) {
-            List<Comic> comicList = listComicsInCollection(collection.getCollectionId());
+        List<Comic> comicList = listComicsInCollection(collectionId);
             for(Comic comic : comicList) {
                 List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comic.getComicId());
                 SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
@@ -62,7 +60,6 @@ public class ComicCuratorService {
                     }
                 }
             }
-        }
         return superheroStatList;
     }
 
