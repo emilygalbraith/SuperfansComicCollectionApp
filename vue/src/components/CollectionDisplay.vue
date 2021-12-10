@@ -2,7 +2,6 @@
     <div>
         <h3>{{collection.collectionName}}</h3>
         <comic-list id="collection" :collectionId="collection.collectionId" />
-        <!-- waiting to know the name of the variable for image column < v-bind:src="collection.image"> -->
     </div>
 </template>
 
@@ -16,10 +15,13 @@ export default {
 }
 </script>
 
-<style>
-/* button {
+<style scoped>
+@import url('<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Sacramento&display=swap" rel="stylesheet">');
 
-} */
+h3 {
+    font-family: 'Comic Neue', cursive;
+    color: #DB504A;
+}
 #collection {
     display: flex;
     gap: 20px;
