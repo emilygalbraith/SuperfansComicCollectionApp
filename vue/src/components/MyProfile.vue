@@ -4,6 +4,7 @@
         <!-- <img :src="image" />
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->   
         <collection-list />
+        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>
     </div>
 </template>
 
