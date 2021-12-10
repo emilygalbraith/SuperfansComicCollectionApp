@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
 import com.techelevator.model.NewComic;
+import com.techelevator.model.SuperheroStat;
 import com.techelevator.service.ComicCuratorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +19,11 @@ public class SuperfanController {
     private ComicCuratorService comicCuratorService;
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
+    
+    @RequestMapping(path = "user/{userId}/collection/{collectionId}/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId, @PathVariable int collectionId) {
+        return comicCuratorService.getUsersSuperheroStats(userId, collectionId);
+    }
 
     @RequestMapping(path = "collections/public", method = RequestMethod.GET)
     public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }
