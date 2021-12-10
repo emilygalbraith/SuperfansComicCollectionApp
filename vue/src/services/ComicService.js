@@ -17,8 +17,8 @@ export default {
         return http.get(`/collections/user/${userId}`);
     },
 
-    getCollectionById(collectionId) {
-        return http.get(`/collections/${collectionId}`);
+    getCollectionByName(collectionName) {
+        return http.get(`/collections/${collectionName}`);
     },
 
     addCollection(collection, token) {

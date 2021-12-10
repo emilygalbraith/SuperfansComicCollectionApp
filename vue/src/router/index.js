@@ -10,6 +10,7 @@ import MyCollection from '@/views/MyCollection'
 import CreateCollection from '@/views/CreateCollection'
 import AddComicForm from '@/views/AddComicForm'
 import Profile from '@/views/Profile'
+import CollectionDetail from '@/views/CollectionDetail'
 
 Vue.use(Router)
 
@@ -82,6 +83,11 @@ const router = new Router({
       path: "/profile",
       name: "profile",
       component: Profile
+    },
+    {
+      path: "/collections/:collectionName",
+      name: "collection-detail",
+      component: CollectionDetail
     }
   ]
 })

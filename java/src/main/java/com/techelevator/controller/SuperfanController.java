@@ -32,9 +32,9 @@ public class SuperfanController {
         return comicCuratorService.getCollectionsByUserId(userId);
     }
 
-    @RequestMapping(path = "collections/{collectionId}")
-    public Collection getCollectionById(@PathVariable int collectionId) {
-        return comicCuratorService.getCollectionById(collectionId);
+    @RequestMapping(path = "collections/{collectionName}")
+    public Collection getCollectionByName(@PathVariable String collectionName) {
+        return comicCuratorService.getCollectionByName(collectionName);
     }
 
     @PreAuthorize("isAuthenticated()")

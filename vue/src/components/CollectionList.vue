@@ -44,9 +44,9 @@ export default {
             });
         },
         showCollections() {
-            if (this.$route.name == 'home') {
+            if (this.$route.name == 'home' && this.$store.state.show == false) {
                 this.getAllPublicCollections();
-            } else if (this.$route.name == 'welcome') {
+            } else if (this.$store.state.show == true) {
                 this.retrieveAllCollections();
             } else {
                 this.getCurrentUserCollections();
