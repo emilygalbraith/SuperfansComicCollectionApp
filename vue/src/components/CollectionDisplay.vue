@@ -1,6 +1,8 @@
 <template>
     <div>
-        <router-link>{{collection.collectionName}}</router-link>
+        <router-link :to="{name: 'collection-detail', params: {collectionName: collection.collectionName}}">
+            {{collection.collectionName}}
+        </router-link>
         <comic-list id="collection" :collectionId="collection.collectionId" />
     </div>
 </template>

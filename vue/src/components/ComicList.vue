@@ -18,11 +18,34 @@ export default {
     },
     props: ['collectionId'],
     created() {
-        comicService.getComicsByCollectionId(this.collectionId).then(response => {
-            if (response.status === 200) {
-                this.comics = response.data;
+        this.showComics();
+    },
+    methods: {
+        getLimitedComics() {
+            comicService.getComicsByCollectionId(this.collectionId).then(response => {
+                if (response.status === 200) {
+                    if (response.data.length > 6) {
+                        this.comics = response.data.slice(5);
+                    } else {
+                        this.comics = response.data;
+                    }
+                }
+            });
+        },
+        getAllComics() {
+            comicService.getComicsByCollectionId(this.collectionId).then(response => {
+                if (response.status === 200) {
+                    this.comics = response.data;
+                }
+            });
+        },
+        showComics() {
+            if (this.$route.name == 'profile' || this.$route.name == 'home') {
+                this.getLimitedComics();
+            } else {
+                this.getAllComics();
             }
-        });
+        }
     }
 }
 </script>
