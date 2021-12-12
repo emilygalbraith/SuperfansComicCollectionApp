@@ -18,7 +18,7 @@ export default {
         }
     },
     created() {
-        comicService.getCollectionByName(this.$route.params.collectionName).then(response => {
+        comicService.getCollectionById(this.$route.params.collectionId).then(response => {
             if (response.status === 200) {
                 this.collection = response.data;
             }

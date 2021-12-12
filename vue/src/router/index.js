@@ -7,7 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import AllCollections from '@/views/AllCollections'
 import CreateCollection from '@/views/CreateCollection'
-import AddComicForm from '@/views/AddComicForm'
+// import AddComicForm from '@/views/AddComicForm'
 import Profile from '@/views/Profile'
 import CollectionDetail from '@/views/CollectionDetail'
 
@@ -68,18 +68,18 @@ const router = new Router({
       name: "create-collection",
       component: CreateCollection
     },
-    {
-      path: "/collection/:collectionId",
-      name: "add-comic-form",
-      component: AddComicForm
-    },
+    // {
+    //   path: "/collection/:collectionId",
+    //   name: "add-comic-form",
+    //   component: AddComicForm
+    // },
     {
       path: "/profile",
       name: "profile",
       component: Profile
     },
     {
-      path: "/collections/:collectionName",
+      path: "/collections/:collectionId",
       name: "collection-detail",
       component: CollectionDetail
     }
