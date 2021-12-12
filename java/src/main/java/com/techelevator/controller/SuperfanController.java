@@ -17,22 +17,38 @@ public class SuperfanController {
     private ComicCuratorService comicCuratorService;
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
-    
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/superhero", method = RequestMethod.GET)
-    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUsersSuperheroStats(userId, collectionId);
+
+    //Aggregate statistics
+    @RequestMapping(path = "statistics/totalComics", method = RequestMethod.GET)
+    public int getTotalComics() { return comicCuratorService.getTotalComics(); }
+
+    @RequestMapping(path = "statistics/publisher", method = RequestMethod.GET)
+    public List<PublisherStat> getTotalPublisherStats() { return comicCuratorService.getTotalPublisherStats(); }
+
+    @RequestMapping(path = "statistics/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getTotalSuperheroStats() { return comicCuratorService.getTotalSuperheroStats(); }
+
+    @RequestMapping(path = "statistics/series", method = RequestMethod.GET)
+    public List<SeriesStat> getTotalSeriesStats() { return  comicCuratorService.getTotalSeriesStats(); }
+
+    //User collection statistics
+    @RequestMapping(path = "user/collection/{collectionId}/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUsersSuperheroStats(collectionId);
     }
 
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/publisher", method = RequestMethod.GET)
-    public List<PublisherStat> getUserCollectionPublisherStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUserCollectionPublisherStats(userId, collectionId);
+    @RequestMapping(path = "user/collection/{collectionId}/publisher", method = RequestMethod.GET)
+    public List<PublisherStat> getUserCollectionPublisherStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUserCollectionPublisherStats(collectionId);
     }
 
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/series", method = RequestMethod.GET)
-    public List<SeriesStat> getUserCollectionSeriesStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUserCollectionSeriesStats(userId, collectionId);
+    @RequestMapping(path = "user/collection/{collectionId}/series", method = RequestMethod.GET)
+    public List<SeriesStat> getUserCollectionSeriesStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUserCollectionSeriesStats(collectionId);
     }
 
+
+    //Collections
     @RequestMapping(path = "collections/public", method = RequestMethod.GET)
     public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }
 
@@ -66,6 +82,8 @@ public class SuperfanController {
         comicCuratorService.deleteCollection(userId, collectionId);
     }
 
+
+    //Comics
     @RequestMapping(path = "collections/{collectionId}/comics", method = RequestMethod.GET)
     public List<Comic> listComicsInCollection(@PathVariable int collectionId) {
         return comicCuratorService.listComicsInCollection(collectionId);

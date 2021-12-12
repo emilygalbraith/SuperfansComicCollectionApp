@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 @Service
 public class ComicCuratorService {
@@ -38,7 +39,112 @@ public class ComicCuratorService {
     }
 
     //Statistics related methods
-    public List<SuperheroStat> getUsersSuperheroStats(int userId, int collectionId) {
+
+    //Aggregate statistics
+    public int getTotalComics() {
+        int totalComics = 0;
+        List<Collection> collectionsList = listAllCollections();
+        List<Comic> allComicsList = new ArrayList<>();
+        for(Collection collection : collectionsList) {
+            List<Comic> collectionComics = listComicsInCollection(collection.getCollectionId());
+            for(Comic comic : collectionComics) {
+                allComicsList.add(comic);
+            }
+        }
+        totalComics = allComicsList.size();
+        return totalComics;
+    }
+
+    public List<PublisherStat> getTotalPublisherStats() {
+        List<PublisherStat> publisherStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        int count = 0;
+        for(Collection collection : collectionList) {
+            List<PublisherStat> publisherStats = getUserCollectionPublisherStats(collection.getCollectionId());
+            for(PublisherStat publisherStat : publisherStats) {
+                if(count == 0) {
+                    publisherStatList.add(publisherStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(PublisherStat publisherStat1 : publisherStatList) {
+                        if(publisherStat.getPublisherName().equals(publisherStat1.getPublisherName())) {
+                            publisherStat1.setOccurrences(publisherStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        publisherStatList.add(publisherStat);
+                    }
+                }
+                count++;
+            }
+        }
+        return publisherStatList;
+    }
+
+    public List<SuperheroStat> getTotalSuperheroStats() {
+        List<SuperheroStat> superheroStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        int count = 0;
+        for(Collection collection : collectionList) {
+            List<SuperheroStat> superheroStats = getUsersSuperheroStats(collection.getCollectionId());
+            for(SuperheroStat superheroStat : superheroStats) {
+                if(count == 0) {
+                    superheroStatList.add(superheroStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(SuperheroStat superheroStat1 : superheroStatList) {
+                        if(superheroStat.getHeroName().equals(superheroStat1.getHeroName())) {
+                            superheroStat1.setOccurrences(superheroStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        superheroStatList.add(superheroStat);
+                    }
+                }
+                count++;
+            }
+        }
+        return superheroStatList;
+    }
+
+    public List<SeriesStat> getTotalSeriesStats() {
+        List<SeriesStat> seriesStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        int count = 0;
+        for(Collection collection : collectionList) {
+            List<SeriesStat> seriesStats = getUserCollectionSeriesStats(collection.getCollectionId());
+            for(SeriesStat seriesStat : seriesStats) {
+                if(count == 0) {
+                    seriesStatList.add(seriesStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(SeriesStat seriesStat1 : seriesStatList) {
+                        if(seriesStat.getSeriesName().equals(seriesStat1.getSeriesName())) {
+                            seriesStat1.setOccurrences(seriesStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        seriesStatList.add(seriesStat);
+                    }
+                }
+                count++;
+            }
+        }
+        return  seriesStatList;
+    }
+
+
+    //User collection statistics
+    public List<SuperheroStat> getUsersSuperheroStats(int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
             for(Comic comic : comicList) {
@@ -63,7 +169,7 @@ public class ComicCuratorService {
         return superheroStatList;
     }
 
-    public List<PublisherStat> getUserCollectionPublisherStats(int userId, int collectionId) {
+    public List<PublisherStat> getUserCollectionPublisherStats(int collectionId) {
         List<PublisherStat> publisherStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
         Publisher currentPublisher = new Publisher();
@@ -82,14 +188,14 @@ public class ComicCuratorService {
             }
             if(!found) {
                 PublisherStat publisherStat1 = new PublisherStat(currentPublisher.getPublisherName(), 1);
-                publisherStatList.add(publisherStat);
+                publisherStatList.add(publisherStat1);
             }
 
         }
         return publisherStatList;
     }
 
-    public List<SeriesStat> getUserCollectionSeriesStats(int userId, int collectionId) {
+    public List<SeriesStat> getUserCollectionSeriesStats(int collectionId) {
         List<SeriesStat> seriesStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
         Series currentSeries = new Series();
