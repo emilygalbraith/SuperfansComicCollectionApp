@@ -6,10 +6,10 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import AllCollections from '@/views/AllCollections'
-import MyCollection from '@/views/MyCollection'
 import CreateCollection from '@/views/CreateCollection'
 import AddComicForm from '@/views/AddComicForm'
 import Profile from '@/views/Profile'
+import CollectionDetail from '@/views/CollectionDetail'
 
 Vue.use(Router)
 
@@ -64,11 +64,6 @@ const router = new Router({
       component: AllCollections
     },
     {
-      path: "/myCollections",
-      name: "my-collections",
-      component: MyCollection
-    },
-    {
       path: "/createCollection",
       name: "create-collection",
       component: CreateCollection
@@ -82,6 +77,11 @@ const router = new Router({
       path: "/profile",
       name: "profile",
       component: Profile
+    },
+    {
+      path: "/collections/:collectionName",
+      name: "collection-detail",
+      component: CollectionDetail
     }
   ]
 })

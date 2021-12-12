@@ -1,9 +1,6 @@
 package com.techelevator.service;
 
-import com.techelevator.dao.CollectionDao;
-import com.techelevator.dao.ComicDao;
-import com.techelevator.dao.PublisherDao;
-import com.techelevator.dao.SeriesDao;
+import com.techelevator.dao.*;
 import com.techelevator.marvelapi.MarvelApiSeries;
 import com.techelevator.marvelapi.SeriesInfo;
 import com.techelevator.model.*;
@@ -29,16 +26,93 @@ public class ComicCuratorService {
     private ComicDao comicDao;
     private PublisherDao publisherDao;
     private SeriesDao seriesDao;
+    private SuperheroDao superheroDao;
 
-    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao, SeriesDao seriesDao) {
+    public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao,
+                               SeriesDao seriesDao, SuperheroDao superheroDao) {
         this.collectionDao = collectionDao;
         this.comicDao = comicDao;
         this.publisherDao = publisherDao;
         this.seriesDao = seriesDao;
+        this.superheroDao = superheroDao;
     }
 
     //Statistics related methods
-    
+    public List<SuperheroStat> getUsersSuperheroStats(int userId, int collectionId) {
+        List<SuperheroStat> superheroStatList = new ArrayList<>();
+        List<Comic> comicList = listComicsInCollection(collectionId);
+            for(Comic comic : comicList) {
+                List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comic.getComicId());
+                SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
+                superheroStatList.add(firstStat);
+                for(Superhero superhero : superheroList) {
+                    boolean found = false;
+                    for(SuperheroStat superheroStat : superheroStatList) {
+                        if(superhero.getSuperheroName().equals(superheroStat.getHeroName())) {
+                            superheroStat.setOccurrences(superheroStat.getOccurrences() +  1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        SuperheroStat superheroStat1 = new SuperheroStat(superhero.getSuperheroName(), 1);
+                        superheroStatList.add(superheroStat1);
+                    }
+                }
+            }
+        return superheroStatList;
+    }
+
+    public List<PublisherStat> getUserCollectionPublisherStats(int userId, int collectionId) {
+        List<PublisherStat> publisherStatList = new ArrayList<>();
+        List<Comic> comicList = listComicsInCollection(collectionId);
+        Publisher currentPublisher = new Publisher();
+        currentPublisher = publisherDao.getPublisherById(comicList.get(0).getPublisherId());
+        PublisherStat publisherStat = new PublisherStat(currentPublisher.getPublisherName(), 1);
+        publisherStatList.add(publisherStat);
+        for(Comic comic : comicList) {
+            currentPublisher = publisherDao.getPublisherById(comic.getPublisherId());
+            boolean found = false;
+            for(PublisherStat publisherStat1 : publisherStatList) {
+                if(currentPublisher.getPublisherName().equals(publisherStat1.getPublisherName())) {
+                    publisherStat.setOccurrences(publisherStat.getOccurrences() + 1);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                PublisherStat publisherStat1 = new PublisherStat(currentPublisher.getPublisherName(), 1);
+                publisherStatList.add(publisherStat);
+            }
+
+        }
+        return publisherStatList;
+    }
+
+    public List<SeriesStat> getUserCollectionSeriesStats(int userId, int collectionId) {
+        List<SeriesStat> seriesStatList = new ArrayList<>();
+        List<Comic> comicList = listComicsInCollection(collectionId);
+        Series currentSeries = new Series();
+        currentSeries = seriesDao.getSeriesById(comicList.get(0).getSeriesId());
+        SeriesStat seriesStat = new SeriesStat(currentSeries.getSeriesName(), 1);
+        seriesStatList.add(seriesStat);
+        for(Comic comic : comicList) {
+            currentSeries = seriesDao.getSeriesById(comic.getSeriesId());
+            boolean found = false;
+            for(SeriesStat seriesStat1 : seriesStatList) {
+                if(seriesStat1.getSeriesName().equals(currentSeries.getSeriesName())) {
+                    seriesStat1.setOccurrences(seriesStat1.getOccurrences() + 1);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                SeriesStat seriesStat1 = new SeriesStat(currentSeries.getSeriesName(), 1);
+                seriesStatList.add(seriesStat1);
+            }
+        }
+        return seriesStatList;
+    }
 
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
@@ -53,8 +127,8 @@ public class ComicCuratorService {
         return collectionDao.getCollectionsByUserId(userId);
     }
 
-    public Collection getCollectionById(int collectionId) {
-        return collectionDao.getCollectionById(collectionId);
+    public Collection getCollectionByName(String collectionName) {
+        return collectionDao.getCollectionByName(collectionName);
     }
 
     public Collection createCollection(Collection collection) {

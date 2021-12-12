@@ -50,13 +50,13 @@ public class JdbcCollectionDao implements CollectionDao{
     }
 
     @Override
-    public Collection getCollectionById(int collectionId) {
-        String sql = "SELECT * FROM collections WHERE collection_id = ?";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, collectionId);
+    public Collection getCollectionByName(String collectionName) {
+        String sql = "SELECT * FROM collections WHERE collection_name = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, collectionName);
         if(result.next()) {
             return mapRowToCollection(result);
         } else {
-            throw new RuntimeException("Collection with the id " + collectionId + " was not found.");
+            throw new RuntimeException("Collection with the name " + collectionName + " was not found.");
         }
     }
 

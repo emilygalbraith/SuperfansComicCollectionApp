@@ -3,12 +3,16 @@
         <h2>{{$store.state.user.username}}</h2>
         <!-- <img :src="image" />
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->   
-        <router-link v-bind:to="{name: 'my-collections'}">My Collections</router-link>
+        <collection-list />
+        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>
     </div>
 </template>
 
 <script>
+import CollectionList from './CollectionList.vue'
+
 export default {
+  components: { CollectionList },
     name: 'my-profile',
     data() {
         return {
