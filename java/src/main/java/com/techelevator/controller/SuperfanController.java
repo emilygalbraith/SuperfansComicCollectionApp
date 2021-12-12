@@ -28,6 +28,9 @@ public class SuperfanController {
     @RequestMapping(path = "statistics/superhero", method = RequestMethod.GET)
     public List<SuperheroStat> getTotalSuperheroStats() { return comicCuratorService.getTotalSuperheroStats(); }
 
+    @RequestMapping(path = "statistics/series", method = RequestMethod.GET)
+    public List<SeriesStat> getTotalSeriesStats() { return  comicCuratorService.getTotalSeriesStats(); }
+
     //User collection statistics
     @RequestMapping(path = "user/collection/{collectionId}/superhero", method = RequestMethod.GET)
     public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int collectionId) {

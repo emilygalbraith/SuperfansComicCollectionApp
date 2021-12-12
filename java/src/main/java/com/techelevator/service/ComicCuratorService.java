@@ -58,10 +58,27 @@ public class ComicCuratorService {
     public List<PublisherStat> getTotalPublisherStats() {
         List<PublisherStat> publisherStatList = new ArrayList<>();
         List<Collection> collectionList = listAllCollections();
+        int count = 0;
         for(Collection collection : collectionList) {
             List<PublisherStat> publisherStats = getUserCollectionPublisherStats(collection.getCollectionId());
             for(PublisherStat publisherStat : publisherStats) {
-                publisherStatList.add(publisherStat);
+                if(count == 0) {
+                    publisherStatList.add(publisherStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(PublisherStat publisherStat1 : publisherStatList) {
+                        if(publisherStat.getPublisherName().equals(publisherStat1.getPublisherName())) {
+                            publisherStat1.setOccurrences(publisherStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        publisherStatList.add(publisherStat);
+                    }
+                }
+                count++;
             }
         }
         return publisherStatList;
@@ -70,13 +87,59 @@ public class ComicCuratorService {
     public List<SuperheroStat> getTotalSuperheroStats() {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Collection> collectionList = listAllCollections();
+        int count = 0;
         for(Collection collection : collectionList) {
             List<SuperheroStat> superheroStats = getUsersSuperheroStats(collection.getCollectionId());
             for(SuperheroStat superheroStat : superheroStats) {
-                superheroStatList.add(superheroStat);
+                if(count == 0) {
+                    superheroStatList.add(superheroStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(SuperheroStat superheroStat1 : superheroStatList) {
+                        if(superheroStat.getHeroName().equals(superheroStat1.getHeroName())) {
+                            superheroStat1.setOccurrences(superheroStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        superheroStatList.add(superheroStat);
+                    }
+                }
+                count++;
             }
         }
         return superheroStatList;
+    }
+
+    public List<SeriesStat> getTotalSeriesStats() {
+        List<SeriesStat> seriesStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        int count = 0;
+        for(Collection collection : collectionList) {
+            List<SeriesStat> seriesStats = getUserCollectionSeriesStats(collection.getCollectionId());
+            for(SeriesStat seriesStat : seriesStats) {
+                if(count == 0) {
+                    seriesStatList.add(seriesStat);
+                }
+                if(count > 0) {
+                    boolean found = false;
+                    for(SeriesStat seriesStat1 : seriesStatList) {
+                        if(seriesStat.getSeriesName().equals(seriesStat1.getSeriesName())) {
+                            seriesStat1.setOccurrences(seriesStat1.getOccurrences() + 1);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        seriesStatList.add(seriesStat);
+                    }
+                }
+                count++;
+            }
+        }
+        return  seriesStatList;
     }
 
 
