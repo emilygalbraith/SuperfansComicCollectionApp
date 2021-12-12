@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 @Service
 public class ComicCuratorService {
@@ -65,6 +66,19 @@ public class ComicCuratorService {
         }
         return publisherStatList;
     }
+
+    public List<SuperheroStat> getTotalSuperheroStats() {
+        List<SuperheroStat> superheroStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        for(Collection collection : collectionList) {
+            List<SuperheroStat> superheroStats = getUsersSuperheroStats(collection.getCollectionId());
+            for(SuperheroStat superheroStat : superheroStats) {
+                superheroStatList.add(superheroStat);
+            }
+        }
+        return superheroStatList;
+    }
+
 
     //User collection statistics
     public List<SuperheroStat> getUsersSuperheroStats(int collectionId) {

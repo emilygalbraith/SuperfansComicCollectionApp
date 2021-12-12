@@ -19,11 +19,14 @@ public class SuperfanController {
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
 
     //Aggregate statistics
-    @RequestMapping(path = "statistics/totalComics")
+    @RequestMapping(path = "statistics/totalComics", method = RequestMethod.GET)
     public int getTotalComics() { return comicCuratorService.getTotalComics(); }
 
-    @RequestMapping(path = "statistics/publisher")
+    @RequestMapping(path = "statistics/publisher", method = RequestMethod.GET)
     public List<PublisherStat> getTotalPublisherStats() { return comicCuratorService.getTotalPublisherStats(); }
+
+    @RequestMapping(path = "statistics/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getTotalSuperheroStats() { return comicCuratorService.getTotalSuperheroStats(); }
 
     //User collection statistics
     @RequestMapping(path = "user/collection/{collectionId}/superhero", method = RequestMethod.GET)
