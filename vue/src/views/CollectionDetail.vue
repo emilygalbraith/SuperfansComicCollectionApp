@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{collection.collectionName}}</h2>
-        <comic-list v-bind:collectionId="collection.collectionId" />
+        <comic-list id="collection" v-bind:collectionId="collection.collectionId"/>
     </div>
 </template>
 
@@ -28,5 +28,8 @@ export default {
 </script>
 
 <style>
-
+#collection {
+    display: flex;
+    gap: 20px;
+}
 </style>
