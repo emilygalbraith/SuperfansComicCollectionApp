@@ -1,6 +1,8 @@
 <template>
   <div id="statistics-display">
-      <div id="superhero"></div>
+      <div id="superhero">
+          <p v-for="superhero in superheroStats" v-bind:key="superhero.heroName"></p>
+      </div>
       <div id="publisher"></div>
       <div id="series"></div>
   </div>

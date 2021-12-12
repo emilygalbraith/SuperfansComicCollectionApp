@@ -147,16 +147,21 @@ public class ComicCuratorService {
     public List<SuperheroStat> getUsersSuperheroStats(int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
-            for(Comic comic : comicList) {
-                List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comic.getComicId());
-                SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
-                superheroStatList.add(firstStat);
+        List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comicList.get(0).getComicId());
+        SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
+        superheroStatList.add(firstStat);
+        for(Comic comic : comicList) {
+                superheroList = superheroDao.listAllSuperheroesInComic(comic.getComicId());
+                int count = 0;
                 for(Superhero superhero : superheroList) {
                     boolean found = false;
                     for(SuperheroStat superheroStat : superheroStatList) {
                         if(superhero.getSuperheroName().equals(superheroStat.getHeroName())) {
-                            superheroStat.setOccurrences(superheroStat.getOccurrences() +  1);
+                            if (count != 0) {
+                                superheroStat.setOccurrences(superheroStat.getOccurrences() + 1);
+                            }
                             found = true;
+                            count++;
                             break;
                         }
                     }
