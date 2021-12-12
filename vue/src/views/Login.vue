@@ -37,6 +37,7 @@
       
     </form>
   </div>
+  <div id="back-to-home"><router-link :to="{name: 'home'}">Back to Home</router-link></div>
 </div>
 </template>
 
@@ -125,6 +126,8 @@ button {
 #CreateAccount {
   font-size: 50%;
 }
-
+#back-to-home {
+  text-align: center;
+}
 
 </style>

@@ -2,7 +2,7 @@
 <div class="background">
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -39,17 +39,15 @@
       <div id="HaveAccount"><router-link :to="{ name: 'login' }">Have an account?</router-link></div><br>
       
     </form>
-    <collection-list />
   </div>
+  <div id="back-to-home"><router-link :to="{name: 'home'}">Back to Home</router-link></div>
   </div>
 </template>
 
 <script>
-import CollectionList from '../components/CollectionList.vue';
 import authService from '../services/AuthService';
 
 export default {
-  components: { CollectionList },
   name: 'register',
   data() {
     return {
@@ -145,5 +143,8 @@ button {
 }
 #HaveAccount {
   font-size: 60%;
+}
+#back-to-home {
+  text-align: center;
 }
 </style>
