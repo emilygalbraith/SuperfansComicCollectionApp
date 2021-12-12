@@ -58,5 +58,21 @@ export default {
 
     getSeriesCollectionStats(collectionId) {
         return http.get(`user/collection/${collectionId}/series`);
+    },
+
+    getTotalComics() {
+        return http.get('statistics/totalComics');
+    },
+
+    getSuperheroStats() {
+        return http.get('statistics/superhero');
+    },
+
+    getPublisherStats() {
+        return http.get('statistics/publisher');
+    },
+
+    getSeriesStats() {
+        return http.get('statistics/series');
     }
 }
