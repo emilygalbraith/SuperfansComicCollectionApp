@@ -48,6 +48,17 @@ public class JdbcSeriesDao implements SeriesDao{
         return series;
     }
 
+    @Override
+    public Series getSeriesById(int seriesId) {
+        String sql = "SELECT * FROM series WHERE series_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, seriesId);
+        if(result.next()) {
+            return mapRowToSeries(result);
+        } else {
+            throw new RuntimeException("publisherId "+seriesId+" was not found.");
+        }
+    }
+
     private Series mapRowToSeries(SqlRowSet rs) {
         Series series = new Series();
         series.setSeriesId(rs.getInt("series_id"));

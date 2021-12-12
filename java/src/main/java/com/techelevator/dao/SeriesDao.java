@@ -9,4 +9,5 @@ public interface SeriesDao {
     List<Series> listAllSeries();
     Series getSeriesByName(String seriesName);
     Series createSeries(Series series);
+    Series getSeriesById(int seriesId);
 }

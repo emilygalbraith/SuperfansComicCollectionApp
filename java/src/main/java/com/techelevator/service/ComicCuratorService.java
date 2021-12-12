@@ -89,6 +89,8 @@ public class ComicCuratorService {
         return publisherStatList;
     }
 
+
+
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
         return collectionDao.listAllPublicCollections();
