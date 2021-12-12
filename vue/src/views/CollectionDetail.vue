@@ -1,8 +1,10 @@
 <template>
     <div>
         <h2>{{collection.collectionName}}</h2>
-        <collection-statistics/>
+        <div id="collection-detail">
         <comic-list id="collection" v-bind:collectionId="collection.collectionId"/>
+        <collection-statistics id="stats"/>
+        </div>
     </div>
 </template>
 
@@ -30,8 +32,15 @@ export default {
 </script>
 
 <style>
+h2{
+    text-align: center;
+}
 #collection {
     display: flex;
     gap: 20px;
+}
+#collection-detail{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 }
 </style>

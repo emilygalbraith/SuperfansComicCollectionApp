@@ -161,7 +161,6 @@ public class ComicCuratorService {
                                 superheroStat.setOccurrences(superheroStat.getOccurrences() + 1);
                             }
                             found = true;
-                            count++;
                             break;
                         }
                     }
@@ -169,6 +168,7 @@ public class ComicCuratorService {
                         SuperheroStat superheroStat1 = new SuperheroStat(superhero.getSuperheroName(), 1);
                         superheroStatList.add(superheroStat1);
                     }
+                    count++;
                 }
             }
         return superheroStatList;
