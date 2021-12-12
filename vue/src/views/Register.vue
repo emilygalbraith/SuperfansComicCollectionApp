@@ -107,17 +107,16 @@ h1 {
   padding-top: 4%;
 }
 .form-register {
-height: 74%;
-width: 100%;
-}
-.form-register {
-  margin-block-start: -1%;
+
 }
 .form-register {
   font-family: 'Comic Neue', cursive;
   color: whitesmoke;
   text-align: center;
   font-size: 40px;
+  margin-block-start: -1%;
+  height: 74%;
+  width: 100%;
 }
 input[type=text] {
   width: 10%;
