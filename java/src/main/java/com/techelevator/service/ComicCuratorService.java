@@ -38,6 +38,25 @@ public class ComicCuratorService {
     }
 
     //Statistics related methods
+
+    //Aggregate statistics
+    public int getTotalComics() {
+        int totalComics = 0;
+        List<Collection> collectionsList = listAllCollections();
+        List<Comic> allComicsList = new ArrayList<>();
+        for(Collection collection : collectionsList) {
+            List<Comic> collectionComics = listComicsInCollection(collection.getCollectionId());
+            for(Comic comic : collectionComics) {
+                allComicsList.add(comic);
+            }
+        }
+        totalComics = allComicsList.size();
+        return totalComics;
+    }
+
+    
+
+    //User collection statistics
     public List<SuperheroStat> getUsersSuperheroStats(int userId, int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);

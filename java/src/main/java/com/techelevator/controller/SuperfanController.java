@@ -17,7 +17,12 @@ public class SuperfanController {
     private ComicCuratorService comicCuratorService;
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
-    
+
+    //Aggregate statistics
+    @RequestMapping(path = "statistics/totalComics")
+    public int getTotalComics() { return comicCuratorService.getTotalComics(); }
+
+    //User collection statistics
     @RequestMapping(path = "user/{userId}/collection/{collectionId}/superhero", method = RequestMethod.GET)
     public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId, @PathVariable int collectionId) {
         return comicCuratorService.getUsersSuperheroStats(userId, collectionId);
@@ -33,6 +38,8 @@ public class SuperfanController {
         return comicCuratorService.getUserCollectionSeriesStats(userId, collectionId);
     }
 
+
+    //Collections
     @RequestMapping(path = "collections/public", method = RequestMethod.GET)
     public List<Collection> listALlPublicCollections() { return comicCuratorService.listALlPublicCollections(); }
 
@@ -66,6 +73,8 @@ public class SuperfanController {
         comicCuratorService.deleteCollection(userId, collectionId);
     }
 
+
+    //Comics
     @RequestMapping(path = "collections/{collectionId}/comics", method = RequestMethod.GET)
     public List<Comic> listComicsInCollection(@PathVariable int collectionId) {
         return comicCuratorService.listComicsInCollection(collectionId);
