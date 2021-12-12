@@ -75,4 +75,13 @@ export default {
 </script>
 
 <style>
+label[for="collection-name"] {
+   color: white;
+}
+label[for="private"] {
+   color: white;
+}
+label[for="public"] {
+   color: white;
+}
 </style>
