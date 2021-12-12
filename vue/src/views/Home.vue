@@ -11,15 +11,19 @@
       <router-link v-bind:to="{name: 'profile'}">View Profile</router-link>
       <h2>All Collections:</h2>
     </div>
+    <div id="collection-and-stats">
     <collection-list />
+    <aggregate-statistics/>
+    </div>
   </div>
 </template>
 
 <script>
+import AggregateStatistics from '../components/AggregateStatistics.vue';
 import CollectionList from '../components/CollectionList.vue'
 
 export default {
-  components: { CollectionList },
+  components: { CollectionList, AggregateStatistics },
   name: "home",
   computed: {
     show() {
@@ -55,5 +59,9 @@ a:visited {
 }
 a:hover {
   color: #dbb702;
+}
+#collection-and-stats{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 }
 </style>
