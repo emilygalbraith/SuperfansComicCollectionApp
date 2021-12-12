@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label><br>
+      <label for="username" class="sr-only">Username:</label><br>
       <input
         type="text"
         id="username"
@@ -16,7 +16,7 @@
         required
         autofocus
       /><br>
-      <label for="password" class="sr-only">Password</label><br>
+      <label for="password" class="sr-only">Password:</label><br>
       <input
         type="password"
         id="password"
@@ -35,7 +35,7 @@
       /><br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
-      </button><br>
+      </button><br><br>
       <div id="HaveAccount"><router-link :to="{ name: 'login' }">Have an account?</router-link></div><br>
       
     </form>
@@ -100,12 +100,7 @@ h1 {
   font-size: 150%;
   color: white;
   margin-top: 0px;
-}
-h1 {
   padding-top: 4%;
-}
-.form-register {
-
 }
 .form-register {
   font-family: 'Comic Neue', cursive;
@@ -146,5 +141,15 @@ button {
 }
 #back-to-home {
   text-align: center;
+}
+a:link {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: lightsteelblue;
+}
+a:hover {
+  color: #dbb702;
 }
 </style>

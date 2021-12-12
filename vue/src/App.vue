@@ -17,6 +17,12 @@
 </template>
 
 <style scoped>
+@import url('<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Sacramento&display=swap" rel="stylesheet">');
+
+
+* {
+  font-family: 'Comic Neue', cursive;
+}
   #nav {
     display: flex;
     width: 100%;
@@ -35,5 +41,16 @@
   #app {
   background-color: #071926;
   height: 81em;
+}
+a:link {
+  color: white;
+  text-decoration: none;
+  font-size: 1vw;
+}
+a:visited {
+  color: lightsteelblue;
+}
+a:hover {
+  color: #feac24;
 }
 </style>

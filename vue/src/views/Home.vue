@@ -30,13 +30,11 @@ export default {
 </script>
 
 <style>
-@import url('<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Sacramento&display=swap" rel="stylesheet">');
 
 h1 {
   text-align: center;
 }
 h1 {
-  font-family: 'Comic Neue', cursive;
   font-size: 150%;
   color: white;
   margin-top: 0px;
@@ -47,5 +45,15 @@ h2 {
 }
 p {
   color: white;
+}
+a:link {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: lightsteelblue;
+}
+a:hover {
+  color: #dbb702;
 }
 </style>

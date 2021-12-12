@@ -2,7 +2,7 @@
 <div class="background">
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -13,7 +13,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label><br>
+      <label for="username" class="sr-only">Username:</label><br>
       <input
         type="text"
         id="username"
@@ -23,7 +23,7 @@
         required
         autofocus
       /><br>
-      <label for="password" class="sr-only">Password</label><br>
+      <label for="password" class="sr-only">Password:</label><br>
       <input
         type="password"
         id="password"
@@ -128,6 +128,16 @@ button {
 }
 #back-to-home {
   text-align: center;
+}
+a:link {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: lightsteelblue;
+}
+a:hover {
+  color: #dbb702;
 }
 
 </style>
