@@ -46,5 +46,17 @@ export default {
 
     getComicsByCollectionId(collectionId) {
         return http.get(`/collections/${collectionId}/comics`);
+    },
+
+    getSuperheroCollectionStats(collectionId) {
+        return http.get(`user/collection/${collectionId}/superhero`);
+    },
+
+    getPublisherCollectionStats(collectionId) {
+        return http.get(`user/collection/${collectionId}/publisher`);
+    },
+
+    getSeriesCollectionStats(collectionId) {
+        return http.get(`user/collection/${collectionId}/series`);
     }
 }
