@@ -54,10 +54,20 @@ public class ComicCuratorService {
         return totalComics;
     }
 
-    
+    public List<PublisherStat> getTotalPublisherStats() {
+        List<PublisherStat> publisherStatList = new ArrayList<>();
+        List<Collection> collectionList = listAllCollections();
+        for(Collection collection : collectionList) {
+            List<PublisherStat> publisherStats = getUserCollectionPublisherStats(collection.getCollectionId());
+            for(PublisherStat publisherStat : publisherStats) {
+                publisherStatList.add(publisherStat);
+            }
+        }
+        return publisherStatList;
+    }
 
     //User collection statistics
-    public List<SuperheroStat> getUsersSuperheroStats(int userId, int collectionId) {
+    public List<SuperheroStat> getUsersSuperheroStats(int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
             for(Comic comic : comicList) {
@@ -82,7 +92,7 @@ public class ComicCuratorService {
         return superheroStatList;
     }
 
-    public List<PublisherStat> getUserCollectionPublisherStats(int userId, int collectionId) {
+    public List<PublisherStat> getUserCollectionPublisherStats(int collectionId) {
         List<PublisherStat> publisherStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
         Publisher currentPublisher = new Publisher();
@@ -101,14 +111,14 @@ public class ComicCuratorService {
             }
             if(!found) {
                 PublisherStat publisherStat1 = new PublisherStat(currentPublisher.getPublisherName(), 1);
-                publisherStatList.add(publisherStat);
+                publisherStatList.add(publisherStat1);
             }
 
         }
         return publisherStatList;
     }
 
-    public List<SeriesStat> getUserCollectionSeriesStats(int userId, int collectionId) {
+    public List<SeriesStat> getUserCollectionSeriesStats(int collectionId) {
         List<SeriesStat> seriesStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
         Series currentSeries = new Series();

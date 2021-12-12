@@ -22,20 +22,23 @@ public class SuperfanController {
     @RequestMapping(path = "statistics/totalComics")
     public int getTotalComics() { return comicCuratorService.getTotalComics(); }
 
+    @RequestMapping(path = "statistics/publisher")
+    public List<PublisherStat> getTotalPublisherStats() { return comicCuratorService.getTotalPublisherStats(); }
+
     //User collection statistics
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/superhero", method = RequestMethod.GET)
-    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUsersSuperheroStats(userId, collectionId);
+    @RequestMapping(path = "user/collection/{collectionId}/superhero", method = RequestMethod.GET)
+    public List<SuperheroStat> getUsersSuperheroStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUsersSuperheroStats(collectionId);
     }
 
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/publisher", method = RequestMethod.GET)
-    public List<PublisherStat> getUserCollectionPublisherStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUserCollectionPublisherStats(userId, collectionId);
+    @RequestMapping(path = "user/collection/{collectionId}/publisher", method = RequestMethod.GET)
+    public List<PublisherStat> getUserCollectionPublisherStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUserCollectionPublisherStats(collectionId);
     }
 
-    @RequestMapping(path = "user/{userId}/collection/{collectionId}/series", method = RequestMethod.GET)
-    public List<SeriesStat> getUserCollectionSeriesStats(@PathVariable int userId, @PathVariable int collectionId) {
-        return comicCuratorService.getUserCollectionSeriesStats(userId, collectionId);
+    @RequestMapping(path = "user/collection/{collectionId}/series", method = RequestMethod.GET)
+    public List<SeriesStat> getUserCollectionSeriesStats(@PathVariable int collectionId) {
+        return comicCuratorService.getUserCollectionSeriesStats(collectionId);
     }
 
 
