@@ -89,7 +89,30 @@ public class ComicCuratorService {
         return publisherStatList;
     }
 
-
+    public List<SeriesStat> getUserCollectionSeriesStats(int userId, int collectionId) {
+        List<SeriesStat> seriesStatList = new ArrayList<>();
+        List<Comic> comicList = listComicsInCollection(collectionId);
+        Series currentSeries = new Series();
+        currentSeries = seriesDao.getSeriesById(comicList.get(0).getSeriesId());
+        SeriesStat seriesStat = new SeriesStat(currentSeries.getSeriesName(), 1);
+        seriesStatList.add(seriesStat);
+        for(Comic comic : comicList) {
+            currentSeries = seriesDao.getSeriesById(comic.getSeriesId());
+            boolean found = false;
+            for(SeriesStat seriesStat1 : seriesStatList) {
+                if(seriesStat1.getSeriesName().equals(currentSeries.getSeriesName())) {
+                    seriesStat1.setOccurrences(seriesStat1.getOccurrences() + 1);
+                    found = true;
+                    break;
+                }
+            }
+            if(!found) {
+                SeriesStat seriesStat1 = new SeriesStat(currentSeries.getSeriesName(), 1);
+                seriesStatList.add(seriesStat1);
+            }
+        }
+        return seriesStatList;
+    }
 
     //Collection related methods
     public List<Collection> listALlPublicCollections() {
