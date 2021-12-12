@@ -63,7 +63,7 @@ public class SuperfanController {
     }
 
     @RequestMapping(path = "collections/{collectionId}")
-    public Collection getCollectionByName(@PathVariable int collectionId) {
+    public Collection getCollectionById(@PathVariable int collectionId) {
         return comicCuratorService.getCollectionById(collectionId);
     }
 

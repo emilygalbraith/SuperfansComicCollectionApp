@@ -33,7 +33,7 @@ export default {
             });
         },
         getAllComics() {
-            comicService.getComicsByCollectionId(this.collectionId).then(response => {
+            comicService.getComicsByCollectionId(this.$route.params.collectionId).then(response => {
                 if (response.status === 200) {
                     this.comics = response.data;
                 }

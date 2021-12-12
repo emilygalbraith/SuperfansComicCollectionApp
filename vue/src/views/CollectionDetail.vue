@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>{{collection.collectionName}}</h2>
-        <comic-list :collectionId="collection.collectionId" />
+        <comic-list v-bind:collectionId="collection.collectionId" />
     </div>
 </template>
 
