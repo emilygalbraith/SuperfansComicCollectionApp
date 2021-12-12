@@ -41,8 +41,12 @@ h1 {
   font-size: 150%;
   color: white;
   margin-top: 0px;
-}
-h1 {
   padding-top: 4%;
+}
+h2 {
+  color: white;
+}
+p {
+  color: white;
 }
 </style>
