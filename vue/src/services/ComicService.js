@@ -74,5 +74,9 @@ export default {
 
     getSeriesStats() {
         return http.get('statistics/series');
+    },
+
+    getAllSuperheroes() {
+        return http.get('superheroes');
     }
 }
