@@ -115,4 +115,7 @@ label {
 span {
   margin-right: 20px;
 }
+form {
+  margin-right: 30px;
+}
 </style>
