@@ -38,7 +38,11 @@ export default {
                 count++;
             }
             if(count >= 0 && count <= 3) {
+                if(count == 1) {
+                    this.userType = count + " collection | Standard "
+                } else {
                 this.userType = count + " collections | Standard ";
+                }
             } else if (count > 3) {
                 this.userType = count + " collections | Premium ";
             }
