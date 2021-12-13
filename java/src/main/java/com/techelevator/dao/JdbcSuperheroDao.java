@@ -52,6 +52,15 @@ public class JdbcSuperheroDao implements SuperheroDao {
         }
     }
 
+    @Override
+    public Superhero createSuperhero(Superhero superhero) {
+        String heroName = superhero.getSuperheroName();
+        String sql = "INSERT INTO superheroes (superhero) VALUES (?) RETURNING superhero_id";
+        int superheroId = jdbcTemplate.queryForObject(sql, Integer.class, heroName);
+        superhero.setSuperheroId(superheroId);
+        return superhero;
+    }
+
 
     private Superhero mapRowToSuperhero(SqlRowSet rs) {
         Superhero superhero = new Superhero();
