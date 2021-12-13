@@ -69,4 +69,8 @@ a:hover {
   overflow-x: auto;
   overflow-y: hidden;
 }
+img{
+  width: 150px;
+  height: 225px;
+}
 </style>
