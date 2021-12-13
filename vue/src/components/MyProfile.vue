@@ -5,7 +5,7 @@
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->  
         <h3>All My Collections:</h3> 
         <collection-list />
-        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>
+        <router-link :to="{name: 'create-collection'}">Create A New Collection</router-link>
     </div>
 </template>
 
@@ -13,7 +13,7 @@
 import CollectionList from './CollectionList.vue'
 
 export default {
-  components: { CollectionList },
+    components: { CollectionList },
     name: 'my-profile',
     data() {
         return {

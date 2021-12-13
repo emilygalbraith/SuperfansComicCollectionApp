@@ -1,4 +1,5 @@
 <template>
+<div>
   <form v-on:submit.prevent>
     <div>
       <label for="collection-name">Collection Name</label>
@@ -35,6 +36,7 @@
       </button>
     </div>
   </form>
+</div>
 </template>
 
 <script>
@@ -44,7 +46,7 @@ export default {
   name: "create-collection",
   data() {
     return {
-      collection: {},
+      collection: {}
     };
   },
   methods: {
@@ -57,7 +59,7 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.collection = response.data;
-            this.$router.push({ name: "my-collections" });
+            this.$router.push({name: 'profile'});
           }
         })
         .catch((error) => {
@@ -70,6 +72,9 @@ export default {
           }
         });
     },
+    flipShowStatus() {
+      this.show = !this.show;
+    }
   },
 };
 </script>
