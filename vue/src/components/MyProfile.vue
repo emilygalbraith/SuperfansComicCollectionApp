@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <div   id="profile" >
         <h2>{{$store.state.user.username}}</h2>
         <!-- <img :src="image" />
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->  
         <h3>All My Collections:</h3> 
         <collection-list />
-        <router-link :to="{ name: 'create-collection'}">Create A New Collection</router-link>
+        <router-link :to="{ name: 'create-collection'}" id="create">
+            <button>Create A New Collection</button>
+        </router-link>
     </div>
 </template>
 
@@ -24,5 +26,14 @@ export default {
 </script>
 
 <style>
-
+#profile{
+    display: flex;
+    flex-direction: column;
+}
+h3 {
+    align-self: center;
+}
+#create {
+    align-self: center;
+}
 </style>
