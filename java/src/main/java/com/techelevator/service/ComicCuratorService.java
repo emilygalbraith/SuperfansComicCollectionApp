@@ -300,7 +300,7 @@ public class ComicCuratorService {
             series = seriesDao.createSeries(series);
         }
         List<String> superheroes = Arrays.asList(newComic.getSuperheroes());
-        
+
         comic.setSeriesId(series.getSeriesId());
         return comicDao.addComic(comic, collectionId);
     }

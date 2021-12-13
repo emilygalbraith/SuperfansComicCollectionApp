@@ -40,6 +40,18 @@ public class JdbcSuperheroDao implements SuperheroDao {
         return superheroList;
     }
 
+    @Override
+    public Superhero getSuperheroByName(String name) {
+        Superhero superhero = new Superhero();
+        String sql = "SELECT * FROM superheroes WHERE superhero = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
+        if(result.next()) {
+            return mapRowToSuperhero(result);
+        } else {
+            return superhero;
+        }
+    }
+
 
     private Superhero mapRowToSuperhero(SqlRowSet rs) {
         Superhero superhero = new Superhero();
