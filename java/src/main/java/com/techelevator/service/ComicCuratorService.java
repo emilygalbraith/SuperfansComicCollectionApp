@@ -299,15 +299,18 @@ public class ComicCuratorService {
             series.setSeriesName(newComic.getSeries());
             series = seriesDao.createSeries(series);
         }
+        comic.setSeriesId(series.getSeriesId());
+        comic = comicDao.addComic(comic, collectionId);
         List<String> superheroes = Arrays.asList(newComic.getSuperheroes());
         for(String name : superheroes) {
             Superhero superhero = superheroDao.getSuperheroByName(name);
             if(superhero.getSuperheroName() == null) {
                 superhero.setSuperheroName(name);
+                superhero = superheroDao.createSuperhero(superhero);
             }
+            superheroDao.createComicSuperhero(superhero.getSuperheroId(), comic.getComicId());
         }
-        comic.setSeriesId(series.getSeriesId());
-        return comicDao.addComic(comic, collectionId);
+        return comic;
     }
 
     public List<Comic> listComicsInCollection(int collectionId) {

@@ -61,6 +61,12 @@ public class JdbcSuperheroDao implements SuperheroDao {
         return superhero;
     }
 
+    @Override
+    public void createComicSuperhero(int superheroId, int comicId) {
+        String sql = "INSERT INTO comic_superheroes (comic_id, superhero_id) VALUES (?, ?)";
+        jdbcTemplate.update(sql, comicId, superheroId);
+    }
+
 
     private Superhero mapRowToSuperhero(SqlRowSet rs) {
         Superhero superhero = new Superhero();
