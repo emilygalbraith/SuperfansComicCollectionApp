@@ -115,7 +115,5 @@ form {
   margin-top: 50px;
   margin-right: 30px;
 }
-input {
-  margin-right: 30px;
-}
+
 </style>
