@@ -8,5 +8,6 @@ public interface SuperheroDao {
 
     List<Superhero> listAllSuperheroes();
     List<Superhero> listAllSuperheroesInComic(int comicId);
+    Superhero getSuperheroByName(String name);
 
 }

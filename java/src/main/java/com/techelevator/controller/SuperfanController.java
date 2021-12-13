@@ -18,6 +18,11 @@ public class SuperfanController {
 
     public SuperfanController(ComicCuratorService comicCuratorService) { this.comicCuratorService = comicCuratorService; }
 
+    //Superhero methods
+
+    @RequestMapping(path = "superheroes", method = RequestMethod.GET)
+    public List<Superhero> listAllSuperheroes() { return comicCuratorService.listAllSuperheroes(); }
+
     //Aggregate statistics
     @RequestMapping(path = "statistics/totalComics", method = RequestMethod.GET)
     public int getTotalComics() { return comicCuratorService.getTotalComics(); }
@@ -120,6 +125,8 @@ public class SuperfanController {
     public Comic addComic(@RequestBody NewComic newComic, @PathVariable int collectionId) {
         return comicCuratorService.addComic(newComic, collectionId);
     }
+
+
 
 
 }

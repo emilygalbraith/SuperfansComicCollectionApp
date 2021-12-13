@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS superheroes;
 DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS series;
 DROP TABLE IF EXISTS publishers;
+DROP TABLE IF EXISTS profiles;
 DROP TABLE IF EXISTS users;
 
 DROP SEQUENCE IF EXISTS seq_collection_comic_id;
@@ -16,9 +17,16 @@ DROP SEQUENCE IF EXISTS seq_superhero_id;
 DROP SEQUENCE IF EXISTS seq_comic_id;
 DROP SEQUENCE IF EXISTS seq_series_id;
 DROP SEQUENCE IF EXISTS seq_publisher_id;
+DROP SEQUENCE IF EXISTS seq_profile_id;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+  
+CREATE SEQUENCE seq_profile_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -77,6 +85,17 @@ CREATE TABLE users (
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('testuser', '$2a$10$cuH2NhJ2x13whb5Y8r906..VXdoTPx3DD7289ebHmdCWV.GoCXx/m', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('DCFan', '$2a$10$e7zXAvQiGGIdrBShgWPiF.VsMPjA7Z36dROyg8LROa2qzA2J74Xf.', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('ImageFan', '$2a$10$lg8quqOIdsVdvw/emYadquBB5xEwaFK0u1GBsLGqpjZsr.K.IciEe', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('SuperFan100', '$2a$10$DuTMy41jqY7RR.M2GoxRBuYxznMfcOs93Pk7m6gppyFBGpNZAr1VO', 'ROLE_USER');
+
+CREATE TABLE profiles (
+        profile_id int DEFAULT nextval('seq_profile_id'::regclass) NOT NULL,
+        profile_img varchar(400) NOT NULL,
+        profile_img_name varchar(100) NOT NULL,
+        user_id int REFERENCES users (user_id),
+        CONSTRAINT PK_profile PRIMARY KEY (profile_id)
+);
 
 CREATE TABLE publishers (
         publisher_id int DEFAULT nextval('seq_publisher_id'::regclass) NOT NULL,
