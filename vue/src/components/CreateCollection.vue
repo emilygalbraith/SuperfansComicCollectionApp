@@ -12,7 +12,7 @@
         id="private"
         v-bind:value="true"
         v-model="collection.private"
-      />
+      /><br/>
       <label for="public">Public</label>
       <input
         type="radio"
