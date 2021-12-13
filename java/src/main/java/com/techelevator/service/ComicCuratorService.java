@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 @Service
 public class ComicCuratorService {
@@ -29,14 +28,16 @@ public class ComicCuratorService {
     private PublisherDao publisherDao;
     private SeriesDao seriesDao;
     private SuperheroDao superheroDao;
+    private ProfileDao profileDao;
 
     public ComicCuratorService(CollectionDao collectionDao, ComicDao comicDao, PublisherDao publisherDao,
-                               SeriesDao seriesDao, SuperheroDao superheroDao) {
+                               SeriesDao seriesDao, SuperheroDao superheroDao, ProfileDao profileDao) {
         this.collectionDao = collectionDao;
         this.comicDao = comicDao;
         this.publisherDao = publisherDao;
         this.seriesDao = seriesDao;
         this.superheroDao = superheroDao;
+        this.profileDao = profileDao;
     }
 
     //superhero methods
@@ -315,6 +316,11 @@ public class ComicCuratorService {
 
     public List<Comic> listComicsInCollection(int collectionId) {
         return comicDao.listComicsInCollection(collectionId);
+    }
+
+    // profile related methods
+    public List<Profile> listAllProfiles() {
+        return profileDao.listAllProfiles();
     }
 
     /*

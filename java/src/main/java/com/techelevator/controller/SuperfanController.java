@@ -126,7 +126,10 @@ public class SuperfanController {
         return comicCuratorService.addComic(newComic, collectionId);
     }
 
-
-
+    // profiles
+    @RequestMapping(path = "profiles", method = RequestMethod.GET)
+    public List<Profile> listAllProfiles() {
+        return comicCuratorService.listAllProfiles();
+    }
 
 }
