@@ -12,8 +12,10 @@
       <h2>All Collections:</h2>
     </div>
     <div id="collection-and-stats">
-    <collection-list />
-    <aggregate-statistics/>
+      <div id="collection">
+        <collection-list />
+      </div>
+      <aggregate-statistics/>
     </div>
   </div>
 </template>
@@ -63,5 +65,9 @@ a:hover {
 #collection-and-stats{
     display: grid;
     grid-template-columns: 3fr 1fr;
+}
+#collection{
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 </style>
