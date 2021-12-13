@@ -1,7 +1,8 @@
 <template>
-  <form v-on:submit.prevent>
+  <form class="form" v-on:submit.prevent>
+    <h1>Create Collection</h1>
     <div>
-      <label for="collection-name">Collection Name</label>
+      <label for="collection-name">Collection Name: </label><br/>
       <input type="text" v-model="collection.collectionName" />
     </div>
     <div>
@@ -83,5 +84,37 @@ label[for="private"] {
 }
 label[for="public"] {
    color: white;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 150%;
+  color: white;
+  margin-top: 0px;
+  padding-top: 4%;
+}
+.form {
+height: 75%;
+width: 100%;
+margin-block-start: -1%;
+font-family: 'Comic Neue', cursive;
+color: whitesmoke;
+text-align: center;
+font-size: 40px;
+}
+input[type=text] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 </style>
