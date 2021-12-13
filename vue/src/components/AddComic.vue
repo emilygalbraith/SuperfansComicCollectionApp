@@ -8,10 +8,6 @@
       <label for="author">Author</label>
       <input type="text" v-model="newComic.comic.author" />
     </div>
-    <!-- <div>
-      <label for="image">Upload Image</label>
-      <input type="file" id="file" ref="fileInput" />
-    </div> -->
     <div>
       <label for="image">Image URL</label>
       <input type="text" v-model="newComic.comic.image"/>
@@ -28,6 +24,11 @@
       <label for="series">Series</label>
       <input type="text" v-model="newComic.series" />
     </div>
+    <label for="superheroes">Please Check All Superheroes In Comic</label><br/>
+    <span :id="superheroes" v-for="superhero in superheroList" :key="superhero.superheroId">
+      <label :for="superhero.superheroId">{{superhero.superheroName}}</label>
+      <input type="checkbox" :id="superhero.superheroName" v-model="newComic.superheroes" :value="superhero.superheroName"> 
+    </span>
     <div>
       <label for="add-comic"
         >Would you like to add another comic to this collection now?</label
@@ -58,11 +59,23 @@ export default {
         },
         publisher: "",
         series: "",
+        superheroes: []
       },
       addComic: "",
+      superheroList: []
     };
   },
+  created() {
+    this.getListOfSuperheroes();
+  },
   methods: {
+    getListOfSuperheroes() {
+      comicService.getAllSuperheroes().then( response => {
+        if(response.status === 200) {
+          this.superheroList = response.data;
+        }
+      });
+    },
     saveComic() {
       const token = this.$store.state.token;
     //   this.newComic.comic.image = this.$refs.fileInput.files[0];
