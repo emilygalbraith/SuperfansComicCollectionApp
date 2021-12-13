@@ -99,7 +99,7 @@ export default {
     margin-bottom: 40px;
 }
 #totalComics {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 h3 {
     color: white;

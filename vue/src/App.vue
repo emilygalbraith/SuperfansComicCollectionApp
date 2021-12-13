@@ -6,7 +6,7 @@
       <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjWh3P6u-ytyvYQe3Q2B5cXXCulnHsallroZ5Nr_xNu7pz7rA5CXDSwSeX3ZfY-16aZ0qVHMsni8WFKotXAlujWTqHji9OVZiJ2m7YObpuv_PI2pTBuvS8VZ16CzJgH3K9knqhY1awNGpDXWmpv6F5jwJTwY0yWrFx-GTzmIAF2-Qzg7rW8CSh-ygzVlQ=s2870" alt="imgheader" class="imgheader"> 
     </div>
     <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'home' }">Home</router-link><div id="bar">|</div>
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
@@ -40,17 +40,23 @@
   }
   #app {
   background-color: #071926;
-  /* height: 81em; */
+  height: 200em;
 }
 a:link {
   color: white;
   text-decoration: none;
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
 a:visited {
   color: lightsteelblue;
 }
 a:hover {
   color: #feac24;
+}
+#bar {
+  color: lightsteelblue;
+  font-size: 1.5vw;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 </style>

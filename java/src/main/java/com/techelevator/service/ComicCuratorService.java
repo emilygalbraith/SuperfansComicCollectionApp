@@ -147,6 +147,7 @@ public class ComicCuratorService {
     public List<SuperheroStat> getUsersSuperheroStats(int collectionId) {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
+        if(comicList.size() == 0) { return superheroStatList; }
         List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comicList.get(0).getComicId());
         SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
         superheroStatList.add(firstStat);
@@ -177,6 +178,7 @@ public class ComicCuratorService {
     public List<PublisherStat> getUserCollectionPublisherStats(int collectionId) {
         List<PublisherStat> publisherStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
+        if(comicList.size() == 0) { return publisherStatList; }
         Publisher currentPublisher = new Publisher();
         currentPublisher = publisherDao.getPublisherById(comicList.get(0).getPublisherId());
         PublisherStat publisherStat = new PublisherStat(currentPublisher.getPublisherName(), 1);
@@ -203,6 +205,7 @@ public class ComicCuratorService {
     public List<SeriesStat> getUserCollectionSeriesStats(int collectionId) {
         List<SeriesStat> seriesStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
+        if(comicList.size() == 0) { return seriesStatList; }
         Series currentSeries = new Series();
         currentSeries = seriesDao.getSeriesById(comicList.get(0).getSeriesId());
         SeriesStat seriesStat = new SeriesStat(currentSeries.getSeriesName(), 1);
