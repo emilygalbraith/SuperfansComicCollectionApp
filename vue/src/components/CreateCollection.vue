@@ -36,7 +36,6 @@
       </button>
     </div>
   </form>
-</div>
 </template>
 
 <script>
