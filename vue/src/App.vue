@@ -40,7 +40,7 @@
   }
   #app {
   background-color: #071926;
-  /* height: 81em; */
+  height: 200vh;
 }
 a:link {
   color: white;
