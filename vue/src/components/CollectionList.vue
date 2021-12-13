@@ -46,9 +46,11 @@ export default {
         showCollections() {
             if (this.$route.name == 'home' && this.$store.state.show == false) {
                 this.getAllPublicCollections();
-            } else if (this.$store.state.show == true) {
+            }
+            if (this.$route.name == 'home' && this.$store.state.show == true) {
                 this.retrieveAllCollections();
-            } else {
+            }
+            if (this.$route.name == 'profile' && this.$store.state.show == true) {
                 this.getCurrentUserCollections();
             }
         }

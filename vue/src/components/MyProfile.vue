@@ -17,7 +17,7 @@ import CollectionList from './CollectionList.vue';
 import ComicService from '../services/ComicService';
 
 export default {
-  components: { CollectionList },
+    components: { CollectionList },
     name: 'my-profile',
     data() {
         return {
