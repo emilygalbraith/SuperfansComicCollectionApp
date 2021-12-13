@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="start" v-if="!show">
-      <router-link :to="{name: 'login'}">Login</router-link> |
+      <router-link :to="{name: 'login'}">Login</router-link>
       <router-link :to="{name: 'register'}">Register</router-link>
       <h2>All Public Collections:</h2>
     </div>
