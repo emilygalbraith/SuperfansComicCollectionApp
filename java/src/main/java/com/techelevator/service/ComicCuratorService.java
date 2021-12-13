@@ -300,7 +300,12 @@ public class ComicCuratorService {
             series = seriesDao.createSeries(series);
         }
         List<String> superheroes = Arrays.asList(newComic.getSuperheroes());
-
+        for(String name : superheroes) {
+            Superhero superhero = superheroDao.getSuperheroByName(name);
+            if(superhero.getSuperheroName() == null) {
+                superhero.setSuperheroName(name);
+            }
+        }
         comic.setSeriesId(series.getSeriesId());
         return comicDao.addComic(comic, collectionId);
     }
