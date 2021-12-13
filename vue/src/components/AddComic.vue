@@ -33,7 +33,8 @@
         }}</label>
       </span>
       <div>
-        <button type="submit" v-on:click="saveComic()">Add Comic</button>
+        <button id="button" type="submit" v-on:click="saveComic()">Add Comic</button>
+        <button id="button" v-on:click="toggleShow()">Cancel</button>
       </div>
     </form>
   </div>
@@ -114,6 +115,9 @@ span {
 form {
   margin-top: 50px;
   margin-right: 30px;
+}
+#button {
+  margin-right: 20px;
 }
 
 </style>
