@@ -3,8 +3,8 @@
         <h2>{{$store.state.user.username}}</h2>
         <!-- <img :src="image" />
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->
-        <h3>{{userType}}</h3>  
-        <h3>All My Collections:</h3> 
+        <h3 id="no-underline" class="user-type">{{userType}}</h3>  
+        <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
         <router-link :to="{ name: 'create-collection'}" id="create">
             <button>Create A New Collection</button>
@@ -22,7 +22,8 @@ export default {
     data() {
         return {
             // image: this.$refs.fileInput.files[0]
-            userType: ""
+            userType: "",
+            collections: []
         }
     },
     created() {
@@ -31,9 +32,9 @@ export default {
     methods: {
         getUserType() {
             const currentUser = this.$store.state.user
-            const usersCollections = ComicService.getCollectionByUserId(this.$route.params(currentUser.id));
-            let count = 0;
-            for(let i = 0; i < usersCollections.length; i++) {
+            this.collections = ComicService.getCollectionByUserId(currentUser.id);
+            let count = 1;
+            for(let i = 0; i < this.collections.length; i++) {
                 count++;
             }
             if(count >= 0 && count <= 3) {
@@ -53,6 +54,9 @@ export default {
 }
 h3 {
     align-self: center;
+}
+#no-underline {
+    text-decoration: none;
 }
 #create {
     align-self: center;
