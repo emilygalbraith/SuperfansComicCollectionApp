@@ -38,6 +38,9 @@ public class ComicCuratorService {
         this.superheroDao = superheroDao;
     }
 
+    //superhero methods
+    public List<Superhero> listAllSuperheroes() { return superheroDao.listAllSuperheroes(); }
+
     //Statistics related methods
 
     //Aggregate statistics
