@@ -1,8 +1,8 @@
 <template>
     <div   id="profile" >
-        <h2>{{$store.state.user.username}}</h2>
         <!-- <img :src="image" />
         <input type="file" id="file" ref="fileInput"/>  not sure how to work with profile photo yet-->
+        <h2>{{$store.state.user.username}}</h2>
         <h3 id="no-underline" class="user-type">{{userType}}</h3>  
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
