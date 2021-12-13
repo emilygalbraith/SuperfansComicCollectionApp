@@ -25,9 +25,9 @@
       <input type="text" v-model="newComic.series" />
     </div>
     <label for="superheroes">Please Check All Superheroes In Comic</label><br/>
-    <span :id="superheroes" v-for="superhero in superheroList" :key="superhero.superheroId">
-      <label :for="superhero.superheroId">{{superhero.superheroName}}</label>
+    <span v-for="superhero in superheroList" :key="superhero.superheroId">
       <input type="checkbox" :id="superhero.superheroName" v-model="newComic.superheroes" :value="superhero.superheroName"> 
+      <label :for="superhero.superheroId">{{superhero.superheroName}}</label>
     </span>
     <div>
       <label for="add-comic"
@@ -111,5 +111,8 @@ export default {
 <style scoped>
 label {
   color: white;
+}
+span {
+  margin-right: 20px;
 }
 </style>
