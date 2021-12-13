@@ -2,8 +2,11 @@
     <div>
         <h2>{{collection.collectionName}}</h2>
         <div id="collection-detail">
-        <comic-list id="collection" v-bind:collectionId="collection.collectionId"/>
-        <collection-statistics id="stats"/>
+            <div>
+                <comic-list id="collection" v-bind:collectionId="collection.collectionId"/>
+                <add-comic />
+            </div>
+            <collection-statistics id="stats"/>
         </div>
     </div>
 </template>
@@ -12,9 +15,10 @@
 import comicService from '@/services/ComicService.js'
 import ComicList from '../components/ComicList.vue';
 import CollectionStatistics from '../components/CollectionStatistics.vue';
+import AddComic from '../components/AddComic.vue';
 
 export default {
-  components: { ComicList, CollectionStatistics },
+  components: { ComicList, CollectionStatistics, AddComic },
     name: 'collection-detail',
     data() {
         return {

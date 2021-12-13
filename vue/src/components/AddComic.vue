@@ -95,5 +95,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+label {
+  color: white;
+}
 </style>
