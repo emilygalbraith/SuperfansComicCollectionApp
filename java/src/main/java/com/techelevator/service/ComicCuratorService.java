@@ -10,6 +10,7 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -298,6 +299,8 @@ public class ComicCuratorService {
             series.setSeriesName(newComic.getSeries());
             series = seriesDao.createSeries(series);
         }
+        List<String> superheroes = Arrays.asList(newComic.getSuperheroes());
+        
         comic.setSeriesId(series.getSeriesId());
         return comicDao.addComic(comic, collectionId);
     }
