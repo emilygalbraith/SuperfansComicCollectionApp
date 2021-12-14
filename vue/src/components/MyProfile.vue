@@ -1,15 +1,25 @@
 <template>
-    <div id="profile" >
-        <h2>{{$store.state.user.username}}</h2>
-        <div id="avatar-placeholder" v-if="!show"></div>
-        <img :src="imgSrc" v-else id="avatar" />
-        <h3 id="no-underline" class="user-type">{{userType}}</h3>
-        <h3>Please Choose Your Avatar Image</h3>
-        <img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" @click="userProfile.profileId=image.profileId, show=!show, imgSrc=image.imgUrl, linkProfileToUser()" />
-        <h3 id="no-underline">All My Collections:</h3> 
-        <collection-list />
-        <create-collection/>
-    </div>
+  <div id="profile">
+    <h2>{{ $store.state.user.username }}</h2>
+    <div id="avatar-placeholder" v-if="!show"></div>
+    <img :src="imgSrc" v-else id="avatar" />
+    <h3 id="no-underline" class="user-type">{{ userType }}</h3>
+    <h3>Please Choose Your Avatar Image</h3>
+    <img
+      v-for="image in avatarImg"
+      :key="image.profileId"
+      :src="image.imgUrl"
+      @click="
+        (userProfile.profileId = image.profileId),
+          (show = !show),
+          (imgSrc = image.imgUrl),
+          linkProfileToUser()
+      "
+    />
+    <h3 id="no-underline">All My Collections:</h3>
+    <collection-list />
+    <create-collection />
+  </div>
 </template>
 
 <script>
@@ -18,61 +28,65 @@ import ComicService from "../services/ComicService";
 import CreateCollection from "./CreateCollection.vue";
 
 export default {
-    components: { CollectionList, CreateCollection },
-    name: 'my-profile',
-    data() {
-        return {
-            avatarImg: [],
-            userType: "",
-            collections: [],
-            show: false,
-            imgSrc: "",
-            userProfile: {
-                userId: this.$store.state.user.id
-            }
+  components: { CollectionList, CreateCollection },
+  name: "my-profile",
+  data() {
+    return {
+      avatarImg: [],
+      userType: "",
+      collections: [],
+      show: false,
+      imgSrc: "",
+      userProfile: {
+        userId: this.$store.state.user.id,
+      },
+    };
+  },
+  created() {
+    this.getUserType();
+    this.getAllAvatarImgs();
+    this.getProfileImg();
+  },
+  methods: {
+    getUserType() {
+      const currentUser = this.$store.state.user;
+      this.collections = ComicService.getCollectionByUserId(currentUser.id);
+      let count = 1;
+      for (let i = 0; i < this.collections.length; i++) {
+        count++;
+      }
+      if (count >= 0 && count <= 3) {
+        if (count == 1) {
+          this.userType = count + " collection | Standard ";
+        } else {
+          this.userType = count + " collections | Standard ";
         }
+      } else if (count > 3) {
+        this.userType = count + " collections | Premium ";
+      }
     },
-    created() {
-        this.getUserType();
-        this.getAllAvatarImgs();
-    },
-    methods: {
-        getUserType() {
-            const currentUser = this.$store.state.user
-            this.collections = ComicService.getCollectionByUserId(currentUser.id);
-            let count = 1;
-            for(let i = 0; i < this.collections.length; i++) {
-                count++;
-            }
-            if(count >= 0 && count <= 3) {
-                if(count == 1) {
-                    this.userType = count + " collection | Standard "
-                } else {
-                this.userType = count + " collections | Standard ";
-                }
-            } else if (count > 3) {
-                this.userType = count + " collections | Premium ";
-            }
-        },
-        getAllAvatarImgs() {
-            ComicService.getAllAvatarImgs().then(response => {
-                if (response.status === 200) {
-                    this.avatarImg = response.data;
-                }
-            });
-        },
-        linkProfileToUser() {
-            ComicService.addUserProfile(this.userProfile, this.$store.state.token);
+    getAllAvatarImgs() {
+      ComicService.getAllAvatarImgs().then((response) => {
+        if (response.status === 200) {
+          this.avatarImg = response.data;
         }
+      });
+    },
+    linkProfileToUser() {
+      ComicService.addUserProfile(this.userProfile, this.$store.state.token);
+    },
+    getProfileImg() {
+      const currentUser = this.$store.state.user;
+      ComicService.getProfileById(currentUser.id).then((response) => {
+        if (response.status === 200) {
+          this.imgSrc = response.data.imgUrl;
+        }
+      });
     },
     toggleShow() {
       this.show = !this.show;
-    },
-    createProfile() {
-      const currentUser = this.$store.state.user
-    //   this.profile.profileId = this.profileId;
-      this.profile.userId = currentUser.id;
-    },
+    }
+  },
 };
 </script>
 
@@ -103,8 +117,8 @@ button {
   border-radius: 10px;
 }
 #profile > img {
-    height: 20%;
-    margin: 10px;
+  height: 20%;
+  margin: 10px;
 }
 #my-collections {
   align-self: center;
@@ -114,6 +128,6 @@ button {
   justify-content: space-evenly;
 }
 #avatar {
-    align-self: center;
+  align-self: center;
 }
 </style>

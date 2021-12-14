@@ -92,5 +92,9 @@ export default {
             }
         }
         return http.post('/user/profile', userProfile, config);
+    },
+
+    getProfileById(userId) {
+        return http.get(`profile/user/${userId}`, userId);
     }
 }
