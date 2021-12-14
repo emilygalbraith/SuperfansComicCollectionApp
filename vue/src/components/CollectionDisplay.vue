@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="collection-display">
         <router-link :to="{name: 'collection-detail', params: {collectionId: collection.collectionId}}">
             {{collection.collectionName}}
         </router-link>
@@ -27,5 +27,10 @@ h3 {
 #collection {
     display: flex;
     gap: 20px;
+}
+
+#collection-display {
+    margin-bottom: 20px;
+    font-size: 1.5em;
 }
 </style>
