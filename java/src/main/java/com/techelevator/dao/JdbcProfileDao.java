@@ -37,6 +37,7 @@ public class JdbcProfileDao implements ProfileDao{
         jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
     }
 
+    @Override
     public Profile createProfile(Profile profile) {
         String profileImg = profile.getImgUrl();
         String profileImgName = profile.getImgName();
@@ -46,6 +47,18 @@ public class JdbcProfileDao implements ProfileDao{
         profile.setProfileId(profileId);
         return profile;
     }
+
+    @Override
+    public Profile getProfileByUserId(int userId) {
+        String sql = "SELECT * FROM profiles WHERE user_id = ?";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
+        if(result.next()) {
+            return mapRowToProfile(result);
+        } else {
+            throw new RuntimeException("Profile with the user id, " + userId + ", was not found.");
+        }
+    }
+
 
     private Profile mapRowToProfile(SqlRowSet row) {
         Profile newProfile = new Profile();

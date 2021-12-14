@@ -323,9 +323,9 @@ public class ComicCuratorService {
 
     public Profile createProfile(Profile profile) { return profileDao.createProfile(profile); }
 
-    public void linkProfileToUser(UserProfile userProfile) {
-        profileDao.linkProfileToUser(userProfile);
-    }
+    public void linkProfileToUser(UserProfile userProfile) { profileDao.linkProfileToUser(userProfile); }
+
+    public Profile getProfileByUserId(int userId) { return profileDao.getProfileByUserId(userId); }
 
     /*
     will keep working on pull information from Marvel api and turn into something we can work with in our api

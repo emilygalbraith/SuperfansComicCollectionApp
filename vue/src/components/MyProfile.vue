@@ -4,7 +4,7 @@
         <div id="avatar-placeholder" v-if="!show"></div>
         <img :src="imgSrc" v-else id="avatar" />
         <h3 id="no-underline" class="user-type">{{userType}}</h3>
-        <h3>Please Choose Your Avarar Image</h3>
+        <h3>Please Choose Your Avatar Image</h3>
         <img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" @click="userProfile.profileId=image.profileId, show=!show, imgSrc=image.imgUrl, linkProfileToUser()" />
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />

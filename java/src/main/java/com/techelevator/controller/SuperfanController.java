@@ -140,4 +140,6 @@ public class SuperfanController {
     @RequestMapping(path = "profiles", method = RequestMethod.POST)
     public Profile createProfile(@RequestBody Profile profile) { return comicCuratorService.createProfile(profile); }
 
+    @RequestMapping(path = "profile/user/{userId}")
+    public Profile getProfileByUserId(@PathVariable int userId) { return comicCuratorService.getProfileByUserId(userId); }
 }

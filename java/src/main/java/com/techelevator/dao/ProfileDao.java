@@ -10,4 +10,5 @@ public interface ProfileDao {
     List<Profile> listAllProfiles();
     void linkProfileToUser(UserProfile userProfile);
     Profile createProfile(Profile profile);
+    Profile getProfileByUserId(int userId);
 }
