@@ -1,106 +1,122 @@
 <template>
-    <div id="profile" >
-        <h2>{{$store.state.user.username}}</h2>
-        <div id="avatar-placeholder"></div>
-        <!-- <img src="image" /> -->
-        <h3 id="no-underline" class="user-type">{{userType}}</h3>
-        <button v-on:click="toggleShow()">Click To Choose Your Avarar Image</button>
-        <div id="profile-imgs" v-if="show">
-        <a href=""><img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" /></a>
-        </div>
-        <h3 id="no-underline">All My Collections:</h3> 
-        <collection-list />
-        <create-collection/>
+  <div id="profile">
+    <h2>{{ $store.state.user.username }}</h2>
+    <div id="avatar-placeholder"></div>
+    <!-- <img src="image" /> -->
+    <h3 id="no-underline" class="user-type">{{ userType }}</h3>
+    <button v-on:click="toggleShow()">Click To Choose Your Avarar Image</button>
+    <div id="profile-imgs" v-if="show">
+      <a href=""
+        ><img
+          v-for="image in avatarImg"
+          :key="image.profileId"
+          :src="image.imgUrl"
+          v-on:click="createProfile()"
+      /></a>
     </div>
+    <h3 id="no-underline">All My Collections:</h3>
+    <collection-list />
+    <create-collection />
+  </div>
 </template>
 
 <script>
-import CollectionList from './CollectionList.vue';
-import ComicService from '../services/ComicService';
-import CreateCollection from './CreateCollection.vue';
+import CollectionList from "./CollectionList.vue";
+import ComicService from "../services/ComicService";
+import CreateCollection from "./CreateCollection.vue";
 
 export default {
-    components: { CollectionList, CreateCollection },
-    name: 'my-profile',
-    data() {
-        return {
-            avatarImg: [],
-            userType: "",
-            collections: [],
-            show: false
+  components: { CollectionList, CreateCollection },
+  name: "my-profile",
+  data() {
+    return {
+      avatarImg: [],
+      userType: "",
+      collections: [],
+      show: false,
+      profile: {
+        profile_img: "",
+        profile_img_name: "",
+        userId: 0,
+      },
+    };
+  },
+  created() {
+    this.getUserType();
+    this.getAllAvatarImgs();
+  },
+  methods: {
+    getUserType() {
+      const currentUser = this.$store.state.user;
+      this.collections = ComicService.getCollectionByUserId(currentUser.id);
+      let count = 1;
+      for (let i = 0; i < this.collections.length; i++) {
+        count++;
+      }
+      if (count >= 0 && count <= 3) {
+        if (count == 1) {
+          this.userType = count + " collection | Standard ";
+        } else {
+          this.userType = count + " collections | Standard ";
         }
+      } else if (count > 3) {
+        this.userType = count + " collections | Premium ";
+      }
     },
-    created() {
-        this.getUserType();
-        this.getAllAvatarImgs();
-    },
-    methods: {
-        getUserType() {
-            const currentUser = this.$store.state.user
-            this.collections = ComicService.getCollectionByUserId(currentUser.id);
-            let count = 1;
-            for(let i = 0; i < this.collections.length; i++) {
-                count++;
-            }
-            if(count >= 0 && count <= 3) {
-                if(count == 1) {
-                    this.userType = count + " collection | Standard "
-                } else {
-                this.userType = count + " collections | Standard ";
-                }
-            } else if (count > 3) {
-                this.userType = count + " collections | Premium ";
-            }
-        },
-        getAllAvatarImgs() {
-            ComicService.getAllAvatarImgs().then(response => {
-                if (response.status === 200) {
-                    this.avatarImg = response.data;
-                }
-            });
-        },
-        toggleShow() {
-            this.show = !this.show;
+    getAllAvatarImgs() {
+      ComicService.getAllAvatarImgs().then((response) => {
+        if (response.status === 200) {
+          this.avatarImg = response.data;
         }
-    }
-}
+      });
+    },
+    toggleShow() {
+      this.show = !this.show;
+    },
+    createProfile() {
+      const currentUser = this.$store.state.user
+    //   this.profile.profileId = this.profileId;
+      this.profile.userId = currentUser.id;
+    },
+  },
+};
 </script>
 
 <style>
-#profile{
-    display: flex;
-    flex-direction: column;
+#profile {
+  display: flex;
+  flex-direction: column;
 }
 h3 {
-    align-self: center;
+  align-self: center;
 }
 #no-underline {
-    text-decoration: none;
+  text-decoration: none;
 }
 #create {
-    align-self: center;
+  align-self: center;
 }
 button {
-    margin-bottom: 10px;
-    align-self: center;
+  margin-bottom: 10px;
+  align-self: center;
 }
 #avatar-placeholder {
-    height: 150px;
-    width: 150px;
-    background-color: white;
-    margin: 10px;
-    align-self: center;
-    border-radius: 10px;
+  height: 150px;
+  width: 150px;
+  background-color: white;
+  margin: 10px;
+  align-self: center;
+  border-radius: 10px;
 }
 #profile > a > img {
-    height: 20%;
-    margin: 10px;
+  height: 20%;
+  margin: 10px;
 }
 #my-collections {
-    align-self: center;
+  align-self: center;
 }
-#profile-imgs{
-    display: flex;
-    justify-content: space-evenly;
+#profile-imgs {
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>
