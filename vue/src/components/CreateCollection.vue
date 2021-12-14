@@ -98,7 +98,6 @@ h1 {
   font-family: "Comic Neue", cursive;
   color: whitesmoke;
   text-align: center;
-  font-size: 40px;
 }
 input[type="text"] {
   width: 10%;
