@@ -10,10 +10,6 @@
         <collection-list />
         <create-collection/>
     </div>
-    <h3 id="no-underline">All My Collections:</h3>
-    <collection-list />
-    <create-collection />
-  </div>
 </template>
 
 <script>
