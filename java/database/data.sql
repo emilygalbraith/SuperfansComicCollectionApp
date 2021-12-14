@@ -86,7 +86,7 @@ VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT coll
        ((SELECT comic_id FROM comics WHERE comic_name='Official Handbook of the Marvel Universe'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
        ((SELECT comic_id FROM comics WHERE comic_name='Storm Vol 2 #1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
        ((SELECT comic_id FROM comics WHERE comic_name='Batman: Knightfall Vol. 1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 2')),
-       ((SELECT comic_id FROM comics WHERE comic_name='Wonder Woman Vol. 5'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 2'));
+       ((SELECT comic_id FROM comics WHERE comic_name='Wonder Woman Vol. 5'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 2')),
        ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Marvel Age Spider-Man #8'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Official Handbook of the Marvel Universe'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),

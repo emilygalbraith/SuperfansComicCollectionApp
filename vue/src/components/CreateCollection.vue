@@ -24,9 +24,10 @@
         />
       </div>
       <div>
-        <button type="submit" v-on:click="createCollection()">
+        <button id="button" type="submit" v-on:click="createCollection()">
           Create Collection
         </button>
+        <button id="button" v-on:click="flipShowStatus()">Cancel</button>
       </div>
     </form>
   </div>
@@ -114,5 +115,8 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+#button {
+  margin-right: 20px;
 }
 </style>

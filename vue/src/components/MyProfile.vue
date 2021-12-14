@@ -10,12 +10,16 @@
         <collection-list />
         <create-collection/>
     </div>
+    <h3 id="no-underline">All My Collections:</h3>
+    <collection-list />
+    <create-collection />
+  </div>
 </template>
 
 <script>
-import CollectionList from './CollectionList.vue';
-import ComicService from '../services/ComicService';
-import CreateCollection from './CreateCollection.vue';
+import CollectionList from "./CollectionList.vue";
+import ComicService from "../services/ComicService";
+import CreateCollection from "./CreateCollection.vue";
 
 export default {
     components: { CollectionList, CreateCollection },
@@ -64,41 +68,54 @@ export default {
         linkProfileToUser() {
             ComicService.addUserProfile(this.userProfile, this.$store.state.token);
         }
-    }
-}
+    },
+    toggleShow() {
+      this.show = !this.show;
+    },
+    createProfile() {
+      const currentUser = this.$store.state.user
+    //   this.profile.profileId = this.profileId;
+      this.profile.userId = currentUser.id;
+    },
+};
 </script>
 
 <style>
-#profile{
-    display: flex;
-    flex-direction: column;
+#profile {
+  display: flex;
+  flex-direction: column;
 }
 h3 {
-    align-self: center;
+  align-self: center;
 }
 #no-underline {
-    text-decoration: none;
+  text-decoration: none;
 }
 #create {
-    align-self: center;
+  align-self: center;
 }
 button {
-    margin-top: 50px;
+  margin-bottom: 10px;
+  align-self: center;
 }
 #avatar-placeholder {
-    height: 150px;
-    width: 150px;
-    background-color: white;
-    margin: 10px;
-    align-self: center;
-    border-radius: 10px;
+  height: 150px;
+  width: 150px;
+  background-color: white;
+  margin: 10px;
+  align-self: center;
+  border-radius: 10px;
 }
 #profile > img {
     height: 20%;
     margin: 10px;
 }
 #my-collections {
-    align-self: center;
+  align-self: center;
+}
+#profile-imgs {
+  display: flex;
+  justify-content: space-evenly;
 }
 #avatar {
     align-self: center;

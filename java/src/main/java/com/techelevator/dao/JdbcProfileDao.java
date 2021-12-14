@@ -32,9 +32,20 @@ public class JdbcProfileDao implements ProfileDao{
     }
 
     @Override
+<<<<<<< HEAD
     public void linkProfileToUser(UserProfile userProfile) {
         String sql = "INSERT INTO user_profile VALUES (?, ?)";
         jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
+=======
+    public Profile createProfile(Profile profile) {
+        String profileImg = profile.getImgUrl();
+        String profileImgName = profile.getImgName();
+        int userId = profile.getUserId();
+        String sql = "INSERT INTO profiles (profile_img, profile_img_name, user_id) VALUES (?, ?, ?) RETURNING profile_id";
+        int profileId = jdbcTemplate.queryForObject(sql, Integer.class, profileImg, profileImgName, userId);
+        profile.setProfileId(profileId);
+        return profile;
+>>>>>>> 4071ebcbc9ce79085b0b43723a819b7ba2b4882b
     }
 
     private Profile mapRowToProfile(SqlRowSet row) {
