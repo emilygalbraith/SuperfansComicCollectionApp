@@ -8,6 +8,9 @@
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link><div id="bar">|</div>
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link :to="{name: 'login'}" v-if="$store.state.token == ''">Login</router-link><div id="bar">|</div>
+      <router-link :to="{name: 'register'}" v-if="$store.state.token == ''">Register</router-link>
+      <router-link v-bind:to="{name: 'profile'}" v-if="$store.state.token != ''">View Profile</router-link>
     </div>
     <router-view />
      <div>

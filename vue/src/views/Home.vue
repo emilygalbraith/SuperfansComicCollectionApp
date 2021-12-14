@@ -1,13 +1,10 @@
 <template>
   <div>
     <div id="start" v-if="!show">
-      <router-link :to="{name: 'login'}">Login</router-link>  
-      <router-link :to="{name: 'register'}">Register</router-link>
       <h2>All Public Collections:</h2>
     </div>
     <div id="home" v-if="show">
       <h1>Welcome</h1>
-      <router-link v-bind:to="{name: 'profile'}">View Profile</router-link>
       <h2>All Collections:</h2>
     </div>
     <div id="collection-and-stats">
