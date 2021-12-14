@@ -4,11 +4,11 @@
         <div id="collection-detail">
             <div>
                 <comic-list id="collection" v-bind:collectionId="collection.collectionId"/>
-                <add-comic />
+                <add-comic/>
             </div>
             <collection-statistics id="stats"/>
         </div>
-        <router-link :to="{name: 'profile'}">Back to Profile</router-link>
+        <!-- <router-link :to="{name: 'profile'}">Back to Profile</router-link> -->
     </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 h2{
     text-align: center;
 }
@@ -47,5 +47,11 @@ h2{
 #collection-detail{
     display: grid;
     grid-template-columns: 3fr 1fr;
+}
+#stats {
+    margin-left: 20px;
+}
+h3 {
+    margin-top: 0px;
 }
 </style>

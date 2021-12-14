@@ -41,6 +41,7 @@ h1 {
   color: white;
   margin-top: 0px;
   padding-top: 4%;
+  font-family: 'Comic Neue', cursive;
 }
 h2 {
   color: white;

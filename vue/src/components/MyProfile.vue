@@ -7,19 +7,18 @@
         <h3>Please Choose Your Avarar Image</h3>
         <a href=""><img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" /></a>
         <h3 id="no-underline">All My Collections:</h3> 
-        <collection-list id="my-collections" />
-        <router-link :to="{ name: 'create-collection'}" id="create">
-            <button>Create A New Collection</button>
-        </router-link>
+        <collection-list />
+        <create-collection/>
     </div>
 </template>
 
 <script>
 import CollectionList from './CollectionList.vue';
 import ComicService from '../services/ComicService';
+import CreateCollection from './CreateCollection.vue';
 
 export default {
-    components: { CollectionList },
+    components: { CollectionList, CreateCollection },
     name: 'my-profile',
     data() {
         return {

@@ -1,41 +1,35 @@
 <template>
-  <form class="form" v-on:submit.prevent>
-    <h1>Create Collection</h1>
-    <div>
-      <label for="collection-name">Collection Name: </label><br/>
-      <input type="text" v-model="collection.collectionName" />
-    </div>
-    <div>
-      <label for="private">Private</label>
-      <input
-        type="radio"
-        id="private"
-        v-bind:value="true"
-        v-model="collection.private"
-      /><br/>
-      <label for="public">Public</label>
-      <input
-        type="radio"
-        id="public"
-        v-bind:value="false"
-        v-model="collection.private"
-      />
-    </div>
-    <div>
-      <!-- <label for="add-comic"
-        >Would you like to add comics to this collection now?</label
-      >
-      <label for="yes">Yes</label>
-      <input type="radio" id="yes" v-bind:value="true" v-model="addComic" />
-      <label for="no">No</label>
-      <input type="radio" id="no" v-bind:value="false" v-model="addComic" />
-    </div>
-    <div> -->
-      <button type="submit" v-on:click="createCollection()">
-        Create Collection
-      </button>
-    </div>
-  </form>
+  <div>
+    <button v-on:click="flipShowStatus()" v-if="!show">Add New Collection</button>
+    <form class="form" v-on:submit.prevent v-if="show">
+      <h1>Create Collection</h1>
+      <div>
+        <label for="collection-name">Collection Name: </label><br />
+        <input type="text" v-model="collection.collectionName" />
+      </div>
+      <div>
+        <label for="private">Private</label>
+        <input
+          type="radio"
+          id="private"
+          v-bind:value="true"
+          v-model="collection.private"
+        /><br />
+        <label for="public">Public</label>
+        <input
+          type="radio"
+          id="public"
+          v-bind:value="false"
+          v-model="collection.private"
+        />
+      </div>
+      <div>
+        <button type="submit" v-on:click="createCollection()">
+          Create Collection
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -45,7 +39,8 @@ export default {
   name: "create-collection",
   data() {
     return {
-      collection: {}
+      collection: {},
+      show: false,
     };
   },
   methods: {
@@ -58,7 +53,8 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.collection = response.data;
-            this.$router.push({name: 'profile'});
+            this.flipShowStatus();
+            this.$router.go();
           }
         })
         .catch((error) => {
@@ -73,20 +69,20 @@ export default {
     },
     flipShowStatus() {
       this.show = !this.show;
-    }
+    },
   },
 };
 </script>
 
 <style>
 label[for="collection-name"] {
-   color: white;
+  color: white;
 }
 label[for="private"] {
-   color: white;
+  color: white;
 }
 label[for="public"] {
-   color: white;
+  color: white;
 }
 h1 {
   font-family: Arial, Helvetica, sans-serif;
@@ -96,22 +92,21 @@ h1 {
   padding-top: 4%;
 }
 .form {
-height: 75%;
-width: 100%;
-margin-block-start: -1%;
-font-family: 'Comic Neue', cursive;
-color: whitesmoke;
-text-align: center;
-font-size: 40px;
+  height: 75%;
+  width: 100%;
+  margin-block-start: -1%;
+  font-family: "Comic Neue", cursive;
+  color: whitesmoke;
+  text-align: center;
 }
-input[type=text] {
+input[type="text"] {
   width: 10%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
 }
 button {
-  background-color: #4CAF50; 
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 10px 30px;
