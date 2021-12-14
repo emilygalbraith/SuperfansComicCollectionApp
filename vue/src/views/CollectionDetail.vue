@@ -8,7 +8,7 @@
             </div>
             <collection-statistics id="stats"/>
         </div>
-        <router-link :to="{name: 'profile'}">Back to Profile</router-link>
+        <!-- <router-link :to="{name: 'profile'}">Back to Profile</router-link> -->
     </div>
 </template>
 
