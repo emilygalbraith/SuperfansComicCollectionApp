@@ -132,14 +132,12 @@ public class SuperfanController {
         return comicCuratorService.listAllProfiles();
     }
 
-<<<<<<< HEAD
     @RequestMapping(path = "user/profile", method = RequestMethod.POST)
     public void linkProfileToUser(@RequestBody UserProfile userProfile) {
         comicCuratorService.linkProfileToUser(userProfile);
     }
-=======
+
     @RequestMapping(path = "profiles", method = RequestMethod.POST)
     public Profile createProfile(@RequestBody Profile profile) { return comicCuratorService.createProfile(profile); }
 
->>>>>>> 4071ebcbc9ce79085b0b43723a819b7ba2b4882b
 }
