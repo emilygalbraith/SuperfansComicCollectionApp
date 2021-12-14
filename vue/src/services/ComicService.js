@@ -82,5 +82,9 @@ export default {
 
     getAllAvatarImgs() {
         return http.get('/profiles');
+    },
+
+    createProfile(profile) {
+        return http.post('/profiles', profile);
     }
 }
