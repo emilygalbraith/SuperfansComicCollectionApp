@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProfileDao {
 
     List<Profile> listAllProfiles();
+    Profile createProfile(Profile profile);
 }

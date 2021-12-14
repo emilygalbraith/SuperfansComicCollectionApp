@@ -4,8 +4,10 @@
         <div id="avatar-placeholder"></div>
         <!-- <img src="image" /> -->
         <h3 id="no-underline" class="user-type">{{userType}}</h3>
-        <h3>Please Choose Your Avarar Image</h3>
+        <button v-on:click="toggleShow()">Click To Choose Your Avarar Image</button>
+        <div id="profile-imgs" v-if="show">
         <a href=""><img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" /></a>
+        </div>
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
         <create-collection/>
@@ -56,6 +58,9 @@ export default {
                     this.avatarImg = response.data;
                 }
             });
+        },
+        toggleShow() {
+            this.show = !this.show;
         }
     }
 }
@@ -76,7 +81,8 @@ h3 {
     align-self: center;
 }
 button {
-    margin-top: 50px;
+    margin-bottom: 10px;
+    align-self: center;
 }
 #avatar-placeholder {
     height: 150px;
@@ -92,5 +98,9 @@ button {
 }
 #my-collections {
     align-self: center;
+}
+#profile-imgs{
+    display: flex;
+    justify-content: space-evenly;
 }
 </style>
