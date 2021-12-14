@@ -4,7 +4,7 @@
       <h2>All Public Collections:</h2>
     </div>
     <div id="home" v-if="show">
-      <h1>Welcome</h1>
+      <h2 id="welcome">Welcome {{$store.state.user.username}}</h2>
       <h2>All Collections:</h2>
     </div>
     <div id="collection-and-stats">
@@ -23,6 +23,11 @@ import CollectionList from '../components/CollectionList.vue'
 export default {
   components: { CollectionList, AggregateStatistics },
   name: "home",
+  data() {
+    return {
+
+    }
+  },
   computed: {
     show() {
       return this.$store.state.show;
@@ -41,10 +46,10 @@ h1 {
   color: white;
   margin-top: 0px;
   padding-top: 4%;
-  font-family: 'Comic Neue', cursive;
 }
 h2 {
   color: white;
+  font-size: 2em;
 }
 p {
   color: white;
@@ -70,5 +75,8 @@ a:hover {
 img{
   width: 150px;
   height: 225px;
+}
+#welcome{
+  font-size: 2.2em;
 }
 </style>
