@@ -82,5 +82,15 @@ export default {
 
     getAllAvatarImgs() {
         return http.get('/profiles');
+    },
+
+    addUserProfile(userProfile, token) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+        return http.post('/user/profile', userProfile, config);
     }
 }

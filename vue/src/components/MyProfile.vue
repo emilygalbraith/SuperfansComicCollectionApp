@@ -1,11 +1,11 @@
 <template>
     <div id="profile" >
         <h2>{{$store.state.user.username}}</h2>
-        <div id="avatar-placeholder"></div>
-        <!-- <img src="image" /> -->
+        <div id="avatar-placeholder" v-if="!show"></div>
+        <img :src="imgSrc" v-else id="avatar" />
         <h3 id="no-underline" class="user-type">{{userType}}</h3>
         <h3>Please Choose Your Avarar Image</h3>
-        <a href=""><img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" /></a>
+        <img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" @click="userProfile.profileId=image.profileId, show=!show, imgSrc=image.imgUrl, linkProfileToUser()" />
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
         <create-collection/>
@@ -25,7 +25,11 @@ export default {
             avatarImg: [],
             userType: "",
             collections: [],
-            show: false
+            show: false,
+            imgSrc: "",
+            userProfile: {
+                userId: this.$store.state.user.id
+            }
         }
     },
     created() {
@@ -56,6 +60,9 @@ export default {
                     this.avatarImg = response.data;
                 }
             });
+        },
+        linkProfileToUser() {
+            ComicService.addUserProfile(this.userProfile, this.$store.state.token);
         }
     }
 }
@@ -86,11 +93,14 @@ button {
     align-self: center;
     border-radius: 10px;
 }
-#profile > a > img {
+#profile > img {
     height: 20%;
     margin: 10px;
 }
 #my-collections {
+    align-self: center;
+}
+#avatar {
     align-self: center;
 }
 </style>

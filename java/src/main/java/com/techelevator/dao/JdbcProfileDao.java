@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Profile;
+import com.techelevator.model.UserProfile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,12 @@ public class JdbcProfileDao implements ProfileDao{
             profiles.add(mapRowToProfile(rowSet));
         }
         return profiles;
+    }
+
+    @Override
+    public void linkProfileToUser(UserProfile userProfile) {
+        String sql = "INSERT INTO user_profile VALUES (?, ?)";
+        jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
     }
 
     private Profile mapRowToProfile(SqlRowSet row) {
