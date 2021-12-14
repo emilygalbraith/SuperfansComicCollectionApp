@@ -78,5 +78,9 @@ export default {
 
     getAllSuperheroes() {
         return http.get('superheroes');
+    },
+
+    getAllAvatarImgs() {
+        return http.get('/profiles');
     }
 }

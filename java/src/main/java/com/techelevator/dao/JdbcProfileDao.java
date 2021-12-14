@@ -34,8 +34,7 @@ public class JdbcProfileDao implements ProfileDao{
         Profile newProfile = new Profile();
         newProfile.setProfileId(row.getInt("profile_id"));
         newProfile.setImgUrl(row.getString("profile_img"));
-        newProfile.setImgName(row.getNString("profile_img_name"));
-        newProfile.setUserId(row.getInt("user_id"));
+        newProfile.setImgName(row.getString("profile_img_name"));
 
         return newProfile;
     }

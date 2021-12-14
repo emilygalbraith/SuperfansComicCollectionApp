@@ -1,9 +1,11 @@
 <template>
     <div id="profile" >
-        <!-- <img :src="image" /> -->
-        <!-- <input type="file" id="file" ref="fileInput"/> -->
         <h2>{{$store.state.user.username}}</h2>
-        <h3 id="no-underline" class="user-type">{{userType}}</h3>  
+        <div id="avatar-placeholder"></div>
+        <!-- <img src="image" /> -->
+        <h3 id="no-underline" class="user-type">{{userType}}</h3>
+        <h3>Please Choose Your Avarar Image</h3>
+        <a href=""><img v-for="image in avatarImg" :key="image.profileId" :src="image.imgUrl" /></a>
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
         <create-collection/>
@@ -20,13 +22,15 @@ export default {
     name: 'my-profile',
     data() {
         return {
-            // image: this.$refs.fileInput.files[0]
+            avatarImg: [],
             userType: "",
-            collections: []
+            collections: [],
+            show: false
         }
     },
     created() {
         this.getUserType();
+        this.getAllAvatarImgs();
     },
     methods: {
         getUserType() {
@@ -45,6 +49,13 @@ export default {
             } else if (count > 3) {
                 this.userType = count + " collections | Premium ";
             }
+        },
+        getAllAvatarImgs() {
+            ComicService.getAllAvatarImgs().then(response => {
+                if (response.status === 200) {
+                    this.avatarImg = response.data;
+                }
+            });
         }
     }
 }
@@ -66,5 +77,20 @@ h3 {
 }
 button {
     margin-top: 50px;
+}
+#avatar-placeholder {
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    margin: 10px;
+    align-self: center;
+    border-radius: 10px;
+}
+#profile > a > img {
+    height: 20%;
+    margin: 10px;
+}
+#my-collections {
+    align-self: center;
 }
 </style>

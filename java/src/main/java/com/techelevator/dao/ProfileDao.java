@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProfileDao {
 
-    public List<Profile> listAllProfiles();
+    List<Profile> listAllProfiles();
 }

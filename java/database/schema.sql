@@ -93,8 +93,13 @@ CREATE TABLE profiles (
         profile_id int DEFAULT nextval('seq_profile_id'::regclass) NOT NULL,
         profile_img varchar(400) NOT NULL,
         profile_img_name varchar(100) NOT NULL,
-        user_id int REFERENCES users (user_id),
         CONSTRAINT PK_profile PRIMARY KEY (profile_id)
+);
+
+CREATE TABLE user_profile (
+        user_id int REFERENCES users (user_id),
+        profile_id int REFERENCES profiles (profile_id),
+        CONSTRAINT PK_user_profile PRIMARY KEY (user_id, profile_id)
 );
 
 CREATE TABLE publishers (

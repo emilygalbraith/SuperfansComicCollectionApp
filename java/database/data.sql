@@ -81,7 +81,13 @@ VALUES ('Marvel Collection', FALSE, (SELECT user_id FROM users WHERE username='t
        ('Super Collection', FALSE, (SELECT user_id FROM users WHERE username='SuperFan100'));
 
 INSERT INTO collection_comic (comic_id, collection_id)
-VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
+VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
+       ((SELECT comic_id FROM comics WHERE comic_name='Marvel Age Spider-Man #8'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
+       ((SELECT comic_id FROM comics WHERE comic_name='Official Handbook of the Marvel Universe'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
+       ((SELECT comic_id FROM comics WHERE comic_name='Storm Vol 2 #1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
+       ((SELECT comic_id FROM comics WHERE comic_name='Batman: Knightfall Vol. 1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 2')),
+       ((SELECT comic_id FROM comics WHERE comic_name='Wonder Woman Vol. 5'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 2'));
+       ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Marvel Age Spider-Man #8'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Official Handbook of the Marvel Universe'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Storm Vol 2 #1'), (SELECT collection_id FROM collections WHERE collection_name='Marvel Collection')),
@@ -101,3 +107,6 @@ VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT coll
        ((SELECT comic_id FROM comics WHERE comic_name='Flashpoint'), (SELECT collection_id FROM collections WHERE collection_name='Super Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Justice League Vol. 1: Origin'), (SELECT collection_id FROM collections WHERE collection_name='Super Collection')),
        ((SELECT comic_id FROM comics WHERE comic_name='Spawn #1'), (SELECT collection_id FROM collections WHERE collection_name='Super Collection'));
+
+INSERT INTO profiles (profile_img, profile_img_name)
+VALUES ('https://blogger.googleusercontent.com/img/a/AVvXsEhOs8au_vMzAFMLfq_Y2YuW0K7iwHkvszLBGS3XQlF7pZkm-88oZs-Ki15UoNbXmvXun9qp6bPTXNgLWumP5BYhysAi8H3vIsam-vWkE0zR2-h-RWseGz4QD5fc9J0n6u6EjhQ9rrxqJtR1nygnjENFbKWPX2jSIDqGUKDRs4jPdyuh6971lg9sxS_Gyw=s2048', 'avatar-1');

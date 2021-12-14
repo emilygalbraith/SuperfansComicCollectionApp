@@ -50,7 +50,7 @@ export default {
             if (this.$route.name == 'home' && this.$store.state.show == true) {
                 this.retrieveAllCollections();
             }
-            if (this.$route.name == 'profile' && this.$store.state.show == true) {
+            if (this.$route.name == 'profile') {
                 this.getCurrentUserCollections();
             }
         }
