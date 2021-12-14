@@ -82,6 +82,7 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             this.toggleShow();
+            this.$router.go();
           }
         })
         .catch((error) => {
@@ -118,6 +119,9 @@ form {
 }
 #button {
   margin-right: 20px;
+}
+h3 {
+  margin-top: 0px;
 }
 
 </style>
