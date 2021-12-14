@@ -6,18 +6,17 @@
         <h3 id="no-underline" class="user-type">{{userType}}</h3>  
         <h3 id="no-underline">All My Collections:</h3> 
         <collection-list />
-        <router-link :to="{ name: 'create-collection'}" id="create">
-            <button>Create A New Collection</button>
-        </router-link>
+        <create-collection/>
     </div>
 </template>
 
 <script>
 import CollectionList from './CollectionList.vue';
 import ComicService from '../services/ComicService';
+import CreateCollection from './CreateCollection.vue';
 
 export default {
-    components: { CollectionList },
+    components: { CollectionList, CreateCollection },
     name: 'my-profile',
     data() {
         return {
