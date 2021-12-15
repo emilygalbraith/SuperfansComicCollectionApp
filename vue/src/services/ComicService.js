@@ -95,6 +95,6 @@ export default {
     },
 
     getProfileById(userId) {
-        return http.get(`profile/user/${userId}`, userId);
+        return http.get(`profile/user/${userId}`);
     }
 }

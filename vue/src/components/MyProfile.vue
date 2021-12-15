@@ -2,7 +2,7 @@
   <div id="profile">
     <h2>{{ $store.state.user.username }}</h2>
     <div id="avatar-placeholder" v-if="!show"></div>
-    <img :src="imgSrc" v-else id="avatar" />
+    <img :src="profile.imgUrl"  id="avatar" />
     <h3 id="no-underline" class="user-type">{{ userType }}</h3>
     <h3>Please Choose Your Avatar Image</h3>
     <img
@@ -40,6 +40,9 @@ export default {
       userProfile: {
         userId: this.$store.state.user.id,
       },
+      profile: {
+          imgUrl: ""
+      }
     };
   },
   created() {
@@ -79,7 +82,10 @@ export default {
       const currentUser = this.$store.state.user;
       ComicService.getProfileById(currentUser.id).then((response) => {
         if (response.status === 200) {
-          this.imgSrc = response.data.imgUrl;
+          this.profile = response.data;
+          if(this.profile.imgUrl != "") {
+              this.toggleShow();
+          }
         }
       });
     },
