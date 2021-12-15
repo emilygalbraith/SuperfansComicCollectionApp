@@ -43,6 +43,8 @@ h2{
 #collection {
     display: flex;
     gap: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 #collection-detail{
     display: grid;
