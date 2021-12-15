@@ -2,21 +2,23 @@
   <div id="profile">
     <h2>{{ $store.state.user.username }}</h2>
     <div id="avatar-placeholder" v-if="!show"></div>
-    <img :src="profile.imgUrl" id="avatar" />
+    <img :src="profile.imgUrl" v-if="show" id="avatar" />
     <h3 id="no-underline" class="user-type">{{ userType }}</h3>
-    <div v-if="!show">
-      <h3>Please Choose Your Avatar Image</h3>
-      <img
-        v-for="image in avatarImg"
-        :key="image.profileId"
-        :src="image.imgUrl"
-        @click="
-          (userProfile.profileId = image.profileId),
-          (show = true),
-          (imgSrc = image.imgUrl),
-          linkProfileToUser()
-        "
-      />
+    <div>
+      <button @click="flipShowAvatar">Please Choose Your Avatar Image</button>
+      <div id="profile-imgs" v-if="showAvatar">
+        <img
+          v-for="image in avatarImg"
+          :key="image.profileId"
+          :src="image.imgUrl"
+          @click="
+            (userProfile.profileId = image.profileId),
+              (show = true),
+              (imgSrc = image.imgUrl),
+              linkProfileToUser()
+          "
+        />
+      </div>
     </div>
     <h3 id="no-underline">All My Collections:</h3>
     <collection-list id="my-collections" />
@@ -42,8 +44,9 @@ export default {
         userId: this.$store.state.user.id,
       },
       profile: {
-          imgUrl: ""
-      }
+        imgUrl: "",
+      },
+      showAvatar: false
     };
   },
   created() {
@@ -54,7 +57,7 @@ export default {
   computed: {
     show() {
       return this.profile.imgUrl != "";
-    }
+    },
   },
   methods: {
     getUserType() {
@@ -90,14 +93,17 @@ export default {
       ComicService.getProfileById(currentUser.id).then((response) => {
         if (response.status === 200) {
           this.profile = response.data;
-          if(this.profile.imgUrl != "") {
-              this.toggleShow();
+          if (this.profile.imgUrl != "") {
+            this.toggleShow();
           }
         }
       });
     },
     toggleShow() {
       this.show = !this.show;
+    },
+    flipShowAvatar() {
+      this.showAvatar = !this.showAvatar;
     }
   },
 };
@@ -125,6 +131,7 @@ h3 {
 button {
   margin-bottom: 10px;
   align-self: center;
+  justify-content: center;
 }
 #avatar-placeholder {
   height: 150px;
@@ -134,7 +141,7 @@ button {
   align-self: center;
   border-radius: 10px;
 }
-#profile > div > img {
+#profile-imgs > img {
   height: 20%;
   margin: 10px;
 }
