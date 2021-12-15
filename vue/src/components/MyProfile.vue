@@ -129,9 +129,10 @@ h3 {
   align-self: center;
 }
 button {
-  margin-bottom: 10px;
-  align-self: center;
-  justify-content: center;
+  display: block;
+  /* margin-bottom: 10px; */
+  width: auto;
+  margin: 10px auto;
 }
 #avatar-placeholder {
   height: 150px;

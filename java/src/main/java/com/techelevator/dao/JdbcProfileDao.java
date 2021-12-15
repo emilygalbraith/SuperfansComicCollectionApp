@@ -64,9 +64,11 @@ public class JdbcProfileDao implements ProfileDao{
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
         if(result.next()) {
             return mapRowToProfile(result);
-        } else {
-            throw new RuntimeException("Profile with the user id, " + userId + ", was not found.");
         }
+//        else {
+//            throw new RuntimeException("Profile with the user id, " + userId + ", was not found.");
+//        }
+        return null;
     }
 
 
