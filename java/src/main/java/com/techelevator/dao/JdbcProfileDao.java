@@ -52,7 +52,7 @@ public class JdbcProfileDao implements ProfileDao{
     public Profile getProfileByUserId(int userId) {
         String sql = " SELECT * FROM profiles p " +
                 " JOIN user_profile up ON p.profile_id = up.profile_id " +
-                " WHERE user_id = ";
+                " WHERE user_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
         if(result.next()) {
             return mapRowToProfile(result);
