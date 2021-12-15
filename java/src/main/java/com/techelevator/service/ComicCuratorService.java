@@ -144,7 +144,12 @@ public class ComicCuratorService {
         List<SuperheroStat> superheroStatList = new ArrayList<>();
         List<Comic> comicList = listComicsInCollection(collectionId);
         if(comicList.size() == 0) { return superheroStatList; }
-        List<Superhero> superheroList = superheroDao.listAllSuperheroesInComic(comicList.get(0).getComicId());
+        List<Superhero> superheroList = new ArrayList<>();
+        for(Comic comic : comicList) {
+            superheroList = superheroDao.listAllSuperheroesInComic(comicList.get(0).getComicId());
+            if(superheroList.size() > 0) break;
+        }
+        if(superheroList.size() == 0) return superheroStatList;
         SuperheroStat firstStat = new SuperheroStat(superheroList.get(0).getSuperheroName(), 1);
         superheroStatList.add(firstStat);
         for(Comic comic : comicList) {

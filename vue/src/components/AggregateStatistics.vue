@@ -57,7 +57,7 @@ export default {
           if (response.status === 200) {
             this.superheroStats = response.data;
             this.superheroStats.sort((a, b) => b.occurrences - a.occurrences);
-            this.superheroStats.splice(11);
+            this.superheroStats.splice(10);
           }
         });
     },
@@ -69,7 +69,7 @@ export default {
           if (response.status === 200) {
             this.publisherStats = response.data;
             this.publisherStats.sort((a, b) => b.occurrences - a.occurrences);
-            this.publisherStats.splice(11);
+            this.publisherStats.splice(10);
           }
         });
     },
@@ -81,7 +81,7 @@ export default {
           if (response.status === 200) {
             this.seriesStats = response.data;
             this.seriesStats.sort((a, b) => b.occurrences - a.occurrences);
-            this.seriesStats.splice(11);
+            this.seriesStats.splice(10);
           }
         });
     },
