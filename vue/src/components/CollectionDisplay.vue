@@ -27,6 +27,7 @@ h3 {
 #collection {
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 #collection-display {

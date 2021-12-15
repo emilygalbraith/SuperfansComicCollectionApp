@@ -101,6 +101,10 @@ export default {
   display: flex;
   flex-direction: column;
 }
+h2 {
+  font-size: 150%;
+  width: 100%;
+}
 h3 {
   align-self: center;
   text-align: center;

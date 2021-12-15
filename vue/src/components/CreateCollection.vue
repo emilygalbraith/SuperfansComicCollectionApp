@@ -115,8 +115,10 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  width: 8%;
 }
 #button {
   margin-right: 20px;
+  align-self: center;
 }
 </style>
