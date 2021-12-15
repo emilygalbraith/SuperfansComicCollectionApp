@@ -137,8 +137,8 @@ public class SuperfanController {
         comicCuratorService.linkProfileToUser(userProfile);
     }
 
-    @RequestMapping(path = "profiles", method = RequestMethod.POST)
-    public Profile createProfile(@RequestBody Profile profile) { return comicCuratorService.createProfile(profile); }
+//    @RequestMapping(path = "profiles", method = RequestMethod.POST)
+//    public Profile createProfile(@RequestBody Profile profile) { return comicCuratorService.createProfile(profile); }
 
     @RequestMapping(path = "profile/user/{userId}")
     public Profile getProfileByUserId(@PathVariable int userId) { return comicCuratorService.getProfileByUserId(userId); }

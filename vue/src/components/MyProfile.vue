@@ -4,20 +4,22 @@
     <div id="avatar-placeholder" v-if="!show"></div>
     <img :src="profile.imgUrl"  id="avatar" />
     <h3 id="no-underline" class="user-type">{{ userType }}</h3>
-    <h3>Please Choose Your Avatar Image</h3>
-    <img
-      v-for="image in avatarImg"
-      :key="image.profileId"
-      :src="image.imgUrl"
-      @click="
-        (userProfile.profileId = image.profileId),
-          (show = !show),
+    <div v-if="!show">
+      <h3>Please Choose Your Avatar Image</h3>
+      <img
+        v-for="image in avatarImg"
+        :key="image.profileId"
+        :src="image.imgUrl"
+        @click="
+          (userProfile.profileId = image.profileId),
+          (show = true),
           (imgSrc = image.imgUrl),
           linkProfileToUser()
-      "
-    />
+        "
+      />
+    </div>
     <h3 id="no-underline">All My Collections:</h3>
-    <collection-list />
+    <collection-list id="my-collections" />
     <create-collection />
   </div>
 </template>
@@ -35,7 +37,6 @@ export default {
       avatarImg: [],
       userType: "",
       collections: [],
-      show: false,
       imgSrc: "",
       userProfile: {
         userId: this.$store.state.user.id,
@@ -49,6 +50,11 @@ export default {
     this.getUserType();
     this.getAllAvatarImgs();
     this.getProfileImg();
+  },
+  computed: {
+    show() {
+      return this.imgSrc != "";
+    }
   },
   methods: {
     getUserType() {
@@ -101,8 +107,13 @@ export default {
   display: flex;
   flex-direction: column;
 }
+h2 {
+  font-size: 150%;
+  width: 100%;
+}
 h3 {
   align-self: center;
+  text-align: center;
 }
 #no-underline {
   text-decoration: none;
@@ -122,7 +133,7 @@ button {
   align-self: center;
   border-radius: 10px;
 }
-#profile > img {
+#profile > div > img {
   height: 20%;
   margin: 10px;
 }
@@ -135,5 +146,7 @@ button {
 }
 #avatar {
   align-self: center;
+  border-radius: 10px;
+  height: 20%;
 }
 </style>

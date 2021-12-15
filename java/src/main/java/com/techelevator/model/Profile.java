@@ -5,7 +5,6 @@ public class Profile {
     private int profileId;
     private String imgUrl;
     private String imgName;
-    private int userId;
 
     public int getProfileId() {
         return profileId;
@@ -31,6 +30,4 @@ public class Profile {
         this.imgName = imgName;
     }
 
-    public int getUserId() { return userId; }
-    public void setUserId(int userId) { this.userId = userId; }
 }

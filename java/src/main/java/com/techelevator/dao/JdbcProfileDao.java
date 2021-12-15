@@ -33,20 +33,25 @@ public class JdbcProfileDao implements ProfileDao{
 
     @Override
     public void linkProfileToUser(UserProfile userProfile) {
-        String sql = "INSERT INTO user_profile VALUES (?, ?)";
-        jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
+        String sql = "SELECT * FROM user_profile WHERE user_id = ?";
+        SqlRowSet row = jdbcTemplate.queryForRowSet(sql, userProfile.getUserId());
+
+        if (!row.next()) {
+            sql = "INSERT INTO user_profile VALUES (?, ?)";
+            jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
+        }
+
     }
 
-    @Override
-    public Profile createProfile(Profile profile) {
-        String profileImg = profile.getImgUrl();
-        String profileImgName = profile.getImgName();
-        int userId = profile.getUserId();
-        String sql = "INSERT INTO profiles (profile_img, profile_img_name, user_id) VALUES (?, ?, ?) RETURNING profile_id";
-        int profileId = jdbcTemplate.queryForObject(sql, Integer.class, profileImg, profileImgName, userId);
-        profile.setProfileId(profileId);
-        return profile;
-    }
+//    @Override
+//    public Profile createProfile(Profile profile) {
+//        String profileImg = profile.getImgUrl();
+//        String profileImgName = profile.getImgName();
+//        String sql = "INSERT INTO profiles (profile_img, profile_img_name) VALUES (?, ?, ?) RETURNING profile_id";
+//        int profileId = jdbcTemplate.queryForObject(sql, Integer.class, profileImg, profileImgName, userId);
+//        profile.setProfileId(profileId);
+//        return profile;
+//    }
 
     @Override
     public Profile getProfileByUserId(int userId) {

@@ -79,4 +79,7 @@ img{
 #welcome{
   font-size: 2.2em;
 }
+collection-list {
+  align-content: center;
+}
 </style>
