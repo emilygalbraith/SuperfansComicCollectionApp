@@ -2,7 +2,7 @@
   <div id="profile">
     <h2>{{ $store.state.user.username }}</h2>
     <div id="avatar-placeholder" v-if="!show"></div>
-    <img :src="profile.imgUrl"  id="avatar" />
+    <img :src="profile.imgUrl" id="avatar" />
     <h3 id="no-underline" class="user-type">{{ userType }}</h3>
     <div v-if="!show">
       <h3>Please Choose Your Avatar Image</h3>
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     show() {
-      return this.imgSrc != "";
+      return this.profile.imgUrl != "";
     }
   },
   methods: {
