@@ -23,11 +23,11 @@
           v-model="collection.private"
         />
       </div>
-      <div>
-        <button id="button" type="submit" v-on:click="createCollection()">
+      <div id="button">
+        <button type="submit" v-on:click="createCollection()">
           Create Collection
         </button>
-        <button id="button" v-on:click="flipShowStatus()">Cancel</button>
+        <button v-on:click="flipShowStatus()">Cancel</button>
       </div>
     </form>
   </div>
@@ -113,12 +113,8 @@ button {
   padding: 10px 30px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 16px;
   width: 8%;
-}
-#button {
-  margin-right: 20px;
-  align-self: center;
 }
 </style>
