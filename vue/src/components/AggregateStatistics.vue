@@ -68,7 +68,8 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.publisherStats = response.data;
-            this.superheroStats.splice(6);
+            this.publisherStats.sort((a, b) => b.occurrences - a.occurrences);
+            this.publisherStats.splice(6);
           }
         });
     },
@@ -79,7 +80,8 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.seriesStats = response.data;
-            this.superheroStats.splice(6);
+            this.seriesStats.sort((a, b) => b.occurrences - a.occurrences);
+            this.seriesStats.splice(6);
           }
         });
     },
