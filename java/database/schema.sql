@@ -88,6 +88,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('testuser', '$2a$10$cuH2
 INSERT INTO users (username,password_hash,role) VALUES ('DCFan', '$2a$10$e7zXAvQiGGIdrBShgWPiF.VsMPjA7Z36dROyg8LROa2qzA2J74Xf.', 'ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('ImageFan', '$2a$10$lg8quqOIdsVdvw/emYadquBB5xEwaFK0u1GBsLGqpjZsr.K.IciEe', 'ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('SuperFan100', '$2a$10$DuTMy41jqY7RR.M2GoxRBuYxznMfcOs93Pk7m6gppyFBGpNZAr1VO', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('premiumuser', '$2a$10$515F5VxhrCNIhU.efk4sHORN.nHLGelh.HsgDstAQmRYbStbfMnGu', 'ROLE_USER');
 
 CREATE TABLE profiles (
         profile_id int DEFAULT nextval('seq_profile_id'::regclass) NOT NULL,

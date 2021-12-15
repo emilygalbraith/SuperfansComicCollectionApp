@@ -78,7 +78,10 @@ INSERT INTO collections (collection_name, private, user_id)
 VALUES ('Marvel Collection', FALSE, (SELECT user_id FROM users WHERE username='testuser')),
        ('DC Collection', FALSE, (SELECT user_id FROM users WHERE username='DCFan')),
        ('Image Collection', FALSE, (SELECT user_id FROM users WHERE username='ImageFan')),
-       ('Super Collection', FALSE, (SELECT user_id FROM users WHERE username='SuperFan100'));
+       ('Super Collection', FALSE, (SELECT user_id FROM users WHERE username='SuperFan100')),
+       ('Dummy Collection 1', FALSE, (SELECT user_id FROM users WHERE username='premiumuser')),
+       ('Dummy Collection 2', FALSE, (SELECT user_id FROM users WHERE username='premiumuser')),
+       ('Dummy Collection 3', FALSE, (SELECT user_id FROM users WHERE username='premiumuser'));
 
 INSERT INTO collection_comic (comic_id, collection_id)
 VALUES ((SELECT comic_id FROM comics WHERE comic_name='Empyre #1'), (SELECT collection_id FROM collections WHERE collection_name='User Collection 1')),
