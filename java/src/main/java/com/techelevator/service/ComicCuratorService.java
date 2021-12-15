@@ -321,7 +321,7 @@ public class ComicCuratorService {
     // profile related methods
     public List<Profile> listAllProfiles() { return profileDao.listAllProfiles(); }
 
-    public Profile createProfile(Profile profile) { return profileDao.createProfile(profile); }
+//    public Profile createProfile(Profile profile) { return profileDao.createProfile(profile); }
 
     public void linkProfileToUser(UserProfile userProfile) { profileDao.linkProfileToUser(userProfile); }
 
