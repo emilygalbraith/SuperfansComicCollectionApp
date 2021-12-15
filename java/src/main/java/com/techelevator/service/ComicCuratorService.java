@@ -179,11 +179,16 @@ public class ComicCuratorService {
         currentPublisher = publisherDao.getPublisherById(comicList.get(0).getPublisherId());
         PublisherStat publisherStat = new PublisherStat(currentPublisher.getPublisherName(), 1);
         publisherStatList.add(publisherStat);
+        int count = 0;
         for(Comic comic : comicList) {
             currentPublisher = publisherDao.getPublisherById(comic.getPublisherId());
             boolean found = false;
             for(PublisherStat publisherStat1 : publisherStatList) {
                 if(currentPublisher.getPublisherName().equals(publisherStat1.getPublisherName())) {
+                    if(count == 0) {
+                        found = true;
+                        break;
+                    }
                     publisherStat.setOccurrences(publisherStat.getOccurrences() + 1);
                     found = true;
                     break;
@@ -193,7 +198,7 @@ public class ComicCuratorService {
                 PublisherStat publisherStat1 = new PublisherStat(currentPublisher.getPublisherName(), 1);
                 publisherStatList.add(publisherStat1);
             }
-
+            count++;
         }
         return publisherStatList;
     }
@@ -206,10 +211,15 @@ public class ComicCuratorService {
         currentSeries = seriesDao.getSeriesById(comicList.get(0).getSeriesId());
         SeriesStat seriesStat = new SeriesStat(currentSeries.getSeriesName(), 1);
         seriesStatList.add(seriesStat);
+        int count = 0;
         for(Comic comic : comicList) {
             currentSeries = seriesDao.getSeriesById(comic.getSeriesId());
             boolean found = false;
             for(SeriesStat seriesStat1 : seriesStatList) {
+                if(count == 0) {
+                    found = true;
+                    break;
+                }
                 if(seriesStat1.getSeriesName().equals(currentSeries.getSeriesName())) {
                     seriesStat1.setOccurrences(seriesStat1.getOccurrences() + 1);
                     found = true;
