@@ -39,6 +39,9 @@ public class JdbcProfileDao implements ProfileDao{
         if (!row.next()) {
             sql = "INSERT INTO user_profile VALUES (?, ?)";
             jdbcTemplate.update(sql, userProfile.getUserId(), userProfile.getProfileId());
+        } else {
+            sql = "UPDATE user_profile SET profile_id = ? WHERE user_id = ?";
+            jdbcTemplate.update(sql, userProfile.getProfileId(), userProfile.getUserId());
         }
 
     }
@@ -75,4 +78,5 @@ public class JdbcProfileDao implements ProfileDao{
 
         return newProfile;
     }
+
 }
