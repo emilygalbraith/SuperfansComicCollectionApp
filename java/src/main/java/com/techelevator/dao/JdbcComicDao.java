@@ -18,6 +18,17 @@ public class JdbcComicDao implements ComicDao{
     public JdbcComicDao(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
 
     @Override
+    public List<Comic> listAllComics() {
+        List<Comic> comicList = new ArrayList<>();
+        String sql = "SELECT * FROM comics";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        while(result.next()) {
+            comicList.add(mapRowToComic(result));
+        }
+        return comicList;
+    }
+
+    @Override
     public List<Comic> listComicsByPublisherId(int publisherId) {
         List<Comic> comicList = new ArrayList<>();
         String sql = "SELECT * FROM comics WHERE publisher_id = ?";

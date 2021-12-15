@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ComicDao {
 
+    List<Comic> listAllComics();
     List<Comic> listComicsByPublisherId(int publisherId);
     List<Comic> listComicsBySeriesId(int seriesId);
     List<Comic> listComicsByAuthor(String author);
