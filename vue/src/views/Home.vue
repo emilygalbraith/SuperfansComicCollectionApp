@@ -71,6 +71,7 @@ a:hover {
 #collection{
   overflow-x: auto;
   overflow-y: hidden;
+  display: flex;
 }
 img{
   width: 150px;

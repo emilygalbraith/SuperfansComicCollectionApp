@@ -83,6 +83,7 @@ export default {
     },
     linkProfileToUser() {
       ComicService.addUserProfile(this.userProfile, this.$store.state.token);
+      this.$router.go();
     },
     getProfileImg() {
       const currentUser = this.$store.state.user;
