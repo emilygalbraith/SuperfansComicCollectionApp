@@ -118,6 +118,7 @@ export default {
 h2 {
   font-size: 150%;
   width: 100%;
+  text-align: center;
 }
 h3 {
   align-self: center;
