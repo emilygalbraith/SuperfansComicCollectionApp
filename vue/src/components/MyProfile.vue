@@ -46,7 +46,7 @@ export default {
       profile: {
         imgUrl: "",
       },
-      showAvatar: false
+      showAvatar: false,
     };
   },
   created() {
@@ -62,20 +62,21 @@ export default {
   methods: {
     getUserType() {
       const currentUser = this.$store.state.user;
-      this.collections = ComicService.getCollectionByUserId(currentUser.id);
-      let count = 1;
-      for (let i = 0; i < this.collections.length; i++) {
-        count++;
-      }
-      if (count >= 0 && count <= 3) {
-        if (count == 1) {
-          this.userType = count + " collection | Standard ";
-        } else {
-          this.userType = count + " collections | Standard ";
+      ComicService.getCollectionByUserId(currentUser.id).then((response) => {
+        if (response.status === 200) {
+          this.collections = response.data;
+          let numOfCollections = this.collections.length;
+          if (numOfCollections >= 0 && numOfCollections <= 3) {
+            if (numOfCollections == 1) {
+              this.userType = numOfCollections + " collection | Standard ";
+            } else {
+              this.userType = numOfCollections + " collections | Standard ";
+            }
+          } else if (numOfCollections > 3) {
+            this.userType = numOfCollections + " collections | Premium ";
+          }
         }
-      } else if (count > 3) {
-        this.userType = count + " collections | Premium ";
-      }
+      });
     },
     getAllAvatarImgs() {
       ComicService.getAllAvatarImgs().then((response) => {
@@ -104,7 +105,7 @@ export default {
     },
     flipShowAvatar() {
       this.showAvatar = !this.showAvatar;
-    }
+    },
   },
 };
 </script>
