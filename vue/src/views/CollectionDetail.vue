@@ -36,7 +36,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 h2{
     text-align: center;
 }
@@ -46,6 +47,7 @@ h2{
     overflow-x: auto;
     overflow-y: hidden;
     width: 89%;
+    flex-wrap: wrap;
 }
 #collection-detail{
     display: grid;
