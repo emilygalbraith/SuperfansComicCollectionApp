@@ -66,13 +66,13 @@ export default {
         if (response.status === 200) {
           this.collections = response.data;
           let numOfCollections = this.collections.length;
-          if (numOfCollections >= 0 && numOfCollections <= 3) {
+          if (numOfCollections >= 0 && numOfCollections < 3) {
             if (numOfCollections == 1) {
               this.userType = numOfCollections + " collection | Standard ";
             } else {
               this.userType = numOfCollections + " collections | Standard ";
             }
-          } else if (numOfCollections > 3) {
+          } else if (numOfCollections >= 3) {
             this.userType = numOfCollections + " collections | Premium ";
           }
         }
